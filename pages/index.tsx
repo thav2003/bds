@@ -1,14 +1,20 @@
-import { useRouter } from 'next/router';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
+import { Device } from '../Device';
+import HomeDesktop from './desktop/HomeDesktop';
+import HomeMobile from './mobile/HomeMobile';
 import { NextPageWithLayout } from './page';
-
-
 const Home: NextPageWithLayout = () => {
-  const { locale } = useRouter();
+  
   return (
-    <div>
-      HomePage
-    </div>
+    <>
+    <Device desktop>
+       <HomeDesktop/>
+    </Device>
+    <Device mobile>
+       <HomeMobile/>
+    </Device>
+
+    </>
   );
 };
 Home.getLayout = (page) => {

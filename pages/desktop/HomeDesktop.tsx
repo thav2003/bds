@@ -1,0 +1,119 @@
+import CardHome from '../../components/cards/card';
+import type { DataProps } from '../../fakedata';
+import { data } from '../../fakedata';
+
+export interface HomeDesktopProps extends React.ComponentPropsWithoutRef<'div'> {}
+
+
+
+const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
+    
+    const test=(data:DataProps[])=>{
+        data.forEach(item=>{
+            console.log(item.title)
+        })
+   
+    }
+    console.log(test(data))
+    return(
+        <div className="flex flex-col justify-center">
+            <div className="home-row">
+                <div className="w-11/12">
+                    <img src="/banner.png"/> 
+                </div>
+            </div>
+            <div className="home-row">
+                <div className="w-10/12 text-center">
+                    <h2>Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h2>
+                    <p className="text-sm">Cho thuê căn hộ chung cư mini: Giá rẻ, chất lượng, chính chủ, đầy đủ nội thất, an ninh đảm bảo. Đăng tin cho thuê căn hộ hiệu quả với 1.000.000+ truy cập mỗi tháng</p>
+                </div>
+            </div>
+            <div className="home-row"> 
+                <div className="w-11/12 space-y-4"> 
+                    <div className="flex flex-row items-center space-x-2">
+                        <img src="apartment_home.svg" className="w-5 h-5"/>
+                        <h2>Tìm kiếm nhiều nhất</h2>
+                    </div>
+                    <div className="bg-slate-100 py-4 flex flex-row  shadow-lg rounded-lg">
+                        <div className=" flex-[5_1_0%]">
+                            <div className="flex-row flex space-x-3">
+                                <div className="w-[45%] h-48 rounded-md relative">
+                                    <img src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                    <div  className="absolute bottom-2 left-2">
+                                        <h3>Hà Nội</h3>
+                                        <p className="text-sm">49.576 tin đăng</p>
+                                    </div>
+                                    
+                                </div>
+                                <div className="w-[45%] h-48 rounded-md relative">
+                                    <img src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                    <div  className="absolute bottom-2 left-2">
+                                        <h3>Hồ Chí MInh</h3>
+                                        <p className="text-sm">69.524 tin đăng</p>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div className=" flex-[7_1_0%] flex flex-row">
+                            <div className="flex-[2_1_0%] ">
+                                <h4>Dự án nổi bật</h4>
+                                <div className="flex flex-row">
+                                    <img src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                    <p>Cho thuê căn hộ The Sun</p>
+                                </div>
+                            </div>
+                            <div className="flex-[2_1_0%]">
+                                <h4>Khu vực nổi bật</h4>
+                                <div className="flex flex-row">
+                                    <img src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                    <p>Cho thuê căn hộ The Sun</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="home-row">
+                <div  className="w-11/12 space-y-4">
+                    <div className="flex flex-row items-center space-x-2">
+                        <img src="apartment_home.svg" className="w-5 h-5"/>
+                        <h2>Cho thuê chung cư mới nhất</h2>
+                    </div>
+                    <div className="flex flex-row flex-wrap">
+                        <CardHome data={data[0]}/>
+                        <CardHome data={data[1]}/>
+                        <CardHome data={data[2]}/>
+                        <CardHome data={data[3]}/>
+                        <CardHome data={data[4]}/>
+                        <CardHome data={data[5]}/>
+                        <CardHome data={data[6]}/>
+                        <CardHome data={data[7]}/>
+                    </div>
+                </div>
+            </div>
+            <div className="home-row pt-0">
+                <div  className="w-11/12 space-y-4">
+                    <div className="flex flex-row items-center space-x-2">
+                        <img src="apartment_home.svg" className="w-5 h-5"/>
+                        <h2>Tin tức</h2>
+                    </div>
+                    <div className="flex flex-row flex-wrap">
+                        <CardHome data={data[0]}/>
+                        <CardHome data={data[1]}/>
+                        <CardHome data={data[2]}/>
+                        <CardHome data={data[3]}/>
+                       
+                    </div>
+                </div>
+            </div>
+            <div className="home-row">
+                <div  className="w-11/12 space-y-4">
+                    he
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default HomeDesktop;

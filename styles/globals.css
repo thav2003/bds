@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    h1 {
+      @apply text-2xl;
+    }
+    h2 {
+        @apply text-xl;
+    }
+    h3 {
+        @apply text-lg;
+    }
+    a {
+        @apply text-black;
+    }
+}
+
 @layer components {
     .btn-primary {
         @apply hover:bg-emerald-400 hover:rounded-lg text-center p-2 flex-grow
@@ -9,5 +24,11 @@
     .filter {
         @apply flex-shrink  border-solid border-2 rounded-md p-2 text-sm 
 
+    }
+    .btn-login{
+        @apply flex items-center justify-center mr-2 mb-2 text-center bg-transparent hover:bg-purple-900  border border-blue-500 py-2 px-4 rounded-full w-full
+    }
+    .home-row{
+        @apply p-10 justify-center flex pb-0
     }
   }

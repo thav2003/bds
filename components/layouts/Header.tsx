@@ -13,7 +13,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             {...headerProps}
             className={`w-full flex flex-col  items-center p-5 shadow z-10`}
         >
-            <div className=" w-9/12 flex items-center justify-between ">
+            <div className=" w-10/12 flex items-center justify-between ">
 
                 <div className="flex flex-row space-x-4 flex-grow">
                     <Link href="/">
@@ -72,7 +72,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                 </div>
             </div>
             {router.pathname==='/' && 
-                <div className="w-9/12  flex flex-row pl-2 pt-7 space-x-3 ">
+                <div className="w-10/12  flex flex-row pl-2 pt-7 space-x-3 ">
                     
                     <select name="location" id="locations"  className='filter'>
                         <option value="1">Toàn quốc</option>

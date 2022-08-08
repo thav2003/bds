@@ -9,7 +9,7 @@ module.exports = {
     screens:{
       xs:'375px',
       sm:'600px',
-      md:'900px',
+      md:'992px',
       lg:'1200px',
       xl:'1536px'
     },
@@ -27,7 +27,10 @@ module.exports = {
         128:'32rem'
       },
 
+       
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
