@@ -5,13 +5,13 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
   return (
     <footer
       {...footerProps}
-      className={`w-full p-5 bg-slate-100 text-slate-500 `}
+      className={`w-full p-5 bg-slate-100  `}
     >
       <div className="flex justify-center ">
-        <div className="w-10/12 flex flex-row justify-between space-x-3">
+        <div className="w-11/12 flex flex-row justify-between space-x-3 p-10">
           <div className="  flex-[2_1_0%] flex flex-col  space-y-2">
             <div>
-              <h1>Chào mừng bạn đến với 99.co!</h1>
+              <h3 className="font-bold">Chào mừng bạn đến với 99.co!</h3>
               <p>99.co là cổng thông tin bất động sản phát triển nhanh nhất Singpore. i chúng tôi, bạn sẽ cảm thấy như đang ở nhà khi tìm kiếm nhà ở, chung cư, căn hộ, và bán và cho thuê tại Singapore</p>
             </div>
             <div className="space-y-2">
@@ -38,12 +38,60 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
           </div>
           <div className="  flex-1">
             <div>
-                Công ty
+              <h3 className="font-bold">Công ty</h3>
+            </div>
+            <div>
+                Về chúng tôi
+            </div>
+            <div>
+                Hỏi chúng tôi bất cứ điều gì
+            </div>
+            <div>
+                Nhóm (chúng tôi đang tuyển dụng)
+            </div>
+            <div>
+                Blog
+            </div>
+            <div>
+                Nhận xét
+            </div>
+            <div>
+                Các điều khoản và điều kiện
+            </div>
+            <div>
+                Chính sách bảo mật
             </div>
           </div>
           <div className="  flex-1">
             <div>
-                Phát hiện
+              <h3 className="font-bold">Phát hiện</h3>
+            </div>
+            <div>
+                Nhà nghiên cứu
+            </div>
+            <div>
+                Báo cáo trang chủ cho đại lý
+            </div>
+            <div>
+                Bán đất
+            </div>
+            <div>
+                Quảng cáo với 99 Group
+            </div>
+            <div>
+                Các vùng lân cận
+            </div>
+            <div>
+                Tài sản gần ga tàu điện ngầm
+            </div>
+            <div>
+                Danh mục chung cư
+            </div>
+            <div>
+                Ứng dụng di động cho người tìm nhà
+            </div>
+            <div>
+                Sơ đồ trang web
             </div>
           </div>
         </div>

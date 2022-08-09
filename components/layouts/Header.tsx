@@ -4,14 +4,15 @@ export interface IHeader extends React.ComponentPropsWithoutRef<'header'> {}
 
 const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const router = useRouter()
-    const Click=()=>{
-        console.log(router.pathname)
-    }
+    
+        console.log(router)
+    
 
     return(
+   
         <header
             {...headerProps}
-            className={`w-full flex flex-col  items-center p-5 shadow z-10`}
+            className={`w-full flex flex-col  items-center p-5 shadow z-10 select-none`}
         >
             <div className=" w-10/12 flex items-center justify-between ">
 
@@ -73,13 +74,18 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             </div>
             {router.pathname==='/' && 
                 <div className="w-10/12  flex flex-row pl-2 pt-7 space-x-3 ">
-                    
-                    <select name="location" id="locations"  className='filter'>
-                        <option value="1">Toàn quốc</option>
-                        <option value="2">Saab</option>
-                        <option value="2">Opel</option>
-                        <option value="3">Audi</option>
-                    </select>
+                    <div className="relative">
+                        <select name="location" id="locations"  className='filter pl-5'>
+                            
+                            <option value="1">Toàn quốc</option>
+                            <option value="2">Saab</option>
+                            <option value="2">Opel</option>
+                            <option value="3">Audi</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-1 text-gray-700">
+                            <img src="/khu_vuc.svg" className="w-5 h-5"/>
+                        </div>
+                    </div>
                 
                         
                     <select name="prices" id="prices"  className='filter'>
@@ -118,8 +124,12 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     </select>              
                 </div>
             }
-           
+            
+        
         </header>
+            
+      
+        
     )
 }
 export default Header;

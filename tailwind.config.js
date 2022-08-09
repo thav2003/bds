@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-
+    "./node_modules/flowbite-react/**/*.js",
   ],
   theme: {
     screens:{
@@ -32,5 +32,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/forms'),
+    require("flowbite/plugin")
   ],
 }

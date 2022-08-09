@@ -31,4 +31,17 @@
     .home-row{
         @apply p-10 justify-center flex pb-0
     }
+    .pathMenu{
+        @apply after:mx-2 after:content-['*'] after:text-transparent after:bg-[url(/left-icon-path.svg)] after:bg-no-repeat after:bg-center 
+    }
+    .info{
+        @apply after:bg-[url(/info-icon.svg)] after:mx-1 after:content-['***'] after:text-transparent after:bg-no-repeat after:bg-center after:bg-[length:1rem_1rem]
+    }
+  }
+
+  @layer utilities {
+    .placeholder-style::placeholder {
+       padding: 5px 12px;
+       margin: 5px;
+    }
   }
