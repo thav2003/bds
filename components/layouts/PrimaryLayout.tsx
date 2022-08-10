@@ -10,7 +10,7 @@ const PrimaryLayout:React.FC<IPrimaryLayout>=({
     ...divProps
 })=>{
     return( 
-        <div {...divProps} className={`min-h-screen flex flex-col`}>
+        <div {...divProps} className={`min-h-screen flex flex-col select-none`}>
             <Head>
                 <title>NextJs Projects</title>
             </Head>

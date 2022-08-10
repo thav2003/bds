@@ -73,9 +73,9 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                 </div>
             </div>
             {router.pathname==='/' && 
-                <div className="w-10/12  flex flex-row pl-2 pt-7 space-x-3 ">
+                <div className="w-10/12  flex flex-row pl-2 pt-7 space-x-2 items-center">
                     <div className="relative">
-                        <select name="location" id="locations"  className='filter pl-5'>
+                        <select name="location" id="locations"  className='filter pl-6 pr-8 border-gray-400'>
                             
                             <option value="1">Toàn quốc</option>
                             <option value="2">Saab</option>
@@ -88,40 +88,53 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     </div>
                 
                         
-                    <select name="prices" id="prices"  className='filter'>
+                    <select name="prices" id="prices"  className='filter pr-8 border-gray-400'>
                         <option value="1">Giá thuê</option>
                         <option value="2">Saab</option>
                         <option value="2">Opel</option>
                         <option value="3">Audi</option>
                     </select>
             
-                    <select name="areas" id="areas"  className='filter'>
+                    <select name="areas" id="areas"  className='filter pr-8 border-gray-400'>
                         <option value="1">Diện tích</option>
                         <option value="2">Saab</option>
                         <option value="2">Opel</option>
                         <option value="3">Audi</option>
                     </select>
                 
-                    <select name="rooms" id="rooms"  className='filter'>
+                    <select name="rooms" id="rooms"  className='filter pr-8 border-gray-400'>
                         <option value="1">Số phòng ngủ</option>
                         <option value="2">Saab</option>
                         <option value="2">Opel</option>
                         <option value="3">Audi</option>
                     </select>
                 
-                    <select name="projects" id="projects"  className='filter'>
+                    <select name="projects" id="projects"  className='filter pr-8 border-gray-400'>
                         <option value="1">Dự án</option>
                         <option value="2">Saab</option>
                         <option value="2">Opel</option>
                         <option value="3">Audi</option>
                     </select>
                 
-                    <select name="types" id="types"  className='filter'>
+                    <select name="types" id="types"  className='filter pr-8 border-gray-400'>
                         <option value="1">Loại hình căn hộ</option>
                         <option value="2">Saab</option>
                         <option value="2">Opel</option>
                         <option value="3">Audi</option>
-                    </select>              
+                    </select>
+                    <div className="h-full flex">
+                       
+                        <button className="filter btn-primary flex items-center border-gray-400"> 
+                            <img src="/fillter-black.svg" className="h-4 w-4 mr-2"/>
+                        Lọc thêm</button> 
+                    </div>
+                    <div className="h-full flex">
+                       
+                        <button className=" btn-primary flex border-gray-400"> 
+                            <img src="/reset_fillter.svg" className="h-5 w-5 mr-2"/>
+                        Đặt lại</button> 
+                    </div>
+                               
                 </div>
             }
             

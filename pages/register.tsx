@@ -10,7 +10,7 @@ const RegisterPage:NextPageWithLayout=()=>{
     }
     return (
       <div className=" bg-slate-200 p-[3.5rem]">
-      <div className=" w-full relative m-auto md:max-w-6xl">
+      <div className=" w-full relative m-auto ">
       <div className="flex flex-[2_1_0%]">
           <div className="flex-[6_1_0%] bg-[url('/welcome.png')] bg-no-repeat bg-contain">
              

@@ -1,13 +1,14 @@
 import Link from 'next/link';
+import { useState } from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from './page';
-
-import { useState } from 'react';
 
 const UploadPage:NextPageWithLayout=()=>{
     const [countTitle, setCountTitle] = useState(0);
     const [countDescription, setCountDescription] = useState(0);
-
+    const [startDate, setStartDate] = useState(new Date());
     return (
         <div className={`w-full flex flex-col  items-center p-5  select-none bg-slate-50`}>
            
@@ -458,14 +459,13 @@ const UploadPage:NextPageWithLayout=()=>{
                   <div className="grid grid-cols-2">
                     <div >
                         <label htmlFor="time_start" className="font-semibold">Ngày bắt đầu</label>
-                        <input id="time_start" type="text" name="time_start"
-                            className="
-                            w-full
-                            placeholder:text-slate-400  
-                            bg-white rounded pl-3 py-2 pr-10
-                            shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
-                            border border-slate-300 "
-                          
+                        <DatePicker className="w-full placeholder:text-slate-400  
+                          bg-white rounded pl-3 py-2 pr-10
+                          shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                          border border-slate-300 " 
+                          selected={startDate} 
+                          onChange={(date:Date) => setStartDate(date)} 
+                          dateFormat="dd/MM/yyyy"
                         />
                       </div>
                       <div className="ml-4">

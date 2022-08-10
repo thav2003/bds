@@ -7,7 +7,7 @@ const CardHome:React.FC<Card>=(props)=>{
     const {data} = props
  
     return(
-        <div id="card" className="p-[0px_14px] w-1/4">
+        <div id="card" className="p-[0px_14px] w-1/4 select-none">
             <div  className="flex flex-col h-80 w-full shadow mb-8 rounded flex-grow space-y-2">
                 <div className="flex-grow-[2] ">
                     

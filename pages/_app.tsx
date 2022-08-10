@@ -5,10 +5,10 @@ import { NextPageWithLayout } from './page';
 interface AppPropsWithLayout extends AppProps {
   Component: NextPageWithLayout;
 }
-
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
   const router = useRouter()
+ 
   return getLayout(<Component key={router.asPath} {...pageProps} />);
 }
 

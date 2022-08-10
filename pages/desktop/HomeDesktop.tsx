@@ -1,27 +1,56 @@
+
+import { Carousel } from 'flowbite-react';
+
+
 import CardHome from '../../components/cards/card';
-import type { DataProps } from '../../fakedata';
+import CardNews from '../../components/cards/cardNews';
 import { data } from '../../fakedata';
-
 export interface HomeDesktopProps extends React.ComponentPropsWithoutRef<'div'> {}
-
-
-
 const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     
-    const test=(data:DataProps[])=>{
-        data.forEach(item=>{
-            console.log(item.title)
-        })
-   
-    }
-    console.log(test(data))
+    
+
+    
+    
+    
     return(
         <div className="flex flex-col justify-center">
             <div className="home-row">
-                <div className="w-11/12">
-                    <img src="/banner.png"/> 
+                <div className="w-11/12 ">
+                    
+                <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+                    <Carousel slideInterval={5000}>
+                        <img
+                        src="/banner.png"
+                        alt="..."
+                        />
+                        <img
+                        src="/banner.png"
+                        alt="..."
+                        />
+                        <img
+                        src="/banner.png"
+                        alt="..."
+                        />
+                        <img
+                        src="/banner.png"
+                        alt="..."
+                        />
+                        <img
+                        src="/banner.png"
+                        alt="..."
+                        />
+                    </Carousel>
+                    </div>
+
+
+                    
                 </div>
             </div>
+            
+      
+     
+    
             <div className="home-row">
                 <div className="w-10/12 text-center">
                     <h2>Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h2>
@@ -98,12 +127,13 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         <img src="apartment_home.svg" className="w-5 h-5"/>
                         <h2>Tin tức</h2>
                     </div>
-                    <div className="flex flex-row flex-wrap">
-                        <CardHome data={data[0]}/>
-                        <CardHome data={data[1]}/>
-                        <CardHome data={data[2]}/>
-                        <CardHome data={data[3]}/>
-                       
+                    <div>
+                        <div className="w-full flex shadow flex-wrap ">
+                            <CardNews />
+                            <CardNews />
+                            <CardNews />
+                            <CardNews />
+                        </div>
                     </div>
                 </div>
             </div>
