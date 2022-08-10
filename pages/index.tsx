@@ -1,7 +1,6 @@
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { Device } from '../Device';
 import HomeDesktop from './desktop/HomeDesktop';
-import HomeMobile from './mobile/HomeMobile';
 import { NextPageWithLayout } from './page';
 const Home: NextPageWithLayout = () => {
   
@@ -11,7 +10,7 @@ const Home: NextPageWithLayout = () => {
        <HomeDesktop/>
     </Device>
     <Device mobile>
-       <HomeMobile/>
+       <HomeDesktop/>
     </Device>
 
     </>

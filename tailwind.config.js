@@ -14,10 +14,10 @@ module.exports = {
       md:'992px',
       lg:'1200px',
       xl:'1536px',
-      mobible:'320px',
-      tablet: '481px',
-      laptop: '769px',
-      desktop: '1025px',
+      mobile:{max: '480'},
+      tablet: {max: '768px'},
+      laptop: {max: '1024px'},
+      desktop: {max: '1200px'},
       
       
     },

@@ -9,14 +9,14 @@ const RegisterPage:NextPageWithLayout=()=>{
         setHide(!isHide)
     }
     return (
-      <div className=" bg-slate-200 p-[3.5rem]">
+      <div className=" bg-slate-200 p-[3.5rem] tablet:p-0">
       <div className=" w-full relative m-auto ">
-      <div className="flex flex-[2_1_0%]">
-          <div className="flex-[6_1_0%] bg-[url('/welcome.png')] bg-no-repeat bg-contain">
+      <div className="flex flex-[2_1_0%] ">
+          <div className="flex-[6_1_0%] bg-[url('/welcome.png')] bg-no-repeat bg-contain tablet:hidden">
              
           </div>
           
-          <div className="bg-white flex flex-col flex-[6_1_0%]    p-10 shadow shadow-slate-800 rounded-xl max-w-[34rem]">
+          <div className="bg-white flex flex-col flex-[6_1_0%]  tablet:rounded-none tablet:p-5  p-10 shadow shadow-slate-800 rounded-xl max-w-[34rem]">
               <div className="mb-6">
                   <h1 className="font-bold text-2xl">Đăng Kí</h1>
                   <p>Nhập đúng email và số điện thoại của bạn để đăng tin miễn phí</p>

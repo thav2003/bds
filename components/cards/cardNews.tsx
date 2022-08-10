@@ -1,9 +1,7 @@
-export interface CardNews extends React.ComponentPropsWithoutRef<'div'> {
-    
-}
 
 
-const CardNews:React.FC<CardNews>=()=>{
+import type { CardNewsProp } from '../../interfaces/interfaces';
+const CardNews:React.FC<CardNewsProp>=()=>{
     return(
         <div id="cardNews" className=" flex h-[18rem] flex-col  pl-0 w-1/4 select-none space-y-2">
             <div className="flex-[6_1_0%] w-[85%] ">

@@ -1,7 +1,5 @@
-import type { DataProps } from '../../fakedata';
-export interface Card extends React.ComponentPropsWithoutRef<'div'> {
-    data:DataProps
-}
+
+import type { Card } from '../../interfaces/interfaces';
 
 const CardHome:React.FC<Card>=(props)=>{
     const {data} = props

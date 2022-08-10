@@ -10,7 +10,7 @@ const UploadPage:NextPageWithLayout=()=>{
     const [countDescription, setCountDescription] = useState(0);
     const [startDate, setStartDate] = useState(new Date());
     return (
-        <div className={`w-full flex flex-col  items-center p-5  select-none bg-slate-50`}>
+        <div className={`w-full flex flex-col  items-center p-5  select-none bg-slate-50 laptop:text-sm`}>
            
           <div className=" w-8/12 flex items-center justify-between ">
               <ol className=" flex items-center ">
@@ -278,7 +278,7 @@ const UploadPage:NextPageWithLayout=()=>{
                   </div>
                   <div className="space-y-2">
                     <p className="font-semibold  ">Tình trạng nội thất</p>
-                    <div className='space-x-2 flex select-none'>
+                    <div className='space-x-2 flex select-none '>
                         <div>
                           <input value="1" className="form-radio peer hidden" id="none" type="radio" name="status" />
                           <label htmlFor="none" className="peer-checked:bg-red-200 px-4 py-2 bg-slate-100 w-20 text-center rounded-3xl">Chưa có</label>

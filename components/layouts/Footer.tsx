@@ -1,15 +1,15 @@
 
-export interface IFooter extends React.ComponentPropsWithoutRef<'footer'> {}
+import type { IFooter } from '../../interfaces/interfaces';
 
 const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
   return (
     <footer
       {...footerProps}
-      className={`w-full p-5 bg-slate-100  `}
+      className={`w-full p-5 bg-slate-100 tablet:p-0 `}
     >
       <div className="flex justify-center ">
-        <div className="w-11/12 flex flex-row justify-between space-x-3 p-10">
-          <div className="  flex-[2_1_0%] flex flex-col  space-y-2">
+        <div className="w-11/12 flex flex-row justify-between space-x-3 tablet:px-0 tablet:py-5 p-10 tablet:grid  gap-2 ">
+          <div className="  flex-[2_1_0%] flex flex-col  space-y-2 tablet:col-start-1 tablet:cols-end-3 col-span-2">
             <div>
               <h3 className="font-bold">Chào mừng bạn đến với 99.co!</h3>
               <p>99.co là cổng thông tin bất động sản phát triển nhanh nhất Singpore. i chúng tôi, bạn sẽ cảm thấy như đang ở nhà khi tìm kiếm nhà ở, chung cư, căn hộ, và bán và cho thuê tại Singapore</p>
@@ -36,7 +36,7 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
              
             </div>
           </div>
-          <div className="  flex-1">
+          <div className="  flex-1 tablet:col-start-1 tablet:cols-end-2">
             <div>
               <h3 className="font-bold">Công ty</h3>
             </div>
@@ -62,7 +62,7 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
                 Chính sách bảo mật
             </div>
           </div>
-          <div className="  flex-1">
+          <div className="  flex-1 tablet:col-start-2 tablet:cols-end-3">
             <div>
               <h3 className="font-bold">Phát hiện</h3>
             </div>

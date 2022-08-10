@@ -1,15 +1,4 @@
-export interface DataProps{
-    title: string;
-    prices: number;
-    followBy: string;
-    room: number;
-    wc: number;
-    areas:number;
-    address: string;
-    author: string;
-    datetime: Date;
-    image:string;
-}
+import type { DataProps } from "./interfaces/interfaces"
 
 export const data:DataProps[]=new Array(10).fill({
     title: 'Cho thuê nhà Thủ Đức',

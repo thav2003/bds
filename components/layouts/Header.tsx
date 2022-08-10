@@ -1,31 +1,37 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-export interface IHeader extends React.ComponentPropsWithoutRef<'header'> {}
+import type { IHeader } from '../../interfaces/interfaces';
+
+
+
+
+
+
 
 const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const router = useRouter()
     
-        console.log(router)
-    
+
+ 
 
     return(
    
         <header
             {...headerProps}
-            className={`w-full flex flex-col  items-center p-5 shadow z-10 select-none`}
+            className={`w-full flex flex-col  items-center p-5 shadow z-10 select-none `}
         >
             <div className=" w-10/12 flex items-center justify-between ">
 
                 <div className="flex flex-row space-x-4 flex-grow">
-                    <Link href="/">
-                        <a>
+                    <Link href="/" >
+                        <a >
                             <img src="/logo.svg" alt="Logo" className="w-auto h-auto"  />
                         </a>
                     </Link>
-                    <label className="relative w-3/6">
+                    <label className="relative w-3/6 laptop:hidden">
                         <input 
                             className="
-                                w-full
+                                w-full 
                                 placeholder:text-slate-400  
                                 bg-white rounded-3xl pl-3 py-2 pr-10
                                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
@@ -39,7 +45,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                         </span>
                     </label>
                 </div>
-                <div className="flex-shrink">
+                <div className="flex-shrink ">
                     <div className="flex flex-row items-center font-medium space-x-1">
                         <div  className="flex flex-grow rounded-lg items-center justify-center">
                             <Link href="/">
@@ -73,7 +79,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                 </div>
             </div>
             {router.pathname==='/' && 
-                <div className="w-10/12  flex flex-row pl-2 pt-7 space-x-2 items-center">
+                <div className="w-10/12  flex flex-row pl-2 pt-7  items-center flex-wrap gap-2">
                     <div className="relative">
                         <select name="location" id="locations"  className='filter pl-6 pr-8 border-gray-400'>
                             
@@ -130,7 +136,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     </div>
                     <div className="h-full flex">
                        
-                        <button className=" btn-primary flex border-gray-400"> 
+                        <button className=" btn-primary flex border-gray-400 "> 
                             <img src="/reset_fillter.svg" className="h-5 w-5 mr-2"/>
                         Đặt lại</button> 
                     </div>
