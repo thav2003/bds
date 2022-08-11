@@ -5,6 +5,7 @@ import { selectAuthState } from "../../reducers/actions/auth";
 interface ItabName extends React.ComponentPropsWithoutRef<"div">{}
 
 const BottomTab:React.FC<ItabName>=()=>{
+    
     const authState = useSelector(selectAuthState);
     const dispatch = useDispatch();
     const router=useRouter()
@@ -113,11 +114,25 @@ const BottomTab:React.FC<ItabName>=()=>{
                 )}
             </div>
             <div className="bnTab">
+                
                 {activeTabs ==='account'  ? (
                     <button type="button" className="btn-nav-bar text-purple-600"
                         onClick={() => setActiveTabs('account')}
                     >
-                        <img src="/user-toolbar-footer.svg" className="h-5 w-5"/>
+                        {authState ? 
+                        
+                            <div className="flex items-center space-x-4 ">
+                                <div className="relative">
+                                    <img 
+                                        className="w-6 h-6 rounded-full p-1 ring-2 ring-sky-300  relative  overflow-hidden "
+                                        src="/user-toolbar-footer.svg" 
+                                    /> 
+                                    <span className="-bottom-1 -right-1 bg-green-400 absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800"></span>
+                                </div>
+                            </div>
+                            
+                            : <img src="/user-toolbar-footer.svg" className="h-5 w-5"/>}
+                        
                         Tài khoản</button>
                     ):(
                         <button type="button" className="btn-nav-bar"

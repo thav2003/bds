@@ -1,12 +1,16 @@
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from './page';
 
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-
 const RegisterPage:NextPageWithLayout=()=>{
     const [isHide,setHide]=useState(true)
+    const router= useRouter()
     const changeHide=()=>{
         setHide(!isHide)
+    }
+    const login=()=>{
+        router.push('/login')
     }
     return (
       <div className=" bg-slate-200 p-[3.5rem] tablet:p-0">
@@ -74,29 +78,29 @@ const RegisterPage:NextPageWithLayout=()=>{
                           
                       </span>
                   </div>
-                  <a className="w-full text-sm flex justify-end mb-4">Quên mật khẩu?</a>
-                  <button className="bg-purple-800 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-full w-full">Đăng nhập</button>
+               
+                  <button className="bg-purple-800 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-full w-full">Đăng kí</button>
                   <div>
                       <div className="flex items-center py-4">
                           <div className="flex-grow h-px bg-gray-400"></div> 
-                          <span className="flex-shrink text-xs text-gray-500 px-4  font-light">hoặc đăng nhập bằng</span>
+                          <span className="flex-shrink text-xs text-gray-500 px-4  font-light">hoặc đăng kí bằng</span>
                           <div className="flex-grow h-px bg-gray-400"></div>
                       </div>
                   </div>
                   <div className="flex flex-wrap">
                       <button type="button" className="btn-login">
                       <img src="/facebook.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
-                          Đăng nhập với Facebook
+                          Đăng kí với Facebook
                       </button>
                       <button type="button" className="btn-login">
                       <img src="/google.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
-                          Đăng nhập với Google
+                          Đăng kí với Google
                       </button>
                       <button type="button" className="btn-login">
                       <img src="/zalo.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
-                          Đăng nhập với Zalo
+                          Đăng kí với Zalo
                       </button>
-                      <p className="flex justify-center items-center w-full text-sm ">Bạn chưa có tài khoản <span className="text-purple-600 ml-2">Đăng kí ngay</span></p>
+                      <p className="flex justify-center items-center w-full text-sm ">Bạn đã có tài khoản <span onClick={login} className="cursor-pointer text-purple-600 ml-2">Đăng nhập ngay</span></p>
                   </div>
               </div>
               

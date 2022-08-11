@@ -1,14 +1,17 @@
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from './page';
 
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-
 const LoginPage:NextPageWithLayout=()=>{
     const [isHide,setHide]=useState(true)
+    const router = useRouter()
     const changeHide=()=>{
         setHide(!isHide)
     }
-
+    const register=()=>{
+        router.push('/register')
+    }
     return (
         <div className=" bg-slate-200 p-[3.5rem] tablet:p-0">
             <div className=" w-full relative m-auto ">
@@ -75,7 +78,7 @@ const LoginPage:NextPageWithLayout=()=>{
                             <img src="/zalo.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
                                 Đăng nhập với Zalo
                             </button>
-                            <p className="flex justify-center items-center w-full text-sm ">Bạn chưa có tài khoản <span className="text-purple-600 ml-2">Đăng kí ngay</span></p>
+                            <p className="flex justify-center items-center w-full text-sm ">Bạn chưa có tài khoản <span onClick={register} className="cursor-pointer text-purple-600 ml-2">Đăng kí ngay</span></p>
                         </div>
                     </div>
                     

@@ -12,21 +12,44 @@ const LoginPage:NextPageWithLayout =()=>{
         <div className={`w-full flex flex-col mb-8  items-center p-0 select-none bg-slate-50 `}>
             <div className=" w-full flex flex-col    space-y-5  ">
                 
-                <div className="p-5 bg-white space-y-4 rounded-xl tablet:px-3 flex  items-center justify-between">
-                    <div className="flex items-center gap-2 flex-[8_1_0%]">
-                        <div  className="relative ">
-                            <img src="/default-user.svg" className=" w-20 h-20"/>
-                            <img src="/logo_small.svg" className=" w-5 h-5 absolute right-0 bottom-1"/>
+                <div className="p-5 bg-white space-y-4 rounded-xl tablet:px-3 flex flex-col ">
+                    <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center gap-2 flex-[8_1_0%]">
+                            <div  className="relative ">
+                                <img src="/default-user.svg" className=" w-20 h-20"/>
+                                <img src="/logo_small.svg" className=" w-5 h-5 absolute right-0 bottom-1"/>
+                            </div>
+                            
+                            <div>
+                                <p className="font-medium text-lg">Nguyễn Nam</p>
+                                <p>0404040</p>
+                                <p>Sửa thông tin</p>
+                            </div>
                         </div>
-                        
-                        <div>
-                            <p className="font-medium text-lg">Nguyễn Nam</p>
-                            <p>0404040</p>
-                            <p>Sửa thông tin</p>
+                        <div className="flex-shrink ">
+                            <button  className="btn-login rounded-lg text-xs  p-2 m-0 border-purple-500 bg-purple-transparent border-solid border-[1px] text-purple-500">Trang cá nhân</button>
                         </div>
                     </div>
-                    <div className="flex-shrink ">
-                        <button  className="btn-login rounded-lg text-xs  p-2 m-0 border-purple-500 bg-purple-transparent border-solid border-[1px] text-purple-500">Trang cá nhân</button>
+                    <div className="bg-slate-100 p-5 space-y-5 text-gray-400 rounded-md">
+                        <div className="w-full">
+                            <div className="flex justify-between">
+                                <p>Tài khoản chính</p>
+                                <p className="text-black">0 đ</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p>Tài khoản khuyến mãi</p>
+                                <p className="text-black">0 đ</p>
+                            </div>
+                        </div>
+                        <button className="btn-login w-full rounded-lg border-none bg-purple-500 text-white">Nạp tiền</button>
+                        <div className="w-full bg-white p-2 rounded-md">
+                            <p>Mã tài khoản</p>
+                            <div className="flex justify-between w-full">
+                                <h3 className="font-medium text-black">SE81264</h3>
+                                <img src="/share.svg"/>
+                            </div>
+                           
+                        </div>
                     </div>
                     
                 </div>
