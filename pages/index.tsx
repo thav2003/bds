@@ -2,8 +2,8 @@ import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { Device } from '../Device';
 import HomeDesktop from './desktop/HomeDesktop';
 import { NextPageWithLayout } from './page';
-const Home: NextPageWithLayout = () => {
-  
+const Home: NextPageWithLayout = (props) => {
+ 
   return (
     <>
     <Device desktop>
