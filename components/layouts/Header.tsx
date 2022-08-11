@@ -1,17 +1,21 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from "react-redux";
 import type { IHeader } from '../../interfaces/interfaces';
+import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
 
-
-
+import { Dropdown } from 'flowbite-react';
 
 
 
 
 const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const router = useRouter()
-    
-
+    const authState = useSelector(selectAuthState);
+    const dispatch = useDispatch();
+    const submitLogout=()=>{
+        dispatch(setAuthState(false))
+    }
  
 
     return(
@@ -46,25 +50,60 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     </label>
                 </div>
                 <div className="flex-shrink ">
-                    <div className="flex flex-row items-center font-medium space-x-1">
+                    <div className="flex flex-row items-center font-medium space-x-3">
                         <div  className="flex flex-grow rounded-lg items-center justify-center">
-                            <Link href="/">
+                            
                                 <a >
-                                    <img src="favorite-desktop.svg"  className="w-auto h-auto"/>
+                                    <img src="favorite-desktop.svg"  className="w-full h-5"/>
                                 </a>
-                            </Link>
+                            
                         </div>
-                        
-                        <div className="flex flex-grow rounded-lg w-24 items-center justify-center">
-                            <Link href="/register">
-                                <a className="btn-primary">Đăng kí</a>
-                            </Link>
-                        </div>
-                        <div className="flex flex-grow rounded-lg w-24 items-center justify-center">
-                            <Link href="/login">
-                                <a className="btn-primary">Đăng nhập</a>
-                            </Link>
-                        </div>
+                        {!authState ? 
+                            
+                            <>
+                            <div className="flex flex-grow rounded-lg w-24 items-center justify-center">
+                                <Link href="/register">
+                                    <a className="btn-primary">Đăng kí</a>
+                                </Link>
+                            </div>
+                            <div className="flex flex-grow rounded-lg w-24 items-center justify-center">
+                                <Link href="/login">
+                                    <a className="btn-primary">Đăng nhập</a>
+                                </Link>
+                            </div>
+                            </>
+                            :
+                            <>
+                            <div  className="flex flex-grow rounded-lg items-center justify-center">
+                            
+                                <a >
+                                    <img src="notification.svg"  className="w-full h-6"/>
+                                </a>
+                            
+                            </div>
+                            <div className='flex space-x-2 px-5 items-center'>
+                                <div className="flex items-center space-x-4 ">
+                                    <div className="relative">
+                                        <img 
+                                            className="w-6 h-6 rounded-full p-1 ring-2 ring-sky-300  relative  overflow-hidden "
+                                            src="/user-toolbar-footer.svg" 
+                                        /> 
+                                        <span className="-bottom-1 -right-1 bg-green-400 absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800"></span>
+                                    </div>
+                                </div>
+                     
+                                   
+                                <Dropdown inline={true} label="Nguyễn Văn Nam">
+                                    <Dropdown.Item onClick={submitLogout}>
+                                        Đăng xuất
+                                    </Dropdown.Item>
+                                </Dropdown>
+                             
+                            
+                            </div>
+                            </>
+                            
+                        }
                         <div className="flex flex-grow bg-pink-700 rounded-lg w-28 items-center justify-center">
                             <Link href="/upload">
                                 <a className="btn-primary hover:bg-pink-700 text-white flex flex-row space-x-2">

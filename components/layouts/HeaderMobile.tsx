@@ -1,5 +1,4 @@
 import { Carousel } from 'flowbite-react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { IHeader } from '../../interfaces/interfaces';
 const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
@@ -7,14 +6,25 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
     return(
         <header 
             {...headerProps}
-            className={`w-full flex flex-col  items-center py-5 shadow z-10 select-none gap-4`}>
+            className={`w-full flex flex-col relative items-center py-5 shadow z-10 select-none gap-4`}>
+           
+            <div className="absolute  inset-x-0 bottom-[25px] px-4">
+                <a onClick={()=>{
+                    router.back()
+                   
+                }}>
+                    <img src="/arrow-left.svg" className="w-4 h-4"/>
+
+                </a>
+                
+            </div>
             <div className=" w-11/12 flex items-center justify-between">
                 <div className="flex flex-grow items-center justify-center">
-                    <Link href="/" >
+                    
                         <a >
                             <img src="/logo.svg" alt="Logo" className="w-auto h-auto"  />
                         </a>
-                    </Link>
+                
                 </div>
             </div>
             {router.pathname==='/' && 

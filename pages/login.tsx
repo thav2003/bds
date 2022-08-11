@@ -1,16 +1,22 @@
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
-import { NextPageWithLayout } from './page';
-
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import PrimaryLayout from '../components/layouts/PrimaryLayout';
+import { selectAuthState, setAuthState } from "../reducers/actions/auth";
+import { NextPageWithLayout } from './page';
 const LoginPage:NextPageWithLayout=()=>{
     const [isHide,setHide]=useState(true)
     const router = useRouter()
+    const authState = useSelector(selectAuthState);
+    const dispatch = useDispatch();
     const changeHide=()=>{
         setHide(!isHide)
     }
     const register=()=>{
         router.push('/register')
+    }
+    const submitLogin=()=>{
+        dispatch(setAuthState(true))
     }
     return (
         <div className=" bg-slate-200 p-[3.5rem] tablet:p-0">
@@ -57,7 +63,7 @@ const LoginPage:NextPageWithLayout=()=>{
                             </span>
                         </div>
                         <a className="w-full text-sm flex justify-end mb-4">Quên mật khẩu?</a>
-                        <button className="bg-purple-800 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-full w-full">Đăng nhập</button>
+                        <button onClick={submitLogin} className="bg-purple-800 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-full w-full">Đăng nhập</button>
                         <div>
                             <div className="flex items-center py-4">
                                 <div className="flex-grow h-px bg-gray-400"></div> 
