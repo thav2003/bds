@@ -1,4 +1,5 @@
-export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {}
+export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {
+    name?:string }
 export interface IHeader extends React.ComponentPropsWithoutRef<'header'> {}
 export interface IFooter extends React.ComponentPropsWithoutRef<'footer'> {}
 export interface HomeDesktopProps extends React.ComponentPropsWithoutRef<'div'> {}

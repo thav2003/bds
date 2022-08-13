@@ -1,16 +1,25 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectAuthState } from "../../reducers/actions/auth";
-interface ItabName extends React.ComponentPropsWithoutRef<"div">{}
+interface ItabName extends React.ComponentPropsWithoutRef<"div">{
+    name?:string
+}
 
-const BottomTab:React.FC<ItabName>=()=>{
-    
+const BottomTab:React.FC<ItabName>=(props)=>{
+    const {name} = props;
     const authState = useSelector(selectAuthState);
-    const dispatch = useDispatch();
+    
     const router=useRouter()
-    const [activeTabs, setActiveTabs] = useState(router.pathname)
+    const [activeTabs, setActiveTabs] = useState(name)
+    useEffect(()=>{
+        if(name!==activeTabs){
+            setActiveTabs('')
+        }
+    },[name])
+   
     useEffect(() => {
+       
         
         switch (activeTabs) {
 
@@ -27,15 +36,13 @@ const BottomTab:React.FC<ItabName>=()=>{
                 router.push('/upload')
                 break;
             case 'account':
-                {authState ?  router.push('/accounts/login') :  router.push('/accounts/logout')}
+                
+                {authState ? router.push('/accounts/login') :  router.push('/accounts/logout')}
                 
                 break;
-            default:
-                
-                router.push(router.pathname)
-                break;
+            
         }
-    }, [activeTabs,authState])
+    }, [activeTabs,authState ])
     return(
         
         <div className="bottomNav gap-2  shadow-sm-light bg-white shadow-slate-800 select-none">

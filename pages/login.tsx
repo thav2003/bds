@@ -101,6 +101,6 @@ const LoginPage:NextPageWithLayout=()=>{
       );
 }
 LoginPage.getLayout = (page) => {
-    return <PrimaryLayout>{page}</PrimaryLayout>;
+    return <PrimaryLayout name="login">{page}</PrimaryLayout>;
   };
 export default LoginPage;

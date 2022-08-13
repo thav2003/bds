@@ -12,6 +12,7 @@ import HeaderMobile from './HeaderMobile';
 
 
 const PrimaryLayout:React.FC<IPrimaryLayout>=({
+    name,
     children,
     ...divProps
 })=>{
@@ -39,7 +40,7 @@ const PrimaryLayout:React.FC<IPrimaryLayout>=({
            {!IsMobile ? <Footer/> : IsMobile && router.pathname==='/' && <Footer/> }
             
             
-            {IsMobile &&<BottomTab />}
+            {IsMobile &&<BottomTab name={name} />}
             
         </div>
     )

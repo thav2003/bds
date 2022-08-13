@@ -10,7 +10,12 @@ import useDevice from '../../hooks/useDevice';
 import type { HomeDesktopProps } from '../../interfaces/interfaces';
 const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     const [IsMobile,setIsMobile] =useState(false)
-   
+    const [moretext,setMoreText]=useState(false)
+    
+    const moreText=()=>{
+        setMoreText(!moretext)
+    }
+
     useEffect(()=>{
    
         const {isMobile} =useDevice()
@@ -158,8 +163,32 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row">
-                <div  className="w-11/12 space-y-4">
-                    he
+                <div  className="w-11/12 space-y-4 px-6 tablet:w-full tablet:px-0">
+                    <div className="w-full bg-slate-50 p-5  shadow-md border-[1px] border-solid border-gray-100 rounded-lg">
+                        <div className="flex justify-center items-center">
+                            <h2 className="font-bold">CHO THUÊ CĂN HỘ CHUNG CƯ - CHO THUÊ CHUNG CƯ MINI</h2>
+                        </div>
+                       <div className="relative flex flex-col  w-full h-auto gap-7 py-5">
+                            {!moretext && <div className="absolute w-full   tablet:bottom-[4.5rem]    bg-gray-50 text-hidden bottom-[4.75rem] opacity-40"><br/><br/></div>}
+                            <p className={`${!moretext && "line-clamp-[12]"}  whitespace-normal truncate`}>
+                                Thị trường <span className="font-semibold">CHO THUÊ CĂN HỘ</span> chung cư hiện nay đang diễn ra rất là sôi động, nhu cầu thuê căn hộ ngày càng tăng của những gia đình trẻ, những bạn rẻ đang đi làm hoặc thậm chí là những bạn sinh viên đang ngày càng tăng lên rat71 nhiều bởi những tiện ích mang lại là rất nhiều.
+                                <br/>
+                                <br/>
+                                Việc có rất nhiều những căn hộ, căn hộ chung cư được xây dựng và cho thuê sẽ giúp cho bạn có thể dễ dàng tìm được những căn hộ cho thuê, tuy nhiên không phải cũng có thể biết và chọn mình được căn hộ phù hợp nhất.
+                                <br/>
+                                <br/>
+                                Thuecanho123.com chia sẻ những kinh nghiệm, lưu ý để giúp bạn có thể chọn thuê căn hộ tốt nhất.
+                                <br/>
+                                <br/>
+                                <span className="leading-2 font-bold">Những điều lưu ý trước khi thuê căn hộ chung cư</span>
+                                <br/>
+                                <br/>
+                                Hiện nay việc thuê căn hộ, chung cư đang rất được nhiều người ưu chuộng và người mới tìm hiểu.Bởi mang nhiều tiện ích tích hợp trong một căn hộ như: Cửa hàng tiện lợi, Khu Trung tâm Thương mại, Hộ bơi, phòng GYM Yoga, Khu nhà trẻ, Khu vườn cây xanh đi bộ ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+                            </p>
+                           {!moretext ? <button onClick={moreText} className="text-purple-600">Xem thêm</button> :  <button onClick={moreText} className="text-purple-600">Rút gọn</button>}
+                       </div>
+                    </div>
                 </div>
             </div>
         </div>

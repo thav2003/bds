@@ -1,11 +1,12 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
+import { reducer as reduxFormReducer } from 'redux-form';
 import { authSlice } from "./actions/auth";
-
 const makeStore = () =>
   configureStore({
     reducer: {
       [authSlice.name]: authSlice.reducer,
+      form: reduxFormReducer,
     },
     devTools: true,
   });

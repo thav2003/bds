@@ -117,6 +117,6 @@ const RegisterPage:NextPageWithLayout=()=>{
       );
 }
 RegisterPage.getLayout = (page) => {
-    return <PrimaryLayout>{page}</PrimaryLayout>;
+    return <PrimaryLayout name="register">{page}</PrimaryLayout>;
   };
 export default RegisterPage;
