@@ -51,12 +51,17 @@
         @apply after:mx-2 after:content-['*'] after:text-transparent after:bg-[url(/left-icon-path.svg)] after:bg-no-repeat after:bg-center 
     }
     .info{
-        @apply after:bg-[url(/info-icon.svg)] after:mx-1 after:content-['***'] after:text-transparent after:bg-no-repeat after:bg-center after:bg-[length:1rem_1rem] 
+        @apply after:bg-[url(/info-icon.svg)] after:mx-1 after:content-['***'] after:text-transparent after:bg-no-repeat after:bg-center after:bg-[length:1rem_1rem]  
     }
     .text-placeholder{
         @apply tablet:text-ph mobile:text-xs 
     }
-    
+    .warning{
+        @apply text-yellow-800
+    }
+    .error{
+        @apply text-red-500
+    }
   }
 
   @layer utilities {

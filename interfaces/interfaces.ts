@@ -20,3 +20,7 @@ export interface Card extends React.ComponentPropsWithoutRef<'div'> {
     data:DataProps
 }
 export interface CardNewsProp extends React.ComponentPropsWithoutRef<'div'> {}
+
+export interface IPrices{
+    price:number
+}

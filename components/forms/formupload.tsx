@@ -1,13 +1,13 @@
 import { ListGroup } from 'flowbite-react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { Field, formValueSelector, reduxForm } from 'redux-form';
+import type { IValues } from '../../helps/validate';
+import { validate, warn } from '../../helps/validate';
 import useDevice from '../../hooks/useDevice';
-
-
-const BASE_API_URL = 'https://provinces.open-api.vn/api'
-
+import { IPrices } from '../../interfaces/interfaces';
 const focusInCurrentTarget = ({ relatedTarget, currentTarget }:any):any => {
   if (relatedTarget === null) return false;
   
@@ -21,50 +21,6 @@ const focusInCurrentTarget = ({ relatedTarget, currentTarget }:any):any => {
   return false;
 }
 
-
-interface IValues{
-  username?:string;
-  email:string;
-  age:number | string;
-  du_an:string;
-  city:string;
-  district:string;
-  ward:string;
-  street:string;
-}
-
-
-
-const validate = (values:IValues):any => {
-  const errors = {} as IValues
-  if (!values.username) {
-    errors.username = 'Required'
-  } else if (values.username.length > 15) {
-    errors.username = 'Must be 15 characters or less'
-  }
-  if (!values.email) {
-    errors.email = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
-  }
-  if (!values.age) {
-    errors.age = 'Required'
-  } else if (isNaN(Number(values.age))) {
-    errors.age = 'Must be a number'
-  } else if (Number(values.age) < 18) {
-    errors.age = 'Sorry, you must be at least 18 years old'
-  }
-  return errors
-}
-
-const warn = (values:IValues):any => {
-  const warnings = {} as IValues
-  if (values.age < 19) {
-    warnings.age = 'Hmm, you seem a bit young...'
-  }
-  return warnings
-}
-
 const renderInput = ({
   classNameInput,renderDropLeftIcon,
   classNameLabel,
@@ -73,14 +29,38 @@ const renderInput = ({
   type,
   meta: { touched, error, warning }
 }:any):any => {
+  const [change,setChange]=useState(input.value)
+  useEffect(()=>{
+    if(input.name ==="room" || input.name ==="wc"){
+      if(change > 100){
+        setChange(100)
+        input.onChange(input.value = 100)
+      }
+    }else if(input.name ==="areas" ){
+      if(change > 1000000){
+        setChange(1000000)
+        input.onChange(input.value = 1000000)
+      } 
+    }else if(change>999000000000){
+      setChange(999000000000)
+      input.onChange(input.value = 999000000000)
+    }
+    if(warning){
+      setChange(1)
+      input.onChange(input.value = 1)
+    }
+
+  },[change,warning])
   return(
     <div>
+      
       <label className="font-semibold">{label}</label>
+      {touched &&
+          ((error && <span className="error">*</span>) ||
+            (warning && <span className="warning">*</span>))}
       <div>
-        <input {...input} placeholder={label} type={type}  className={`${classNameInput}`}/>
-        {touched &&
-          ((error && <span className="text-red-500">*</span>) ||
-            (warning && <span className="text-red-500">*</span>))}
+        <input {...input}  placeholder={label} type={type} onChange={e => setChange(e.target.value)} value={change}  className={`${classNameInput}`}/>
+        
         { renderDropLeftIcon &&
           <div className="relative divide-x-2" >
             
@@ -106,22 +86,44 @@ const renderTextArea = ({
   meta: { touched, error, warning }
 }:any):any => {
   const [countTitle, setCountTitle] = useState(0);
- 
+  const [isFull,setIsFull]=useState(false)
 
   const hanldeChange=(e:any)=>{
    
-    setCountTitle(e.target.value.length)
-    input.value=e.target.value
-    
-    
+    if(!isFull){
+      setCountTitle(e.target.value.length)
+      input.value=e.target.value
+      
+    }
   }
-
+  useEffect(()=>{
+    if(input.name ==="title"){
+      if(countTitle >= 100){
+        setIsFull(true)
+      }else{
+        setIsFull(false)
+      }
+    }else if(input.name ==="description"){
+      if(countTitle >= 3000){
+        setIsFull(true)
+      }else{
+        setIsFull(false)
+      }
+    }
+    console.log(input.value)
+  },[countTitle])
+ 
   return(
 
     <div>
           <label htmlFor={id} className="font-semibold">{label}</label>
+          {touched &&
+          ((error && <span className="error">*</span>) ||
+            (warning && <span className="warning">*</span>))}
             <textarea {...input}  id={id}  
-                
+                onKeyDown={(e)=>{if(e.key==="Backspace"){
+                  setIsFull(false)
+                }}}
                 className={classNameInput}
                 placeholder={label}
                 onChange={hanldeChange}
@@ -134,12 +136,15 @@ const renderTextArea = ({
   )
 }
 
-
-
+const prices=new Array(5).fill({
+  name:150000
+})
 const du_an=new Array(120).fill({
   name:"du an" 
 })
-
+const street=new Array(120).fill({
+  name:"du an" 
+})
 const city=new Array(3).fill({
   name:"Hồ Chí Minh"
 })
@@ -151,11 +156,52 @@ const direction=[
 
 ]
 
-const RenderDropLeft=({action,icon}:any):any=>{
+const RenderDropLeft=({action,icon,className}:any):any=>{
+  const [isVisible,setIsVisible]=useState(false)
+  const handleMouseOver = () => {
+    setIsVisible(true);
+}
+
+ const handleMouseLeave = () => {
+    setIsVisible(false);
+  }
   return(
-      <button type="button" onClick={action} className="absolute z-[4] -top-8 right-2 flex  items-center">
+    <>
+    <div className="relative">
+      <button type="button" 
+            onMouseOver={handleMouseOver}
+            onMouseLeave={handleMouseLeave} onClick={action} className={`absolute z-[4] -top-8 right-2 flex  items-center ${className}`}>
             <img  src={icon} className="w-full h-5"/>
+            { isVisible && 
+        <div className="relative">
+          <div onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="absolute  bg-red-500 w-[200px] z-[60] h-[200px]">
+            test
+          </div>
+        </div>
+      }
       </button>
+    
+    </div>
+    </>
+  )
+}
+const RenderDropBottom=({value}:any):any=>(
+ 
+     <p>Giá cho thuê: <span className="font-semibold">{value}</span></p>
+    
+  
+)
+
+const RenderPrices=({price,action}:any):any=>{
+  const handleClick=()=>{
+    
+
+    action({name:price})
+  }
+  return(
+    <ListGroup.Item onClick={handleClick} >
+      <p>{`${new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(price)} / tháng`}</p>
+    </ListGroup.Item>
   )
 }
 
@@ -176,47 +222,92 @@ const renderRadio=({
 
 }
 
+
 const renderDrop=({
-  data,renderDropLeftIcon,
-  classNameInput,
+  data,renderDropLeftIcon,renderBottom,
+  classNameInput,showMoney,
   input,
   label,
   type,
-  meta: { touched, error, warning }
+  meta: { touched, error, warning },prices
 }:any):any=>{
- 
+
   const [change,setChange]= useState(input.value)
-  const [isFocus,setIsFocus]=useState(false)
+  const [isFocus,setIsFocus]=useState<boolean>(false)
+  const [renderPrices,setRenderPrices]=useState<IPrices[]>([])
+  const [stringBottom,setStringBottom]=useState<string>('')
   const clear=()=>{
     setIsFocus(false)
     setChange('')
   }
-
-
-
   const focusInput=()=>{
+   
     setIsFocus(true)
   }
   const selectItem=(item:any):any=>{
-    input.value =`${item.name}`
+   
+    input.onChange(input.value =`${item.name}`)
     setChange(`${item.name}`)
     setIsFocus(false)
   }
   const onBlur = (e:any):any => {
     if (!focusInCurrentTarget(e)) {
-      console.log(' blurred');
+      input.onChange(input.value =change)
+      console.log(change)
+     
       setIsFocus(false)
     }
   }
 
+  useEffect(()=>{
+    const temp:IPrices[]=[]
+    const len=change.toString().length
+    const base=change <= 1000000 ? 100000 : change <= 10000000 ? 1000000 : 10000000 <= 100000000 ? 10000000 : 1000000000
+    for(var i=0;i<4;i++){
+      /*  base 150
+          100 000 x 150 000 00 chia 10^length-1 (2)
+          1 000 000 x 1 500 000 00 chia 10^length-1 (2)
+          10 000 000 x 15 000 000 00 chia 10^length-1 (2) 
+          100 000 000 x 150 000 000 00 chia 10^length-1(2)
+          1 000 000 000 x 1 500 000 000 00 chia 10^length-1(2)
+          
+      */
+      // => cong thuc console.log((a*(100000*Math.pow(10,i)))/Math.pow(10,len-1))
+      temp.push({price:change*(base*Math.pow(10,i))/Math.pow(10,len-1)})
+    }
+    change && setStringBottom(`${new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(change)} / tháng`)
+    setRenderPrices(temp)
+    console.log(change,input.value)
+    if(input.name ==="room" || input.name ==="wc"){
+      if(change > 100){
+        setChange(100)
+        input.onChange(input.value = 100)
+      }
+    }else if(input.name ==="areas" ){
+      if(change > 1000000){
+        setChange(1000000)
+        input.onChange(input.value = 1000000)
+      } 
+    }else if(change>999000000000){
+      setChange(999000000000)
+      input.onChange(input.value = 999000000000)
+    }
+    if(!change){
+      setStringBottom('')
+    }
+  },[change])
+ 
   return(
     <div >
       <label className="font-semibold">{label}</label>
-      <div className="relative "  onBlur={onBlur}   >
-        <input {...input} placeholder={label} onClick={focusInput}   type={type} onChange={e => setChange(e.target.value)} value={change} autocomplete="off"  className={classNameInput}/>
-        {touched &&
-          ((error && <span>{error}</span>) ||
-            (warning && <span>{warning}</span>))}
+      {/* <button onClick={()=>console.log(new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(input.value))}>test</button> */}
+      {touched &&
+          ((error && <span className="error">*</span>) ||
+            (warning && <span className="warning">*</span>))}
+      <div className="relative"     >
+        <input {...input}   placeholder={label} onClick={focusInput}   type={type} onChange={e => setChange(e.target.value)} value={change} autoComplete="off"  className={classNameInput}/>
+        
+       
         {renderDropLeftIcon && renderDropLeftIcon.search('/') === -1 && 
 
           <div className="relative divide-x-2" >
@@ -240,34 +331,50 @@ const renderDrop=({
             <div className="bnone">
               <ListGroup>
                 <div className="divide-y-[1px]">
-                {input.name ==="du_an" && change && !du_an.find(e => e.name === change) &&
+                {!showMoney && input.name ==="du_an" || input.name ==="street" && change && !data.find((e:any) => e.name === change)   &&
                 <div className="relative">
                   <ListGroup.Item>
-                    {change}
+                    {change} 
                     <button type="button" onClick={clear} className="absolute z-[4] top-2 gap-2 right-1 flex   items-center ">
                       <img  src="/closed-btn.svg" className="h-4"/>
                       Thêm mới
                     </button>
                   </ListGroup.Item>
                   </div>
+                  
                 }
                 
-
-                {data.map((item:any,index:any):any=>{
-                  return(
-                    <ListGroup.Item onClick={()=>selectItem(item)}
-                    >
-                      {item.name}
-                    </ListGroup.Item>
-                  )
-                })}
+                {showMoney &&  change &&
+                  renderPrices.map((item,i)=>{
+                    return(
+                      <RenderPrices key={i} price={item.price}   action={selectItem}/>
+                    )
+                  })
+                }
+                  
+               
+                  
+                  
+                  {!showMoney && data.map((item:any,index:any):any=>{
+                    return(
+                      <ListGroup.Item key={index} onClick={()=>selectItem(item)}
+                      >
+                        {item.name}
+                      </ListGroup.Item>
+                    )
+                  })
+                  }
                   <div></div>
                 </div>
               </ListGroup>
             </div>
         </div>
         }
-
+        {renderBottom && stringBottom &&
+          <div className="mt-2">
+            <RenderDropBottom value={stringBottom}/>
+          </div>
+         }
         
         
       </div>
@@ -312,10 +419,12 @@ const renderCheckbox=({
 }:any):any=>{
   return(
     <div>
-        <div className="flex">
-          <input {...input} type={type} id="check_note" className={classNameInput}></input>
+        <div className="flex relative ">
+          <input {...input}  type={type} id="check_note" className={classNameInput}></input>
           <label htmlFor="check_note" className={`${classNameLabel} info-hover`}>{label} </label>
-          <div>h</div>
+          
+          <RenderDropLeft icon="info-icon.svg" className="-top-0  -right-6 "/>
+        
         </div>
     </div>
   )
@@ -331,9 +440,10 @@ const renderToggle=({
     <div>
         
        <label htmlFor={id} className="inline-flex relative items-center cursor-pointer">
-            <input {...input} type={type} id={id} className="sr-only peer"/>
+            <input {...input}  type={type} id={id} className="sr-only peer"/>
             <div className="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-            <span className="ml-3 text-sm font-semibold text-gray-900 dark:text-gray-300 info">{label}</span>
+            <span className="ml-3 text-sm font-semibold text-gray-900 dark:text-gray-300 ">{label}</span>
+            <RenderDropLeft icon="info-icon.svg" className="-top-[0.625rem] -right-6 "/>
         </label>
     </div>
   )
@@ -360,7 +470,7 @@ const renderCountToggle=({
     
       <button type="button" onClick={decrease} className="btn-primary bg-gray-300 rounded flex-[2_1_0%]  ">-</button>
       
-      <input {...input} className="w-full p-2 text-center rounded-md h-3/4 border-solid border-[1px] flex-[2_1_0%] border-gray-200"/>
+      <input {...input}  className="w-full p-2 text-center rounded-md h-3/4 border-solid border-[1px] flex-[2_1_0%] border-gray-200"/>
       
       
       <button type="button" onClick={increase} className="btn-primary flex-[2_1_0%] bg-gray-300 rounded">+</button>
@@ -382,7 +492,7 @@ const RenderPopUp=({
   const [change,setChange]= useState(input.value)
   const [isClick,setIsClick]=useState(false)
   const onOpen=()=>{
-    console.log(temp)
+    //console.log(temp)
     
     setIsVisible(false)
   }
@@ -394,8 +504,10 @@ const RenderPopUp=({
     console.log("search",input)
   }
   const selectItem=(item:any):any=>{
-    input.value =`${item.name}`
+ 
     setChange(`${item.name}`)
+    input.onChange(input.value =`${item.name}`)
+    console.log(input)
     setIsVisible(true)
     setIsClick(true)
   }
@@ -406,20 +518,15 @@ const RenderPopUp=({
     setIsClick(true)
     console.log("add")
   }
-  const handleEnter=(e:any):any=>{
-    if(e.key ==="Enter"){
-      input.value=change
-      setIsVisible(true)
-      setIsClick(true)
-    }
-  }
+
 
   return(
     <div >
       <label className="font-semibold">{label}</label>
+      
       {isClick &&
-          ((error && <span className="text-red-500">*</span>) ||
-            (warning && <span className="text-red-500">*</span>))}
+          ((error && <span className="error">*</span>) ||
+            (warning && <span className="warning">*</span>))}
       <button className={`w-full text-placeholder
               placeholder:text-slate-400  
               bg-white rounded pl-3 py-2 pr-10
@@ -461,7 +568,7 @@ const RenderPopUp=({
               <div className=" w-full flex flex-col  space-y-4  ">
                 
                 <div >
-                  <input {...input} onKeyDown={handleEnter} placeholder={label} type={type} onChange={e => setChange(e.target.value)} value={change} autocomplete="off" className={classNameInput}/>
+                  <input {...input}  placeholder={label} type={type} onChange={e => setChange(e.target.value)}  value={change} autoComplete="off" className={classNameInput}/>
                 
                   <div className="relative" >
                     <RenderDropLeft action={search} icon={renderDropLeftIcon}/>
@@ -472,7 +579,7 @@ const RenderPopUp=({
              
                     <ListGroup>
                       <div className="divide-y-[1px]  ">
-                      {input.name ==="du_an" && change && !data.find((e:any) => e.name === change) &&
+                      {input.name ==="du_an" || input.name ==="street"   && change && !data.find((e:any) => e.name === change) &&
                       <div className="relative">
                         <ListGroup.Item>
                           {change}
@@ -487,7 +594,7 @@ const RenderPopUp=({
 
                       {data.map((item:any,index:any):any=>{
                         return(
-                          <ListGroup.Item onClick={()=>selectItem(item)}
+                          <ListGroup.Item key={index} onClick={()=>selectItem(item)}
                           >
                             <div className="py-1">
                               {item.name}
@@ -516,9 +623,9 @@ const RenderPopUp=({
     </div>
   )
 }
-const UploadForm = (props:InjectedFormProps<IValues> ) => {
-  const { handleSubmit, pristine, reset, submitting } = props
-  
+const UploadForm:React.FC<IValues>=(props) => {
+  const { handleSubmit, pristine, reset, submitting,status,prices } = props
+
 
 
   const {isMobile} =useDevice()
@@ -526,7 +633,12 @@ const UploadForm = (props:InjectedFormProps<IValues> ) => {
 
 
   return (
-    <form className="space-y-5 mb-8 " id="formUpload" onSubmit={(e)=>{
+    <form className="space-y-5 mb-8 " id="formUpload" onKeyPress={(event:any):any=>{
+      if (event.which === 13 /* Enter */) {
+        event.preventDefault();
+      }
+    }} onSubmit={(e)=>{
+      
       e.preventDefault();
       handleSubmit
       }}>
@@ -618,7 +730,7 @@ const UploadForm = (props:InjectedFormProps<IValues> ) => {
           <div className="ml-4 tablet:ml-0" >
               <Field
                   name="street"
-                  data={city}
+                  data={street}
                   renderDropLeftIcon="search_grey.svg"
                   classNameInput={`
                     w-full text-placeholder
@@ -730,8 +842,10 @@ const UploadForm = (props:InjectedFormProps<IValues> ) => {
         <div >
               <Field
                 name="prices"
-                data={city}
-                renderDropLeftIcon="đ"
+                showMoney={true}
+                prices={prices}
+                data={prices}
+                renderBottom={true}
                 classNameInput={`
                   w-full text-placeholder
                   placeholder:text-slate-400  
@@ -885,7 +999,7 @@ const UploadForm = (props:InjectedFormProps<IValues> ) => {
         
         </div>
         <div className="space-y-2 w-full ">
-          <p className="font-semibold  ">Tình trạng nội thất</p>
+          <p className="font-semibold  ">Tình trạng nội thất {!status && <span className="text-red-500">*</span>}</p>
           <div className='space-x-2 flex select-none w-full tablet:text-xs hideinput' >
               <div>
                 <Field name="status" component={renderRadio} id="none" type="radio" value="none" label="Chưa có"/>
@@ -1010,7 +1124,7 @@ const UploadForm = (props:InjectedFormProps<IValues> ) => {
                 border border-slate-300 
                 `}
                 component={renderInput}           
-                type="text"
+                type="number"
                 label="Số điện thoại"
               /> 
            
@@ -1026,7 +1140,7 @@ const UploadForm = (props:InjectedFormProps<IValues> ) => {
                 border border-slate-300 
                 `}
                 component={renderInput}           
-                type="text"
+                type="number"
                 label="Zalo"
               /> 
           </div>
@@ -1119,7 +1233,7 @@ const UploadForm = (props:InjectedFormProps<IValues> ) => {
                 name="check_note"
                 popup={true}
                 classNameLabel={`
-                  info text-sm font-semibold ml-10 
+                   text-sm font-semibold ml-10 
                 `}
                 classNameInput={`
                 form-checkbox rounded
@@ -1195,8 +1309,19 @@ const UploadForm = (props:InjectedFormProps<IValues> ) => {
   )
 }
 
-export default reduxForm({
+const selector = formValueSelector('uploadForm')
+const mapState = (state: IValues) => ({
+  status:selector(state, 'status'),
+  prices:selector(state,'prices'),
+})
+
+
+
+
+export default connect(mapState)(reduxForm({
   form: 'uploadForm', // a unique identifier for this form
   validate, // <--- validation function given to redux-form
   warn // <--- warning function given to redux-form
-})(UploadForm)
+})(UploadForm as any))
+
+
