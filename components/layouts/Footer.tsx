@@ -5,7 +5,7 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
   return (
     <footer
       {...footerProps}
-      className={`w-full p-5 bg-slate-100 tablet:p-0 `}
+      className={`w-full p-5 bg-slate-100 tablet:p-0 tablet:pb-8`}
     >
       <div className="flex justify-center ">
         <div className="w-9/12 flex flex-row justify-between space-x-3 tablet:px-0 tablet:py-5 p-10 tablet:grid  gap-2 ">
@@ -36,7 +36,7 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
              
             </div>
           </div>
-          <div className="  flex-1 tablet:col-start-1 tablet:cols-end-2">
+          <div className=" space-y-1  flex-1 tablet:col-start-1 tablet:cols-end-2">
             <div>
               <h3 className="font-bold">Công ty</h3>
             </div>
@@ -62,7 +62,7 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
                 Chính sách bảo mật
             </div>
           </div>
-          <div className="  flex-1 tablet:col-start-2 tablet:cols-end-3">
+          <div className="space-y-1  flex-1 tablet:col-start-2 tablet:cols-end-3">
             <div>
               <h3 className="font-bold">Phát hiện</h3>
             </div>

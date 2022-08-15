@@ -22,7 +22,7 @@ const RegisterPage:NextPageWithLayout=()=>{
           
           <div className="bg-white flex flex-col flex-[6_1_0%]  tablet:rounded-none tablet:p-5  p-10 shadow shadow-slate-800 rounded-xl max-w-[34rem]">
               <div className="mb-6">
-                  <h1 className="font-bold text-2xl  text-pink-500 font-medium">Đăng Kí</h1>
+                  <h1 className=" text-2xl  text-pink-500 font-medium">Đăng Kí</h1>
                   <p >Nhập đúng email và số điện thoại của bạn để đăng tin miễn phí</p>
               </div>
               <div className="space-y-3 mb-1 ">

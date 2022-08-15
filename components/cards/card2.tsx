@@ -2,9 +2,9 @@ import type { Card } from '../../interfaces/interfaces';
 const CardHome2:React.FC<Card>=(props)=>{
     const {data} = props
     return(
-        <div  className=" w-full select-none h-[17rem] mb-8">
+        <div  className=" w-full select-none h-[17rem] mb-2">
              <div  className="flex flex-col   h-full  w-full shadow  rounded-lg flex-grow ">
-                <div className="w-full flex-grow grid gap-2">
+                <div className="w-full flex-[1_0_65%] grid gap-1">
                     <div className="col-start-1 col-end-4 row-span-2">
                         <img src={data.image} className="object-cover w-full h-full rounded-l-lg rounded-b-[0px]  "/>
                     </div>
@@ -17,9 +17,9 @@ const CardHome2:React.FC<Card>=(props)=>{
                    
                     
                 </div>
-                <div className="w-full p-2 pt-4 ">
-                    <div className="  tablet:h-full tablet:gap-x-2   tablet:space-y-4 tablet:grid">
-                        <div className="flex flex-col tablet:col-start-1 tabletcol-end-2 tablet:col-span-2">
+                <div className="w-full p-2  ">
+                    <div className="  tablet:h-full gap-2 tablet:grid">
+                        <div className="flex flex-col gap-2 tablet:col-start-1 tabletcol-end-2 tablet:col-span-2">
 
                         
                             <h3 className="text-base  font-semibold text-purple-600  ">{`${data.prices} triệu/${data.followBy}`}</h3>
@@ -30,10 +30,12 @@ const CardHome2:React.FC<Card>=(props)=>{
                                 <img src="/phong_ngu.svg" className="h-3 w-3 tablet:hidden"/>
                                 <p> {data.room} pn</p>
                             </div>
+                            .
                             <div className="flex flex-row gap-2 items-center tablet:gap-1">
                                 <img src="/phong_tam.svg" className="h-3 w-3 tablet:hidden"/>
                                 <p> {data.wc} wc</p>
                             </div>
+                            .
                             <div className="flex flex-row gap-2 items-center tablet:gap-1">
                                 <img src="/dien_tich.svg" className="h-3 w-3 tablet:hidden"/>
                                 <p> {data.areas} m2</p>

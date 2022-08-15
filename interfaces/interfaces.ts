@@ -3,6 +3,10 @@ export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {
 export interface IHeader extends React.ComponentPropsWithoutRef<'header'> {}
 export interface IFooter extends React.ComponentPropsWithoutRef<'footer'> {}
 export interface HomeDesktopProps extends React.ComponentPropsWithoutRef<'div'> {}
+export interface QueryProps extends React.ComponentPropsWithoutRef<'div'> {
+    data:DataProps
+}
+
 
 export interface DataProps{
     title: string;

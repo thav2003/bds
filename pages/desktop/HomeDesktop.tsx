@@ -26,8 +26,8 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     
     
     return(
-        <div className="flex flex-col justify-center placeholder-red-500 mb-4">
-            <div className="home-row tablet:hidden">
+        <div className="flex flex-col mt-20 tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
+            {!IsMobile &&<div className="home-row tablet:hidden">
                 <div className="w-9/12 ">
                    
                     <div className="h-56 laptop:h-40 ">
@@ -58,7 +58,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                     </div>
  
                 </div>
-            </div>
+            </div>}
             
       
      
@@ -77,7 +77,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         <h2>Tìm kiếm nhiều nhất</h2>
                     </div>
                     <div className="bg-slate-100 py-4  shadow-xl   rounded-lg  tablet:overflow-x-auto tablet:overflow-y-hidden">
-                        <div className="tablet:min-w-[900px]w-9/12 flex  flex-row">
+                        <div className="tablet:min-w-[900px] w-full flex  flex-row">
                             <div className=" flex-[5_1_0%] ">
                                 <div className=" flex space-x-3 ">
                                     <div className="w-[45%]  h-48 rounded-md relative">
@@ -155,13 +155,15 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                             
                         </div>
                     </div>
-                    <div className="tablet:overflow-x-auto tablet:overflow-y-hidden">
-                        <div className="w-full  tablet:min-w-[900px] flex border-b-2 border-gray-100 flex-wrap ml-3 ">
+                    <div className="tablet:overflow-x-auto tablet:overflow-y-hidden ">
+                        <div className="w-full  tablet:min-w-[900px] flex    flex-wrap  ">
                             <CardNews />
                             <CardNews />
                             <CardNews />
                             <CardNews />
+                    
                         </div>
+                        <div className="border-b-2 border-gray-100 mt-2"></div>
                     </div>
                 </div>
             </div>

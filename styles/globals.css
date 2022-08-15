@@ -21,11 +21,12 @@
         font-size: 16px;
         @apply scrollbar  
     }
+ 
     input[type=number]::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { 
      -webkit-appearance: none; 
     }
-    
+  
 
     input[type=number] {
     -moz-appearance: textfield;
@@ -37,7 +38,8 @@
       font-weight: normal;
     }
     label{
-      @apply font-bold
+      
+      @apply font-bold 
     }
    
     
@@ -49,6 +51,7 @@
     }
    
     .btn-nav-bar{
+     
         @apply flex flex-col h-full w-full  flex-grow justify-center  items-center hover:bg-transparent
     }
     .filter {
@@ -56,6 +59,7 @@
 
     }
     .btn-login{
+      
         @apply flex items-center justify-center mr-2 mb-2 text-center bg-transparent hover:bg-purple-900  border border-blue-500 py-2 px-4 rounded-full w-full
     }
     .home-row{
@@ -85,8 +89,11 @@
     .cardInfo{
       font-size:12px;
     }
+    .navBarButton{
+      font-size:14px;
+    }
     .cardAuthor{
-      font-size:12px;
+      font-size:10px;
     }
     .cardTime{
       font-size:11px;
@@ -114,8 +121,16 @@
       
       @apply truncate
     }
-  }
-
+    .dropbackground{
+      @apply absolute top-[calc(100%+10px)] right-0 z-10 w-fit rounded divide-y divide-gray-100 shadow transition-opacity duration-100  border border-gray-200 bg-white text-gray-900 dark:border-none dark:bg-gray-700 dark:text-white
+    }
+   .dropItem{
+      @apply block cursor-pointer py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white
+   }
+   .animationhover{
+    @apply transform transition duration-500 hover:scale-110
+   }
+}
   @layer utilities {
     .text-ph::placeholder{
         font-size:14px;

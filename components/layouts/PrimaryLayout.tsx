@@ -35,7 +35,7 @@ const PrimaryLayout:React.FC<IPrimaryLayout>=({
            
             {!IsMobile ? (<Header/>):(<HeaderMobile/>)}
             
-            <main>{children}</main>
+            <main className={`${!IsMobile && "mt-[80px]"}`}>{children}</main>
             <div className="m-auto" />
            {!IsMobile ? <Footer/> : IsMobile && router.pathname==='/' && <Footer/> }
             

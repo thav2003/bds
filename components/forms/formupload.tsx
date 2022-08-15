@@ -52,7 +52,7 @@ const renderInput = ({
 
   },[change,warning])
   return(
-    <div>
+    <div className="space-y-1">
       
       <label className="font-semibold">{label}</label>
       {touched &&
@@ -115,7 +115,7 @@ const renderTextArea = ({
  
   return(
 
-    <div>
+    <div className="space-y-1">
           <label htmlFor={id} className="font-semibold">{label}</label>
           {touched &&
           ((error && <span className="error">*</span>) ||
@@ -198,9 +198,11 @@ const RenderPrices=({price,action}:any):any=>{
 
     action({name:price})
   }
+  const money=new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(price)
+  
   return(
     <ListGroup.Item onClick={handleClick} >
-      <p>{`${new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(price)} / tháng`}</p>
+      <p>{`${money} / tháng`}</p>
     </ListGroup.Item>
   )
 }
@@ -298,7 +300,7 @@ const renderDrop=({
   },[change])
  
   return(
-    <div >
+    <div className="space-y-1">
       <label className="font-semibold">{label}</label>
       {/* <button onClick={()=>console.log(new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(input.value))}>test</button> */}
       {touched &&
@@ -392,7 +394,7 @@ const renderInputTime=({
   
 
   return(
-    <div>
+    <div className="space-y-1">
         
           <label className="font-semibold">{label}</label>
           <DatePicker className={classNameInput} 
@@ -521,7 +523,7 @@ const RenderPopUp=({
 
 
   return(
-    <div >
+    <div className="space-y-1">
       <label className="font-semibold">{label}</label>
       
       {isClick &&
