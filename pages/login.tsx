@@ -19,8 +19,8 @@ const LoginPage:NextPageWithLayout=()=>{
         dispatch(setAuthState(true))
     }
     return (
-        <div className=" bg-slate-200 p-[3.5rem] tablet:p-0">
-            <div className=" w-full relative m-auto ">
+        <div className=" bg-slate-200 py-[3.5rem] tablet:p-0">
+            <div className=" w-9/12 tablet:w-full relative m-auto ">
             <div className="flex flex-[2_1_0%]">
                 <div className="flex-[6_1_0%] bg-[url('/welcome.png')] bg-no-repeat bg-contain tablet:hidden">
                    
@@ -28,7 +28,7 @@ const LoginPage:NextPageWithLayout=()=>{
                 
                 <div className="bg-white flex flex-col flex-[6_1_0%] tablet:rounded-none tablet:p-5   p-10 shadow shadow-slate-800 rounded-xl max-w-[34rem]">
                     <div className="mb-6">
-                        <h1 className="font-bold text-2xl">Đăng nhập</h1>
+                        <h1 className="font-bold text-2xl text-pink-500 font-medium">Đăng nhập</h1>
                         <p>Chào mừng bạn đến với thuê căn hộ</p>
                     </div>
                     <div className="space-y-3 mb-1 ">
@@ -41,6 +41,7 @@ const LoginPage:NextPageWithLayout=()=>{
                                 bg-white rounded pl-3 py-2 pr-10
                                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                                 border border-slate-300 "
+                                placeholder="Số điện thoại hoặc Email"
                             />
                         </div>
                         <div className="relative">
@@ -53,6 +54,7 @@ const LoginPage:NextPageWithLayout=()=>{
                                 bg-white rounded pl-3 py-2 pr-10
                                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                                 border border-slate-300 "
+                                placeholder="Mật khẩu của bạn"
                             />
                             <span className="absolute inset-y-1/2 top-2/3 right-3 flex items-center pl-2 cursor-pointer">
                                 <button onClick={changeHide}>
@@ -62,7 +64,7 @@ const LoginPage:NextPageWithLayout=()=>{
                                 
                             </span>
                         </div>
-                        <a className="w-full text-sm flex justify-end mb-4">Quên mật khẩu?</a>
+                        <a className="w-full text-sm flex justify-end mb-4 text-purple-600">Quên mật khẩu?</a>
                         <button onClick={submitLogin} className="bg-purple-800 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-full w-full">Đăng nhập</button>
                         <div>
                             <div className="flex items-center py-4">

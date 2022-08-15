@@ -13,8 +13,8 @@ const RegisterPage:NextPageWithLayout=()=>{
         router.push('/login')
     }
     return (
-      <div className=" bg-slate-200 p-[3.5rem] tablet:p-0">
-      <div className=" w-full relative m-auto ">
+      <div className=" bg-slate-200 py-[3.5rem] tablet:p-0">
+      <div className=" w-9/12 tablet:w-full relative m-auto ">
       <div className="flex flex-[2_1_0%] ">
           <div className="flex-[6_1_0%] bg-[url('/welcome.png')] bg-no-repeat bg-contain tablet:hidden">
              
@@ -22,8 +22,8 @@ const RegisterPage:NextPageWithLayout=()=>{
           
           <div className="bg-white flex flex-col flex-[6_1_0%]  tablet:rounded-none tablet:p-5  p-10 shadow shadow-slate-800 rounded-xl max-w-[34rem]">
               <div className="mb-6">
-                  <h1 className="font-bold text-2xl">Đăng Kí</h1>
-                  <p>Nhập đúng email và số điện thoại của bạn để đăng tin miễn phí</p>
+                  <h1 className="font-bold text-2xl  text-pink-500 font-medium">Đăng Kí</h1>
+                  <p >Nhập đúng email và số điện thoại của bạn để đăng tin miễn phí</p>
               </div>
               <div className="space-y-3 mb-1 ">
                   <div>
@@ -35,6 +35,7 @@ const RegisterPage:NextPageWithLayout=()=>{
                           bg-white rounded pl-3 py-2 pr-10
                           shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                           border border-slate-300 "
+                          placeholder="Nhập số điện thoại của bạn"
                       />
                   </div>
                   <div>
@@ -46,6 +47,7 @@ const RegisterPage:NextPageWithLayout=()=>{
                           bg-white rounded pl-3 py-2 pr-10
                           shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                           border border-slate-300 "
+                          placeholder="Nhập đúng địa chỉ email của bạn"
                       />
                   </div>
                   <div>
@@ -57,6 +59,7 @@ const RegisterPage:NextPageWithLayout=()=>{
                           bg-white rounded pl-3 py-2 pr-10
                           shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                           border border-slate-300 "
+                          placeholder="Nhập họ tên"
                       />
                   </div>
                   <div className="relative">
@@ -69,6 +72,7 @@ const RegisterPage:NextPageWithLayout=()=>{
                           bg-white rounded pl-3 py-2 pr-10
                           shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                           border border-slate-300 "
+                          placeholder="Nhập mật khẩu có ít nhất 6 kí tự"
                       />
                       <span className="absolute inset-y-1/2 top-2/3 right-3 flex items-center pl-2 cursor-pointer">
                           <button onClick={changeHide}>

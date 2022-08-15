@@ -21,8 +21,13 @@ module.exports = {
       
       
     },
+    variants: {
+      extend: {
+        backgroundColor: ['active'],
+      }
+    },
     fontFamily:{
-      sans:['Arial','sans-serif'],
+      sans:['Arial','sans-serif',"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"],
       serif:['Garamond','serif'],
     },
     extend:{
@@ -34,6 +39,9 @@ module.exports = {
       spacing:{
         128:'32rem'
       },
+      boxShadow: {
+        '3xl': '0px 200px 0px 5px rgba(0, 0, 0, 0.3)',
+      }
 
        
     },

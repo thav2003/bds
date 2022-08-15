@@ -16,15 +16,28 @@
         @apply text-black;
     }
     html {
-        @apply scrollbar 
+        color: #212325;
+        font-family:Arial;
+        font-size: 16px;
+        @apply scrollbar  
     }
     input[type=number]::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { 
      -webkit-appearance: none; 
     }
+    
 
     input[type=number] {
     -moz-appearance: textfield;
+    }
+    ::placeholder{
+      color: #212325;
+      font-family:Arial;
+      font-size: 16px;
+      font-weight: normal;
+    }
+    label{
+      @apply font-bold
     }
    
     
@@ -34,6 +47,7 @@
     .btn-primary {
         @apply hover:bg-emerald-400 hover:rounded-lg text-center p-2 flex-grow
     }
+   
     .btn-nav-bar{
         @apply flex flex-col h-full w-full  flex-grow justify-center  items-center hover:bg-transparent
     }
@@ -61,6 +75,44 @@
     }
     .error{
         @apply text-red-500
+    }
+    .cardTitle{
+
+    }
+    .cardHead{
+
+    }
+    .cardInfo{
+      font-size:12px;
+    }
+    .cardAuthor{
+      font-size:12px;
+    }
+    .cardTime{
+      font-size:11px;
+      opacity:0.5
+    }
+    .cardText{
+      font-size:14px;
+    }
+    .indicator{
+      overflow: hidden;
+    }
+    .indicator > div > .bottom-5 > button{
+      @apply flex-[1_0_14%] h-3  z-[80] hidden{/*hidden : nên ẩn*/}
+    }
+    .indicator > div > .bottom-5 {
+      @apply h-[20px]  w-[40%]  overflow-hidden flex items-center 
+    }
+    .indicator  *{
+      @apply scrollbar
+    }
+    .indicator > div > div > .group{
+      @apply hidden
+    }
+    .labelDrop > div >  button{
+      
+      @apply truncate
     }
   }
 
@@ -120,9 +172,11 @@
       .hideinput > div> input{
         display:none
       }
+      
       .scrollbar::-webkit-scrollbar {
+        height: 0px;
         width: 0px;
-       
+        display:none;
       }
       .modal {
         
@@ -149,6 +203,8 @@
         background-color: #303030;
         color:red
       }
+      
+      
       
       
   }

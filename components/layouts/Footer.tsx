@@ -8,7 +8,7 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
       className={`w-full p-5 bg-slate-100 tablet:p-0 `}
     >
       <div className="flex justify-center ">
-        <div className="w-11/12 flex flex-row justify-between space-x-3 tablet:px-0 tablet:py-5 p-10 tablet:grid  gap-2 ">
+        <div className="w-9/12 flex flex-row justify-between space-x-3 tablet:px-0 tablet:py-5 p-10 tablet:grid  gap-2 ">
           <div className="  flex-[2_1_0%] flex flex-col  space-y-2 tablet:col-start-1 tablet:cols-end-3 col-span-2">
             <div>
               <h3 className="font-bold">Chào mừng bạn đến với 99.co!</h3>

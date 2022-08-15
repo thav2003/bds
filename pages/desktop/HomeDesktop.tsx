@@ -26,12 +26,14 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     
     
     return(
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center placeholder-red-500 mb-4">
             <div className="home-row tablet:hidden">
-                <div className="w-11/12 ">
-                    
-                    <div className="h-56 laptop:h-40">
-                        <Carousel slideInterval={5000}>
+                <div className="w-8/12 ">
+                   
+                    <div className="h-56 laptop:h-40 ">
+                   
+                        <Carousel slideInterval={5000} indicators={true}>
+                  
                             <img
                             src="/banner.png"
                             alt="..."
@@ -62,52 +64,54 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
      
     
             <div className="home-row">
-                <div className="w-10/12 text-center tablet:w-full tablet:text-left">
-                    <h2 className="font-bold">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h2>
-                    <p className="text-sm">Cho thuê căn hộ chung cư mini: Giá rẻ, chất lượng, chính chủ, đầy đủ nội thất, an ninh đảm bảo. Đăng tin cho thuê căn hộ hiệu quả với 1.000.000+ truy cập mỗi tháng</p>
+                <div className="w-8/12 text-center tablet:w-full tablet:text-left">
+                    <h1 className="font-bold">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h1>
+                    <p className="text-sm text-left">Cho thuê căn hộ chung cư mini: Giá rẻ, chất lượng, chính chủ, đầy đủ nội thất, an ninh đảm bảo. Đăng tin cho thuê căn hộ hiệu quả với 1.000.000+ truy cập mỗi tháng</p>
                 </div>
             </div>
             
-            <div className="home-row overflow-hidden "> 
-                <div className="w-11/12 space-y-4 tablet:w-full tablet:overflow-x-auto tablet:overflow-y-hidden"> 
+            <div className="home-row "> 
+                <div className="w-8/12 space-y-4  tablet:w-full   "> 
                     <div className="flex flex-row items-center space-x-2">
                         <img src="apartment_home.svg" className="w-5 h-5"/>
                         <h2>Tìm kiếm nhiều nhất</h2>
                     </div>
-                    <div className="bg-slate-100 py-4 flex  flex-row  shadow-lg rounded-lg  tablet:min-w-[900px]">
-                        <div className=" flex-[5_1_0%] ">
-                            <div className=" flex space-x-3 ">
-                                <div className="w-[45%]  h-48 rounded-md relative">
-                                    <img src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
-                                    <div  className="absolute bottom-2 left-2">
-                                        <h3>Hà Nội</h3>
-                                        <p className="text-sm">49.576 tin đăng</p>
+                    <div className="bg-slate-100 py-4  shadow-xl   rounded-lg  tablet:overflow-x-auto tablet:overflow-y-hidden">
+                        <div className="tablet:min-w-[900px]w-8/12 flex  flex-row">
+                            <div className=" flex-[5_1_0%] ">
+                                <div className=" flex space-x-3 ">
+                                    <div className="w-[45%]  h-48 rounded-md relative">
+                                        <img src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                        <div  className="absolute bottom-2 left-2">
+                                            <h3>Hà Nội</h3>
+                                            <p className="text-sm">49.576 tin đăng</p>
+                                        </div>
+                                        
                                     </div>
-                                    
-                                </div>
-                                <div className="w-[45%]  h-48 rounded-md relative">
-                                    <img src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
-                                    <div  className="absolute bottom-2 left-2">
-                                        <h3>Hồ Chí MInh</h3>
-                                        <p className="text-sm">69.524 tin đăng</p>
+                                    <div className="w-[45%]  h-48 rounded-md relative">
+                                        <img src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                        <div  className="absolute bottom-2 left-2">
+                                            <h3>Hồ Chí MInh</h3>
+                                            <p className="text-sm">69.524 tin đăng</p>
+                                        </div>
                                     </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                        <div className=" flex-[7_1_0%]   flex flex-row tablet:gap-4">
-                            <div className="flex-[2_1_0%] tablet:flex-none">
-                                <h4>Dự án nổi bật</h4>
-                                <div className="flex flex-row">
-                                    <img src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
-                                    <p>Cho thuê căn hộ The Sun</p>
+                                
                                 </div>
                             </div>
-                            <div className="flex-[2_1_0%] tablet:flex-none">
-                                <h4>Khu vực nổi bật</h4>
-                                <div className="flex flex-row">
-                                    <img src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
-                                    <p>Cho thuê căn hộ The Sun</p>
+                            <div className=" flex-[7_1_0%]   flex flex-row tablet:gap-4">
+                                <div className="flex-[2_1_0%] tablet:flex-none">
+                                    <h4>Dự án nổi bật</h4>
+                                    <div className="flex flex-row">
+                                        <img src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        <p>Cho thuê căn hộ The Sun</p>
+                                    </div>
+                                </div>
+                                <div className="flex-[2_1_0%] tablet:flex-none">
+                                    <h4>Khu vực nổi bật</h4>
+                                    <div className="flex flex-row">
+                                        <img src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        <p>Cho thuê căn hộ The Sun</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,12 +119,12 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row">
-                <div  className="w-11/12 space-y-4 tablet:w-full">
+                <div  className="w-8/12 space-y-4 tablet:w-full">
                     <div className="flex flex-row items-center space-x-2">
                         <img src="apartment_home.svg" className="w-5 h-5"/>
                         <h2>Cho thuê chung cư mới nhất</h2>
                     </div>
-                    <div className="flex flex-row flex-wrap tablet:flex-col">
+                    <div className="flex flex-row flex-wrap gap-4 tablet:flex-col">
                         {IsMobile ? <CardHome2 data={data[0]}/> :  <CardHome data={data[0]}/>}
                         <CardHome data={data[1]}/>
                         <CardHome data={data[2]}/>
@@ -132,9 +136,9 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                     </div>
                 </div>
             </div>
-            <div className="home-row pt-0">
-                <div  className="w-11/12 space-y-4 tablet:w-full  overflow-hidden">
-                    <div className="flex items-center w-full tablet:justify-between">
+            <div className="home-row ">
+                <div  className="w-8/12 space-y-4 tablet:w-full  overflow-hidden">
+                    <div className="flex  w-full justify-between">
 
                   
                         <div className="flex flex-row items-center space-x-2">
@@ -142,7 +146,6 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                             <h2>Tin tức</h2>
                         </div>
                      
-                        <div className="p-0 m-0 h-[2px] w-[20px] tablet:hidden bg-gray-200 rotate-90"></div>
                         
                         
                         <div className="flex items-center">
@@ -163,8 +166,8 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row">
-                <div  className="w-11/12 space-y-4 px-6 tablet:w-full tablet:px-0">
-                    <div className="w-full bg-slate-50 p-5  shadow-md border-[1px] border-solid border-gray-100 rounded-lg">
+                <div  className="w-8/12 space-y-4 px-6 tablet:w-full tablet:px-0">
+                    <div className="w-full bg-[#fefefe] p-5  shadow-md border-[1px] border-solid border-gray-100 rounded-lg">
                         <div className="flex justify-center items-center">
                             <h2 className="font-bold">CHO THUÊ CĂN HỘ CHUNG CƯ - CHO THUÊ CHUNG CƯ MINI</h2>
                         </div>
