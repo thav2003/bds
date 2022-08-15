@@ -24,9 +24,9 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             {...headerProps}
             className={`w-full flex flex-col  items-center p-5 shadow z-10 select-none `}
         >
-            <div className=" w-9/12 flex  items-center justify-between ">
+            <div className=" w-8/12 flex  items-center justify-between ">
 
-                <div className="flex flex-row flex-[1_0_60%] space-x-4 flex-grow">
+                <div className="flex flex-row  space-x-4 flex-grow">
                     <Link href="/" >
                         <a >
                             <img src="/logo.svg" alt="Logo" className="w-auto h-auto"  />
@@ -49,7 +49,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                         </span>
                     </label>
                 </div>
-                <div className="flex-[1_0_40%] ">
+                <div className=" ">
                     <div className="flex flex-row items-center font-medium space-x-3">
                         <div  className="flex flex-grow rounded-lg items-center justify-center">
                             
@@ -92,7 +92,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                     </div>
                                 </div>
                      
-                                <div className="labelDrop flex-shrink">
+                                <div className="labelDrop ">
                                     <Dropdown inline={true} label="Nguyễn Văn Nam">
                                         <Dropdown.Item onClick={submitLogout}>
                                             Đăng xuất

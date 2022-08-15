@@ -28,7 +28,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     return(
         <div className="flex flex-col justify-center placeholder-red-500 mb-4">
             <div className="home-row tablet:hidden">
-                <div className="w-8/12 ">
+                <div className="w-9/12 ">
                    
                     <div className="h-56 laptop:h-40 ">
                    
@@ -64,20 +64,20 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
      
     
             <div className="home-row">
-                <div className="w-8/12 text-center tablet:w-full tablet:text-left">
+                <div className="w-9/12 text-center tablet:w-full tablet:text-left">
                     <h1 className="font-bold">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h1>
                     <p className="text-sm text-left">Cho thuê căn hộ chung cư mini: Giá rẻ, chất lượng, chính chủ, đầy đủ nội thất, an ninh đảm bảo. Đăng tin cho thuê căn hộ hiệu quả với 1.000.000+ truy cập mỗi tháng</p>
                 </div>
             </div>
             
             <div className="home-row "> 
-                <div className="w-8/12 space-y-4  tablet:w-full   "> 
+                <div className="w-9/12 space-y-4  tablet:w-full   "> 
                     <div className="flex flex-row items-center space-x-2">
                         <img src="apartment_home.svg" className="w-5 h-5"/>
                         <h2>Tìm kiếm nhiều nhất</h2>
                     </div>
                     <div className="bg-slate-100 py-4  shadow-xl   rounded-lg  tablet:overflow-x-auto tablet:overflow-y-hidden">
-                        <div className="tablet:min-w-[900px]w-8/12 flex  flex-row">
+                        <div className="tablet:min-w-[900px]w-9/12 flex  flex-row">
                             <div className=" flex-[5_1_0%] ">
                                 <div className=" flex space-x-3 ">
                                     <div className="w-[45%]  h-48 rounded-md relative">
@@ -119,7 +119,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row">
-                <div  className="w-8/12 space-y-4 tablet:w-full">
+                <div  className="w-9/12 space-y-4 tablet:w-full">
                     <div className="flex flex-row items-center space-x-2">
                         <img src="apartment_home.svg" className="w-5 h-5"/>
                         <h2>Cho thuê chung cư mới nhất</h2>
@@ -137,7 +137,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row ">
-                <div  className="w-8/12 space-y-4 tablet:w-full  overflow-hidden">
+                <div  className="w-9/12 space-y-4 tablet:w-full  overflow-hidden">
                     <div className="flex  w-full justify-between">
 
                   
@@ -166,7 +166,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row">
-                <div  className="w-8/12 space-y-4 px-6 tablet:w-full tablet:px-0">
+                <div  className="w-9/12 space-y-4 px-6 tablet:w-full tablet:px-0">
                     <div className="w-full bg-[#fefefe] p-5  shadow-md border-[1px] border-solid border-gray-100 rounded-lg">
                         <div className="flex justify-center items-center">
                             <h2 className="font-bold">CHO THUÊ CĂN HỘ CHUNG CƯ - CHO THUÊ CHUNG CƯ MINI</h2>
