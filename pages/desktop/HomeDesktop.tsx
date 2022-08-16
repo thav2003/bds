@@ -1,7 +1,7 @@
 
 import { Carousel } from 'flowbite-react';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CardHome from '../../components/cards/card';
 import CardHome2 from '../../components/cards/card2';
 import CardNews from '../../components/cards/cardNews';
@@ -9,25 +9,20 @@ import { data } from '../../fakedata';
 import useDevice from '../../hooks/useDevice';
 import type { HomeDesktopProps } from '../../interfaces/interfaces';
 const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
-    const [IsMobile,setIsMobile] =useState(false)
+    const {isMobile} =useDevice()
     const [moretext,setMoreText]=useState(false)
     
     const moreText=()=>{
         setMoreText(!moretext)
     }
 
-    useEffect(()=>{
    
-        const {isMobile} =useDevice()
-        if(isMobile)
-            setIsMobile(true)
-    },[])
     
     
     
     return(
         <div className="flex flex-col mt-[4.5rem] tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
-            {!IsMobile &&<div className="home-row tablet:hidden">
+            {!isMobile &&<div className="home-row tablet:hidden">
                 <div className="w-9/12 ">
                    
                     <div className="h-56 laptop:h-40 ">
@@ -125,11 +120,11 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         <h2>Cho thuê chung cư mới nhất</h2>
                     </div>
                     <div className="flex flex-row flex-wrap gap-4 tablet:flex-col">
-                        {IsMobile ? <CardHome2 data={data[0]}/> :  <CardHome data={data[0]}/>}
+                        {isMobile ? <CardHome2 data={data[0]}/> :  <CardHome data={data[0]}/>}
                         <CardHome data={data[1]} />
                         <CardHome data={data[2]}/>
                         <CardHome data={data[3]}/>
-                        {IsMobile ? <CardHome2 data={data[4]}/> :  <CardHome data={data[4]}/>}
+                        {isMobile ? <CardHome2 data={data[4]}/> :  <CardHome data={data[4]}/>}
                         <CardHome data={data[5]}/>
                         <CardHome data={data[6]}/>
                         <CardHome data={data[7]}/>
