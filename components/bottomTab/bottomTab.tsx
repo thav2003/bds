@@ -52,13 +52,13 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                     <button type="button" className="btn-nav-bar text-purple-600"
                     onClick={() => setActiveTabs('home')}
                 >
-                    <Image src="/home_toolbar_footer_fill.svg" className="h-5 w-5"/>
+                    <Image layout='fill' src="/home_toolbar_footer_fill.svg" className="h-5 w-5"/>
                 Trang chủ</button>
                 ):(
                     <button type="button" className="btn-nav-bar"
                     onClick={() => setActiveTabs('home')}
                 >
-                    <Image src="/home_toolbar_footer.svg" className="h-5 w-5"/>
+                    <Image layout='fill' src="/home_toolbar_footer.svg" className="h-5 w-5"/>
                     Trang chủ</button>
                 )}
                 
@@ -69,13 +69,13 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                     <button type="button" className="btn-nav-bar text-purple-600"
                         // onClick={() => setActiveTabs('home')}
                     >
-                        <Image src="/listing_manage_fill.svg" className="h-5 w-5"/>
+                        <Image layout='fill' src="/listing_manage_fill.svg" className="h-5 w-5"/>
                         Quản lí tin</button>
                     ):(
                         <button type="button" className="btn-nav-bar"
                         // onClick={() => setActiveTabs('home')}
                     >
-                        <Image src="/listing-manager.svg" className="h-5 w-5"/>
+                        <Image layout='fill' src="/listing-manager.svg" className="h-5 w-5"/>
                         Quản lí tin</button>
                 )}
             </div>
@@ -111,13 +111,13 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                     <button type="button" className="btn-nav-bar text-purple-600"
                         // onClick={() => setActiveTabs('home')}
                     >
-                        <Image src="/favorite-mobile.svg" className="h-5 w-5"/>
+                        <Image layout='fill' src="/favorite-mobile.svg" className="h-5 w-5"/>
                         Yêu thích</button>
                     ):(
                         <button type="button" className="btn-nav-bar"
                         // onClick={() => setActiveTabs('home')}
                     >
-                        <Image src="/favorite-desktop.svg" className="h-5 w-5"/>
+                        <Image layout='fill' src="/favorite-desktop.svg" className="h-5 w-5"/>
                         Yêu thích</button>
                 )}
             </div>
@@ -131,7 +131,7 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                         
                             <div className="flex items-center space-x-4 ">
                                 <div className="relative">
-                                    <Image 
+                                    <Image layout='fill' 
                                         className="w-6 h-6 rounded-full p-1 ring-2 ring-sky-300  relative  overflow-hidden "
                                         src="/user-toolbar-footer.svg" 
                                     /> 
@@ -139,14 +139,14 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                                 </div>
                             </div>
                             
-                            : <Image src="/user-toolbar-footer.svg" className="h-5 w-5"/>}
+                            : <Image layout='fill' src="/user-toolbar-footer.svg" className="h-5 w-5"/>}
                         
                         Tài khoản</button>
                     ):(
                         <button type="button" className="btn-nav-bar"
                         onClick={() => setActiveTabs('account')}
                     >
-                        <Image src="/user-toolbar-footer.svg" className="h-5 w-5"/>
+                        <Image layout='fill' src="/user-toolbar-footer.svg" className="h-5 w-5"/>
                         Tài khoản</button>
                 )}
             </div>

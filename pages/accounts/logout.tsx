@@ -21,7 +21,7 @@ const LogoutPage:NextPageWithLayout =()=>{
             <div className=" w-full flex flex-col    space-y-5  ">
                 <div className="p-5 bg-white space-y-4 rounded-xl tablet:px-3 flex flex-col items-center justify-center">
                     <div>
-                        <Image src="/default-user.svg" className=" w-20 h-20"/>
+                        <Image layout='fill' src="/default-user.svg" className=" w-20 h-20"/>
                     </div>
                     <div className="gap-4 flex w-full">
                         <button onClick={register} className="btn-login  rounded-lg border-purple-600 text-purple-600">Đăng kí</button>
@@ -33,44 +33,44 @@ const LogoutPage:NextPageWithLayout =()=>{
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image src="/favorite-desktop.svg" className="h-3 w-auto"/>
+                                    <Image layout='fill' src="/favorite-desktop.svg" className="h-3 w-auto"/>
                                     <p>Tin yêu thích</p>
                                 </div>
                                 <div >
-                                    <Image src="/left-icon-path.svg"/>
+                                    <Image layout='fill' src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image src="/notification.svg" className="h-4 w-auto"/>
+                                    <Image layout='fill' src="/notification.svg" className="h-4 w-auto"/>
                                     <p>Thông báo</p>
                                 </div>
                                 <div >
-                                    <Image src="/left-icon-path.svg"/>
+                                    <Image layout='fill' src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image src="/huong-dan.svg" className="h-3 w-auto"/>
+                                    <Image layout='fill' src="/huong-dan.svg" className="h-3 w-auto"/>
                                     <p>Hướng dẫn</p>
                                 </div>
                                 <div >
-                                    <Image src="/left-icon-path.svg"/>
+                                    <Image layout='fill' src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image src="/lien-he.svg" className="h-3 w-auto"/>
+                                    <Image layout='fill' src="/lien-he.svg" className="h-3 w-auto"/>
                                     <p>Liên hệ</p>
                                 </div>
                                 <div >
-                                    <Image src="/left-icon-path.svg"/>
+                                    <Image layout='fill' src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>

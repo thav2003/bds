@@ -15,28 +15,40 @@ const CardHome:React.FC<Card>=(props)=>{
                         <div className="gap-2 flex ">
                             <div className="bg-gray-700  rounded-md p-1  flex items-end">
                                 <div className="flex  items-center gap-1">
-                                    <Image src="/video_thumb_white.svg" className="h-5 w-3 rounded-md mb-[2px]"/>
+                                    <div className="h-5 w-3 relative">
+                                        <Image layout='fill' src="/video_thumb_white.svg" className="h-5 w-3 rounded-md mb-[2px]"/>
+                                    </div>
                                     {video && <p className="text-white opacity-80 cardText ">{video}</p>}
                                 </div>
                                
                             </div>
                             <div className="bg-gray-700 rounded-md p-1 flex items-end" >
                                 <div className="flex  items-center gap-1">
-                                    <Image src="/images_thumb_white.svg" className="h-4 w-3 rounded-md"/>
+                                    <div className="h-4 w-3 relative">
+                                        <Image layout='fill' src="/images_thumb_white.svg" className="h-4 w-3 rounded-md"/>
+                                    </div>
                                     {img && <p className="text-white opacity-80 cardText">{img}</p>}
                                 </div>
                             </div>
                         </div>
                     </div>}
                     <Carousel slideInterval={5000} indicators={true} >
-                        
-                        <Image src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
-                        <Image src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
-                        <Image src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
-                        <Image src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
-                        <Image src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
-                        <Image src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
-                        <Image src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
+                        <div className="w-full h-full reative">
+                            <Image layout='fill' src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
+                        </div>
+                        <div className="w-full h-full reative">
+                            <Image layout='fill' src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
+                        </div>
+                        <div className="w-full h-full reative">
+                            <Image layout='fill' src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
+                        </div>
+                        <div className="w-full h-full reative">
+                            <Image layout='fill' src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
+                        </div>
+                        <div className="w-full h-full reative">
+                            <Image layout='fill' src={data.image} className="object-cover w-full h-full rounded-t-lg tablet:rounded-lg"/>
+                        </div>
+                       
                        
                     </Carousel>
                     
@@ -51,22 +63,31 @@ const CardHome:React.FC<Card>=(props)=>{
                         </div>
                         <div className="  flex  w-full  flex-wrap tablet:text-xs gap-1   ">
                             <div className="flex flex-row gap-2 items-center tablet:gap-1">
-                                <Image src="/phong_ngu.svg" className="h-3 w-3 tablet:hidden"/>
+                                <div className="h-3 w-3 tablet:hidden relative">
+                                    <Image layout='fill' src="/phong_ngu.svg" className="h-3 w-3 tablet:hidden"/>
+                                </div>
                                 <p className="cardInfo"> {data.room} pn</p>
                             </div>
                             .
                             <div className="flex flex-row gap-2 items-center tablet:gap-1">
-                                <Image src="/phong_tam.svg" className="h-3 w-3 tablet:hidden"/>
+                                <div className="h-3 w-3 tablet:hidden relative">
+                                    <Image layout='fill' src="/phong_tam.svg" className="h-3 w-3 tablet:hidden"/>
+                                </div>
                                 <p className="cardInfo"> {data.wc} wc</p>
                             </div>
                             .
                             <div className="flex flex-row gap-2 items-center tablet:gap-1">
-                                <Image src="/dien_tich.svg" className="h-3 w-3 tablet:hidden"/>
+                                <div className="h-3 w-3 tablet:hidden relative">
+                                    <Image layout='fill' src="/dien_tich.svg" className="h-3 w-3 tablet:hidden"/>
+                                </div>
                                 <p className="cardInfo"> {data.areas} m2</p>
                             </div>
                             <div className="flex flex-row  truncate tablet:text-xs gap-2 items-center tablet:col-start-2 tablet:col-end-3">
-                                <Image src="/location_icon.svg" className="h-3 w-3 tablet:hidden"/>
+                                <div className="h-3 w-3 tablet:hidden relative">
+                                    <Image layout='fill' src="/location_icon.svg" className="h-3 w-3 tablet:hidden"/>
+                                </div>
                                 <p className="text-xs line-clamp-1 "> {data.address}</p>
+
                             </div>
                         </div>
                     
@@ -74,7 +95,9 @@ const CardHome:React.FC<Card>=(props)=>{
                     
                     <div className="pt-1.5 pb-2.5 tablet:hidden flex justify-between items-center">
                         <div className="flex flex-row items-center space-x-1">
-                            <Image src="/default-user.svg" className="h-5 w-5"/>
+                            <div className="h-5 w-5 relative">
+                                <Image layout='fill' src="/default-user.svg" className="h-5 w-5"/>
+                            </div>
                             <p className="cardAuthor font-semibold"> {data.author}</p>
                         </div>
                         <div>

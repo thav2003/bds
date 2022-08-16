@@ -172,7 +172,7 @@ const RenderDropLeft=({action,icon,className}:any):any=>{
       <button type="button" 
             onMouseOver={handleMouseOver}
             onMouseLeave={handleMouseLeave} onClick={action} className={`absolute z-[4] -top-8 right-2 flex  items-center ${className}`}>
-            <Image  src={icon} className="w-full h-5"/>
+            <Image layout='fill'  src={icon} className="w-full h-5"/>
             { isVisible && 
         <div className="relative">
           <div onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="absolute  bg-red-500 w-[200px] z-[60] h-[200px]">
@@ -339,7 +339,7 @@ const RenderDrop=({
                   <ListGroup.Item>
                     {change} 
                     <button type="button" onClick={clear} className="absolute z-[4] top-2 gap-2 right-1 flex   items-center ">
-                      <Image  src="/closed-btn.svg" className="h-4"/>
+                      <Image layout='fill'  src="/closed-btn.svg" className="h-4"/>
                       Thêm mới
                     </button>
                   </ListGroup.Item>
@@ -547,7 +547,7 @@ const RenderPopUp=({
             <div  className={`w-full bg-white flex flex-col relative justify-center items-center py-5 rounded-t-lg shadow select-none gap-4 `}>
                   <div className="absolute flex inset-x-0 bottom-[25px] px-4  w-[50px]  ">
                       <a onClick={onClose}>
-                          <Image src="/arrow-left.svg" className="w-4 h-4"/>
+                          <Image layout='fill' src="/arrow-left.svg" className="w-4 h-4"/>
 
                       </a>
                       
@@ -560,7 +560,7 @@ const RenderPopUp=({
                   </div>
                   <div className="absolute flex  right-0 bottom-[25px]  px-4    w-[50px]  ">
                       <a onClick={onClose}>
-                          <Image src="/closed-black.svg" className="w-4 h-4"/>
+                          <Image layout='fill' src="/closed-black.svg" className="w-4 h-4"/>
 
                       </a>
                       
@@ -587,7 +587,7 @@ const RenderPopUp=({
                         <ListGroup.Item>
                           {change}
                           <button type="button" onClick={add} className="absolute z-[4] top-2 gap-2 right-1 flex   items-center ">
-                            <Image  src="/closed-btn.svg" className="h-4"/>
+                            <Image layout='fill'  src="/closed-btn.svg" className="h-4"/>
                             Thêm mới
                           </button>
                         </ListGroup.Item>
@@ -1033,7 +1033,7 @@ const UploadForm:React.FC<IValues>=(props) => {
         <div className="space-y-2">
           <p className="font-semibold info">Hình ảnh</p>
           <div className="w-full h-36 bg-slate-100 flex flex-col items-center justify-center border-dashed border-slate-300 border-[1px] rounded-lg">
-              <Image src="/upload-image.svg" className=""/>
+              <Image layout='fill' src="/upload-image.svg" className=""/>
               <p>Đăng từ 1 đến 20 hình ảnh</p>
           </div>
         </div>
@@ -1041,12 +1041,12 @@ const UploadForm:React.FC<IValues>=(props) => {
           <p className="font-semibold info">Video</p>
           
           <div className="w-full h-36 bg-slate-100 flex flex-col items-center justify-center border-dashed border-slate-300 border-[1px] rounded-lg">
-              <Image src="/upload-video.svg" className=""/>
+              <Image layout='fill' src="/upload-video.svg" className=""/>
               <p>Đăng tối đa 1 video</p>
           </div>
         </div>
         <div className="flex space-x-2">
-          <Image src="/play-button.svg" className="w-5 h-5 bg-black"/>
+          <Image layout='fill' src="/play-button.svg" className="w-5 h-5 bg-black"/>
           <p>Hoặc thêm video từ Youtube</p>
         </div>
         <div className="flex-grow h-px bg-gray-200 "></div>
@@ -1168,7 +1168,7 @@ const UploadForm:React.FC<IValues>=(props) => {
       <div className="flex flex-row justify-between">
         <h2 className="font-bold">Thông tin gói tin</h2>
         <div className="flex items-center">
-          <Image src="/verified.svg" className="w-5 h-5"/>
+          <Image layout='fill' src="/verified.svg" className="w-5 h-5"/>
           <p className="text-purple-500">Tăng hiệu quả đáng tin</p>
         </div>
       </div>

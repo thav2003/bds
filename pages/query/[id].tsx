@@ -185,10 +185,10 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                                 </select>
                                 <div className="flex border-solid border-[1px]  border-gray-400 rounded-md">
                                     <button onClick={()=>setIsGrid(false)} className="flex item-center bg-[#fefefe] border-solid border-r-[1px] rounded-l-md  border-gray-400">
-                                        <Image src={isGrid ? "/list_grey.svg" : "/list_selected.svg" } className={`${!isGrid ? "clickhover" :""} animationhover`}/>
+                                        <Image layout='fill' src={isGrid ? "/list_grey.svg" : "/list_selected.svg" } className={`${!isGrid ? "clickhover" :""} animationhover`}/>
                                     </button>
                                     <button onClick={()=>setIsGrid(true)} className="flex item-center rounded-r-md bg-[#fefefe]">
-                                        <Image src={isGrid ? "/grid_selected.svg" : "/grid_grey.svg"} className={`${isGrid ? "clickhover" :""} animationhover`}/>
+                                        <Image layout='fill' src={isGrid ? "/grid_selected.svg" : "/grid_grey.svg"} className={`${isGrid ? "clickhover" :""} animationhover`}/>
                                     </button>
                                 </div>
                                     
@@ -238,7 +238,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                             <ul className="flex justify-center items-center gap-2">
                                {active!==0 && <li className="w-10 h-10">
                                     <button onClick={prevButton} className="btn-slide">
-                                        <Image src="/previous-button-purple.svg" className="h-3 w-3"/>
+                                        <Image layout='fill' src="/previous-button-purple.svg" className="h-3 w-3"/>
                                     </button>
                                 </li>}
                                 {data.map((item, index) =>{
@@ -253,7 +253,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                                 
                                 <li className="w-10 h-10">
                                     <button onClick={nextButton} className="btn-slide">
-                                        <Image src="/next-button-pruple.svg" className="h-3 w-3"/>
+                                        <Image layout='fill' src="/next-button-pruple.svg" className="h-3 w-3"/>
                                     </button>
                                 </li>
                             </ul>

@@ -57,13 +57,15 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
         >
             <div className=" w-9/12 flex  items-center justify-between ">
 
-                <div className="flex   space-x-4  ">
+                <div className="flex  w-1/2  space-x-4  ">
                     <Link href="/" >
-                        <a >
-                            <Image src="/logo.svg" alt="Logo" className="w-auto h-auto"  />
+                        <a className="w-1/2 ">
+                            <div className="w-full h-full relative " >
+                                <Image width="100%" height="100%" layout="fill"  src="/logo.svg"  alt="Logo"  />
+                            </div>
                         </a>
                     </Link>
-                    <label className="relative w-3/6 laptop:hidden">
+                    <label className="relative  laptop:hidden">
                         <input 
                             className=" 
                                 w-full 
@@ -76,7 +78,9 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                             name="search"
                         />
                         <span className="absolute inset-y-0 right-3 flex items-center pl-2">
-                            <Image src="search_black.svg" className="w-5 h-5"/>
+                            <div className="w-5 h-5 relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/search_black.svg" className="w-5 h-5"/>
+                            </div>
                         </span>
                     </label>
                 </div>
@@ -86,14 +90,18 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                             <div  className="flex rounded-lg items-center justify-center">
                                 
                                     <a >
-                                        <Image src="favorite-desktop.svg"  className="w-6 h-full "/>
+                                        <div  className="w-6 h-6 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/favorite-desktop.svg"  className="w-6 h-full "/>
+                                        </div>
                                     </a>
                                 
                             </div>
                             {authState && <div  className="flex  rounded-lg items-center justify-center">
                                 
                                     <a >
-                                        <Image src="notification.svg"  className="w-6 h-full "/>
+                                        <div  className="w-6 h-6 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/notification.svg"  className="w-6 h-full "/>
+                                        </div>
                                     </a>
                                 
                             </div>}
@@ -118,7 +126,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                             <div  className='flex space-x-2   items-center relative'>
                                 <div className="flex items-center w-6 space-x-4 ">
                                     <div className="relative">
-                                        <Image 
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  
                                             className="w-full h-full rounded-full p-1 ring-2 ring-sky-300  relative  overflow-hidden "
                                             src="/user-toolbar-footer.svg" 
                                         /> 
@@ -132,7 +140,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                             <button onMouseOver={mouseHover} className="flex items-center truncate ">Nguyễn Văn Nam
                                                 
                                             </button>
-                                            <Image  onClick={hanldeDrop}  src="down_button_black.svg" className="cursor-pointer h-4 w-3 ml-2"/>
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain"   onClick={hanldeDrop}  src="/down_button_black.svg" className="cursor-pointer h-4 w-3 ml-2"/>
                                         </div> 
 
                                         <div  className={`dropbackground w-[350px] rounded-lg ${isHidden ? "hidden" : "block"}`}>
@@ -140,14 +148,14 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                                    <div className="w-full h-full flex  justify-between gap-2 ">
                                                         <div className="bg-gray-100 flex-[1_0_50%] py-4 p-2 h-full rounded-lg space-y-2">
                                                             <div className="flex items-center gap-1">
-                                                                <Image src="du_an.svg" className="h-5 w-5"/>
+                                                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="du_an.svg" className="h-5 w-5"/>
                                                                 <p>Số tin đăng</p>
                                                             </div>
                                                             <div className="text-lg font-semibold ">0 tin</div>
                                                         </div>
                                                         <div className="bg-gray-100 flex-[1_0_50%] py-4 p-2 h-full rounded-lg space-y-2">
                                                             <div className="flex items-center gap-1">
-                                                                <Image src="du_an.svg" className="h-5 w-5"/>
+                                                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="du_an.svg" className="h-5 w-5"/>
                                                                 <p>Số tin đăng</p>
                                                             </div>
                                                             <div className="text-lg font-semibold">0 tin</div>
@@ -194,7 +202,9 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                             <Link href="/upload">
                                 <a className="btn-primary hover:bg-pink-700 text-white flex flex-row space-x-2  items-center">
                                     <span className="items-center">
-                                        <Image src="white-edit.svg" className="w-auto h-auto" />
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/white-edit.svg" className="w-auto h-auto" />
+                                        </div>
                                     </span>
                                     <p>Đăng tin</p>
                                 </a>
@@ -214,7 +224,9 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                             <option value="3">Audi</option>
                         </select>
                         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-1 text-gray-700">
-                            <Image src="/khu_vuc.svg" className="w-6 h-5"/>
+                            <div className="w-6 h-5 relative">
+                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/khu_vuc.svg" className="w-6 h-5"/>
+                            </div>
                         </div>
                     </div>
                 
@@ -256,13 +268,17 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     <div className="h-full flex flex-shrink">
                        
                         <button onClick={handleFilter} className="filter text-xs btn-primary flex items-center border-gray-400"> 
-                            <Image src="/fillter-black.svg" className="h-4 w-3 mr-1"/>
+                            <div  className="h-4 w-3 mr-1 relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/fillter-black.svg" className="h-4 w-3 mr-1"/>
+                            </div>
                         Lọc thêm</button> 
                     </div>
                     <div className="h-full flex flex-shrink">
                        
                         <button className="  btn-primary flex border-gray-400 "> 
-                            <Image src="/reset_fillter.svg" className="h-5 w-5 mr-2"/>
+                            <div  className="h-5 w-5 mr-2 relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/reset_fillter.svg" className="h-5 w-5 mr-2"/>
+                            </div>
                         Đặt lại</button> 
                     </div>
                                

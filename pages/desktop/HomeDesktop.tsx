@@ -26,29 +26,40 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 <div className="w-9/12 ">
                    
                     <div className="h-56 laptop:h-40 ">
-                   
+                       
                         <Carousel slideInterval={5000} indicators={true}>
-                  
-                            <Image
-                            src="/banner.png"
-                            alt="..."
-                            />
-                            <Image
-                            src="/banner.png"
-                            alt="..."
-                            />
-                            <Image
-                            src="/banner.png"
-                            alt="..."
-                            />
-                            <Image
-                            src="/banner.png"
-                            alt="..."
-                            />
-                            <Image
-                            src="/banner.png"
-                            alt="..."
-                            />
+                            <div className=" h-full relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                src="/banner.png"
+                                alt="..."
+                                />
+                            </div>
+                            <div className=" h-full relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                src="/banner.png"
+                                alt="..."
+                                />
+                            </div>
+                            <div className=" h-full relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                src="/banner.png"
+                                alt="..."
+                                />
+                            </div>
+                            <div className=" h-full relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                src="/banner.png"
+                                alt="..."
+                                />
+                            </div>
+                            <div className=" h-full relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                src="/banner.png"
+                                alt="..."
+                                />
+                            </div>
+                         
+                            
                         </Carousel>
                     </div>
  
@@ -68,7 +79,9 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
             <div className="home-row "> 
                 <div className="w-9/12 space-y-4  tablet:w-full   "> 
                     <div className="flex flex-row items-center space-x-2">
-                        <Image src="apartment_home.svg" className="w-5 h-5"/>
+                        <div className="relative h-5 w-5">
+                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg"  className="w-5 h-5"/>
+                        </div>
                         <h2>Tìm kiếm nhiều nhất</h2>
                     </div>
                     <div className="bg-slate-100 py-4  shadow-xl   rounded-lg  tablet:overflow-x-auto tablet:overflow-y-hidden">
@@ -76,7 +89,9 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                             <div className=" flex-[5_1_0%] ">
                                 <div className=" flex space-x-3 ">
                                     <div className="w-[45%]  h-48 rounded-md relative">
-                                        <Image src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                        
+                                        <Image  layout="fill" src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                     
                                         <div  className="absolute bottom-2 left-2">
                                             <h3>Hà Nội</h3>
                                             <p className="text-sm">49.576 tin đăng</p>
@@ -84,7 +99,9 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                                         
                                     </div>
                                     <div className="w-[45%]  h-48 rounded-md relative">
-                                        <Image src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                      
+                                            <Image  layout="fill"  src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                     
                                         <div  className="absolute bottom-2 left-2">
                                             <h3>Hồ Chí MInh</h3>
                                             <p className="text-sm">69.524 tin đăng</p>
@@ -97,14 +114,18 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                                 <div className="flex-[2_1_0%] tablet:flex-none">
                                     <h4>Dự án nổi bật</h4>
                                     <div className="flex flex-row">
-                                        <Image src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
                                         <p>Cho thuê căn hộ The Sun</p>
                                     </div>
                                 </div>
                                 <div className="flex-[2_1_0%] tablet:flex-none">
                                     <h4>Khu vực nổi bật</h4>
                                     <div className="flex flex-row">
-                                        <Image src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                    <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
                                         <p>Cho thuê căn hộ The Sun</p>
                                     </div>
                                 </div>
@@ -116,7 +137,9 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
             <div className="home-row">
                 <div  className="w-9/12 space-y-4 tablet:w-full">
                     <div className="flex flex-row items-center space-x-2">
-                        <Image src="apartment_home.svg" className="w-5 h-5"/>
+                        <div className="w-5 h-5 relative">
+                        <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg" className="w-5 h-5"/>
+                        </div>
                         <h2>Cho thuê chung cư mới nhất</h2>
                     </div>
                     <div className="flex flex-row flex-wrap gap-4 tablet:flex-col">
@@ -137,7 +160,9 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
 
                   
                         <div className="flex flex-row items-center space-x-2">
-                            <Image src="apartment_home.svg" className="w-5 h-5"/>
+                            <div  className="w-5 h-5 relative" >
+                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg" className="w-5 h-5"/>
+                            </div>
                             <h2>Tin tức</h2>
                         </div>
                      
@@ -145,7 +170,9 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         
                         <div className="flex items-center">
                             <a className="text-sm font-bold text-purple-700 flex ">Đến trang tin tức
-                                <Image src="/arrow-left.svg" className="h-5 w-8 rotate-180"/>
+                                <div className="h-5 w-8  relative">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-left.svg" className="h-5 w-8 rotate-180"/>
+                                </div>
                             </a>
                             
                         </div>

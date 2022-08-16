@@ -17,7 +17,9 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
             </div>
             <div className="space-y-2">
               <div className="flex flex-row">
-                <Image src="/mail-footer.svg" className="w-5 h-5 mr-3"/>
+                <div className="w-5 h-5 relative mr-3">
+                  <Image layout='fill' src="/mail-footer.svg" />
+                </div>
                 <p>Yêu cầu</p>
               </div>
               <div>
@@ -27,11 +29,16 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
                 <p className="ml-8">Quảng cáo: ads@99.co</p>
               </div>
               <div className="flex flex-row">
-                <Image src="/phone-footer.svg" className="w-5 h-5 mr-3"/>
+                <div className="w-5 h-5 mr-3 relative">
+                  <Image layout='fill' src="/phone-footer.svg" />
+                </div>
+                
                 <p>+65 646 0552 (10 giờ sáng - 6 giờ tối, Thứ Hai - Thứ Sáu)</p>
               </div>
               <div className="flex flex-row">
-                <Image src="/facebook-footer.svg" className="w-5 h-5 mr-3"/>
+                <div className="w-5 h-5 mr-3 relative">
+                  <Image layout='fill' src="/facebook-footer.svg" />
+                </div>
                 <p>Nhóm facebook Đại lý 99.co</p>
               </div>
              
