@@ -53,6 +53,14 @@ type Props={
     specificData:queryProps
 }
 
+const GetCity=(id?:string)=>{
+    if(id==="1"){
+        return 'Hồ Chí Minh'
+    }else if(id==="2"){
+        return "Hà Nội"
+    }else return ''
+}
+
 const QueryPage:NextPageWithLayout<Props>=(props) => {
     const router = useRouter();
     const [isActive,setIsActive]=useState(true)
@@ -62,6 +70,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
     const [maxi,setMaxi]= useState(4)
     const [active,setActive] = useState(0)
     const [moretext,setMoreText]=useState(false)
+    const [city,setCity]= useState<string>('')
     const pages=[] as any
     let start=0 
     data.forEach((item:DataProps,index:number)=>{
@@ -77,10 +86,13 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
         
     })
     useEffect(()=>{
+        setCity(GetCity(props.specificData.id))
+    },[router])
+    useEffect(()=>{
         setMaxi(data.length/18-1)
 
     },[pages])
-    console.log(pages,data)
+
     const moreText=()=>{
         setMoreText(!moretext)
     }
@@ -124,11 +136,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
     if (router.isFallback) {
         return <h1>Loading...</h1>
     }
-    const RenderPage=()=>{
-        return(
-            <div>he</div>
-        )
-    }
+
     return(
         <div className="flex flex-col mt-[4.5rem]  justify-center  mb-4 ">
             
@@ -154,7 +162,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                 
             </div>
             <div className="home-row pt-2 ">
-                <div className="w-9/12  ">
+                <div className="w-9/12  flex gap-5">
                     <div className="w-[65%] space-y-4 relative">
                         <div className="flex flex-row items-end justify-between">
                             <p className="text-sm text-left ">Tìm thấy 256 căn hộ cho thuê</p>
@@ -243,7 +251,116 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                         </div>
                         
                     </div>
-                    
+                   <div className="w-[35%] gap-3 flex flex-col">
+                        <div className="w-full">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.1557320337456!2d106.74314131428771!3d10.875757360327535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d80ae8eb0495%3A0xd83d1ef5d3286ddd!2zMi0yMCDEkMaw4budbmcgU-G7kSAxNSwgQsOsbmggQ2hp4buDdSwgVGjhu6cgxJDhu6ljLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1660635272734!5m2!1sen!2s" className='h-[5rem] w-full border-0'  allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div className="idLeft p-5 space-y-3 text-gray-600">
+                            <p className="font-semibold ">Cho thuê căn hộ {city} theo Quận Huyện</p>
+                            <ul className="list-square list-inside flex flex-wrap gap-4 justify-evenly">
+                                <li className="flex-[1_0_45%] ">
+                                    <a className="text-gray-600">Quận 1</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 2</a>
+                                </li>
+                                <li className="flex-[1_0_45%]"> 
+                                    <a className="text-gray-600">Quận 3</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 4</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 5</a>
+                                </li>
+                              
+                            </ul>
+                        </div>
+                        <div className="idLeft p-5 space-y-3 text-gray-600">
+                            <p className="font-semibold ">Xem theo giá cho thuê</p>
+                            <ul className="list-square list-inside flex flex-wrap gap-4 justify-evenly">
+                                <li className="flex-[1_0_45%] ">
+                                    <a className="text-gray-600">Quận 1</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 2</a>
+                                </li>
+                                <li className="flex-[1_0_45%]"> 
+                                    <a className="text-gray-600">Quận 3</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 4</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 5</a>
+                                </li>
+                              
+                            </ul>
+                        </div>
+                        <div className="idLeft p-5 space-y-3 text-gray-600">
+                            <p className="font-semibold ">Xem theo số phòng ngủ</p>
+                            <ul className="list-square list-inside flex flex-wrap gap-4 justify-evenly">
+                                <li className="flex-[1_0_45%] ">
+                                    <a className="text-gray-600">Quận 1</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 2</a>
+                                </li>
+                                <li className="flex-[1_0_45%]"> 
+                                    <a className="text-gray-600">Quận 3</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 4</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 5</a>
+                                </li>
+                              
+                            </ul>
+                        </div>
+                        <div className="idLeft p-5 space-y-3 text-gray-600">
+                            <p className="font-semibold ">Xem theo diện tích</p>
+                            <ul className="list-square list-inside flex flex-wrap gap-4 justify-evenly">
+                                <li className="flex-[1_0_45%] ">
+                                    <a className="text-gray-600">Quận 1</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 2</a>
+                                </li>
+                                <li className="flex-[1_0_45%]"> 
+                                    <a className="text-gray-600">Quận 3</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 4</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 5</a>
+                                </li>
+                              
+                            </ul>
+                        </div>
+                        <div className="idLeft p-5 space-y-3 text-gray-600">
+                            <p className="font-semibold ">Cho thuê chung cư {city} theo dự án</p>
+                            <ul className="list-square list-inside flex flex-col gap-4 justify-evenly">
+                                <li className="flex-[1_0_45%] ">
+                                    <a className="text-gray-600">Quận 1</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 2</a>
+                                </li>
+                                <li className="flex-[1_0_45%]"> 
+                                    <a className="text-gray-600">Quận 3</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 4</a>
+                                </li>
+                                <li className="flex-[1_0_45%]">
+                                    <a className="text-gray-600">Quận 5</a>
+                                </li>
+                              
+                            </ul>
+                        </div>
+                   </div>
                 </div>
                 
             </div>

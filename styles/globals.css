@@ -138,6 +138,9 @@
    .clickhover{
     @apply transform transition duration-500 scale-110
    }
+   .idLeft{
+    @apply w-full bg-white  border-solid border-[1px] p-3 rounded-lg
+   }
 }
   @layer utilities {
     .text-ph::placeholder{
