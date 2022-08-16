@@ -1,6 +1,6 @@
 import type { DataProps } from "./interfaces/interfaces"
 
-export const data:DataProps[]=new Array(10).fill({
+export const data:DataProps[]=new Array(103).fill({
     title: 'Cho thuê nhà Thủ Đức',
     prices:4,
     followBy: 'tháng',

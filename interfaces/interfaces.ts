@@ -21,7 +21,8 @@ export interface DataProps{
     image:string;
 }
 export interface Card extends React.ComponentPropsWithoutRef<'div'> {
-    data:DataProps
+    data:DataProps,
+    isVertical?: boolean
 }
 export interface CardNewsProp extends React.ComponentPropsWithoutRef<'div'> {}
 

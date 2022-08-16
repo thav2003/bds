@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import type { IHeader } from '../../interfaces/interfaces';
 import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
@@ -11,7 +11,21 @@ import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
 const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const router = useRouter()
     const authState = useSelector(selectAuthState);
+    const [patnName,setPathName]=useState<boolean>(true)
     const dispatch = useDispatch();
+    useEffect(()=>{
+        setPath()
+    },[router])
+    const setPath=()=>{
+        if(router.pathname==='/'){
+            setPathName(true)
+        }else if(router.pathname==='/query/[id]'){
+            setPathName(true)
+        }else{
+            setPathName(false)
+        }
+        
+    }
     const submitLogout=()=>{
         setIsHidden(true)
         dispatch(setAuthState(false))
@@ -189,7 +203,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     </div>
                 </div>
             </div>
-            {router.pathname==='/' && 
+            {patnName  && 
                 <div className="w-9/12  flex flex-row  pt-7  items-center flex-wrap gap-2 ">
                     <div className="relative flex-shrink ">
                         <select name="location" id="locations"  className='filter text-xs pl-6 pr-8 border-gray-400'>

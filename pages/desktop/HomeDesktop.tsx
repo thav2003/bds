@@ -26,7 +26,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     
     
     return(
-        <div className="flex flex-col mt-20 tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
+        <div className="flex flex-col mt-[4.5rem] tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
             {!IsMobile &&<div className="home-row tablet:hidden">
                 <div className="w-9/12 ">
                    
@@ -126,7 +126,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                     </div>
                     <div className="flex flex-row flex-wrap gap-4 tablet:flex-col">
                         {IsMobile ? <CardHome2 data={data[0]}/> :  <CardHome data={data[0]}/>}
-                        <CardHome data={data[1]}/>
+                        <CardHome data={data[1]} />
                         <CardHome data={data[2]}/>
                         <CardHome data={data[3]}/>
                         {IsMobile ? <CardHome2 data={data[4]}/> :  <CardHome data={data[4]}/>}

@@ -5,7 +5,7 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
   return (
     <footer
       {...footerProps}
-      className={`w-full p-5 bg-slate-100 tablet:p-0 tablet:pb-8`}
+      className={`w-full py-5 bg-slate-100 tablet:p-0 tablet:pb-8`}
     >
       <div className="flex justify-center ">
         <div className="w-9/12 flex flex-row justify-between space-x-3 tablet:px-0 tablet:py-5 p-10 tablet:grid  gap-2 ">

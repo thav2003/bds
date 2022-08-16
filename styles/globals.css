@@ -41,7 +41,7 @@
       
       @apply font-bold 
     }
-   
+ 
     
 }
 
@@ -49,7 +49,12 @@
     .btn-primary {
         @apply hover:bg-emerald-400 hover:rounded-lg text-center p-2 flex-grow
     }
-   
+    .btn-slide{
+      @apply text-center p-2 flex-grow text-purple-600 bg-slate-50 w-full h-full flex items-center justify-center border-solid border-[1px]  border-slate-200 rounded-full
+    }
+    .btn-slide-active{
+      @apply text-white bg-purple-600
+    }
     .btn-nav-bar{
      
         @apply flex flex-col h-full w-full  flex-grow justify-center  items-center hover:bg-transparent
@@ -93,7 +98,7 @@
       font-size:14px;
     }
     .cardAuthor{
-      font-size:10px;
+      font-size:12px;
     }
     .cardTime{
       font-size:11px;
@@ -129,6 +134,9 @@
    }
    .animationhover{
     @apply transform transition duration-500 hover:scale-110
+   }
+   .clickhover{
+    @apply transform transition duration-500 scale-110
    }
 }
   @layer utilities {
