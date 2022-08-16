@@ -14,18 +14,20 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const [patnName,setPathName]=useState<boolean>(true)
     const dispatch = useDispatch();
     useEffect(()=>{
+        const setPath=()=>{
+            if(router.pathname==='/'){
+                setPathName(true)
+            }else if(router.pathname==='/query/[id]'){
+                setPathName(true)
+            }else{
+                setPathName(false)
+            }
+            
+        }
         setPath()
     },[router])
-    const setPath=()=>{
-        if(router.pathname==='/'){
-            setPathName(true)
-        }else if(router.pathname==='/query/[id]'){
-            setPathName(true)
-        }else{
-            setPathName(false)
-        }
-        
-    }
+    
+    
     const submitLogout=()=>{
         setIsHidden(true)
         dispatch(setAuthState(false))

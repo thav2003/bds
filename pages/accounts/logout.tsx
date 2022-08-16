@@ -20,8 +20,8 @@ const LogoutPage:NextPageWithLayout =()=>{
         <div className={`w-full flex flex-col   items-center p-0 select-none bg-slate-50 `}>
             <div className=" w-full flex flex-col    space-y-5  ">
                 <div className="p-5 bg-white space-y-4 rounded-xl tablet:px-3 flex flex-col items-center justify-center">
-                    <div>
-                        <Image layout='fill' src="/default-user.svg" className=" w-20 h-20"/>
+                    <div className="w-20 h-20 relative">
+                        <Image width="100%" height="100%" layout="fill"   src="/default-user.svg"/>
                     </div>
                     <div className="gap-4 flex w-full">
                         <button onClick={register} className="btn-login  rounded-lg border-purple-600 text-purple-600">Đăng kí</button>
@@ -33,44 +33,52 @@ const LogoutPage:NextPageWithLayout =()=>{
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/favorite-desktop.svg" className="h-3 w-auto"/>
+                                    <div className="h-4 w-4 relative">
+                                        <Image width="100%" height="100%" layout="fill"   src="/favorite-desktop.svg" />
+                                    </div>
                                     <p>Tin yêu thích</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/notification.svg" className="h-4 w-auto"/>
+                                    <div className="h-4 w-4 relative">
+                                        <Image width="100%" height="100%" layout="fill"  src="/notification.svg" />
+                                    </div>
                                     <p>Thông báo</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/huong-dan.svg" className="h-3 w-auto"/>
+                                    <div  className="h-4 w-4 relative">
+                                        <Image width="100%" height="100%" layout="fill"  src="/huong-dan.svg"/>
+                                    </div>
                                     <p>Hướng dẫn</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill"   src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/lien-he.svg" className="h-3 w-auto"/>
+                                    <div className="h-4 w-4 relative">
+                                        <Image width="100%" height="100%" layout="fill"   src="/lien-he.svg" />
+                                    </div>
                                     <p>Liên hệ</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill"   src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>

@@ -62,6 +62,7 @@ const GetCity=(id?:string)=>{
         return "Hà Nội"
     }else return ''
 }
+const pages=[] as any
 
 const QueryPage:NextPageWithLayout<Props>=(props) => {
     const router = useRouter();
@@ -76,7 +77,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
     const [active,setActive] = useState(0)
     const [moretext,setMoreText]=useState(false)
     const [city,setCity]= useState<string>('')
-    const pages=[] as any
+
     let start=0 
     data.forEach((item:DataProps,index:number)=>{
         if(index%18==0 ){
@@ -91,12 +92,10 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
         
     })
   
-   
-        
-        
+    
     useEffect(()=>{
         setCity(GetCity(props.specificData.id))
-    },[router])
+    },[props.specificData.id])
     useEffect(()=>{
         setMaxi(data.length/18-1)
 
@@ -184,11 +183,15 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                                     <option value="3">Audi</option>
                                 </select>
                                 <div className="flex border-solid border-[1px]  border-gray-400 rounded-md">
-                                    <button onClick={()=>setIsGrid(false)} className="flex item-center bg-[#fefefe] border-solid border-r-[1px] rounded-l-md  border-gray-400">
-                                        <Image layout='fill' src={isGrid ? "/list_grey.svg" : "/list_selected.svg" } className={`${!isGrid ? "clickhover" :""} animationhover`}/>
+                                    <button onClick={()=>setIsGrid(false)} className="flex  item-center bg-[#fefefe] border-solid border-r-[1px] rounded-l-md  border-gray-400">
+                                        <div className="relative w-10 h-full">
+                                            <Image width="100%" height="100%" layout="fill"   src={isGrid ? "/list_grey.svg" : "/list_selected.svg" } className={`${!isGrid ? "clickhover" :""} animationhover`}/>
+                                        </div>
                                     </button>
                                     <button onClick={()=>setIsGrid(true)} className="flex item-center rounded-r-md bg-[#fefefe]">
-                                        <Image layout='fill' src={isGrid ? "/grid_selected.svg" : "/grid_grey.svg"} className={`${isGrid ? "clickhover" :""} animationhover`}/>
+                                        <div className="relative w-10 h-full">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src={isGrid ? "/grid_selected.svg" : "/grid_grey.svg"} className={`${isGrid ? "clickhover" :""} animationhover`}/>
+                                        </div>
                                     </button>
                                 </div>
                                     
@@ -238,7 +241,9 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                             <ul className="flex justify-center items-center gap-2">
                                {active!==0 && <li className="w-10 h-10">
                                     <button onClick={prevButton} className="btn-slide">
-                                        <Image layout='fill' src="/previous-button-purple.svg" className="h-3 w-3"/>
+                                    <div className="h-3 w-3 relative">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/previous-button-purple.svg" />
+                                    </div>
                                     </button>
                                 </li>}
                                 {data.map((item, index) =>{
@@ -253,7 +258,9 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                                 
                                 <li className="w-10 h-10">
                                     <button onClick={nextButton} className="btn-slide">
-                                        <Image layout='fill' src="/next-button-pruple.svg" className="h-3 w-3"/>
+                                        <div className="h-3 w-3 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/next-button-pruple.svg" />
+                                        </div>
                                     </button>
                                 </li>
                             </ul>

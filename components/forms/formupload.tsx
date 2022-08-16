@@ -51,7 +51,7 @@ const RenderInput = ({
       input.onChange(input.value = 1)
     }
 
-  },[change,warning])
+  },[change,warning,input])
   return(
     <div className="space-y-1">
       
@@ -111,8 +111,8 @@ const RenderTextArea = ({
         setIsFull(false)
       }
     }
-    console.log(input.value)
-  },[countTitle])
+  
+  },[input.name,countTitle])
  
   return(
 
@@ -276,7 +276,7 @@ const RenderDrop=({
     }
     change && setStringBottom(`${new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(change)} / tháng`)
     setRenderPrices(temp)
-    console.log(change,input.value)
+    
     if(input.name ==="room" || input.name ==="wc"){
       if(change > 100){
         setChange(100)
@@ -294,7 +294,7 @@ const RenderDrop=({
     if(!change){
       setStringBottom('')
     }
-  },[change])
+  },[change,input])
  
   return(
     <div className="space-y-1">
@@ -1003,7 +1003,7 @@ const UploadForm:React.FC<IValues>=(props) => {
         
         
         </div>
-        <div className="space-y-2 w-full ">
+        <div className="space-y-3 w-full ">
           <p className="font-semibold  ">Tình trạng nội thất {!status && <span className="text-red-500">*</span>}</p>
           <div className='space-x-2 flex select-none w-full tablet:text-xs hideinput' >
               <div>
@@ -1020,7 +1020,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               </div>
           </div>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-3">
           <p className="font-semibold  ">Đặc điểm căn hộ</p>
           <div className="tablet:text-xs">
             <Field name="dac_diem" component={RenderRadio} id="can_goc" type="checkbox"  value="1" label="Căn góc"/>

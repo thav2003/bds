@@ -9,6 +9,7 @@ interface ItabName extends React.ComponentPropsWithoutRef<"div">{
 
 const BottomTab:React.FC<ItabName>=(props)=>{
     const {name} = props;
+  
     const authState = useSelector(selectAuthState);
     
     const router=useRouter()
@@ -17,33 +18,36 @@ const BottomTab:React.FC<ItabName>=(props)=>{
         if(name!==activeTabs){
             setActiveTabs('')
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[name])
    
     useEffect(() => {
-       
-        
-        switch (activeTabs) {
+        console.log(activeTabs,name)
+            switch (activeTabs) {
 
-            case 'home':
-                router.push('/')
-                break;
-            case 'register':
-                router.push('/register')
-                break;
-            case 'login':
-                router.push('/login')
-                break;
-            case 'upload':
-                router.push('/upload')
-                break;
-            case 'account':
-                
-                {authState ? router.push('/accounts/login') :  router.push('/accounts/logout')}
-                
-                break;
-            
-        }
-    }, [activeTabs,authState ])
+                case 'home':
+                    router.push('/')
+                    break;
+                case 'register':
+                    router.push('/register')
+                    break;
+                case 'login':
+                    router.push('/login')
+                    break;
+                case 'upload':
+                    router.push('/upload')
+                    break;
+                case 'account':
+                    
+                    {authState ? router.push('/accounts/login') :  router.push('/accounts/logout')}
+                    
+                    break;
+                default:
+                    break;
+            }
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeTabs,authState])
     return(
         
         <div className="bottomNav gap-2  shadow-sm-light bg-white shadow-slate-800 select-none">
@@ -52,13 +56,17 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                     <button type="button" className="btn-nav-bar text-purple-600"
                     onClick={() => setActiveTabs('home')}
                 >
-                    <Image layout='fill' src="/home_toolbar_footer_fill.svg" className="h-5 w-5"/>
+                    <div  className="h-5 w-5 relative">
+                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/home_toolbar_footer_fill.svg"/>
+                    </div>
                 Trang chủ</button>
                 ):(
                     <button type="button" className="btn-nav-bar"
                     onClick={() => setActiveTabs('home')}
                 >
-                    <Image layout='fill' src="/home_toolbar_footer.svg" className="h-5 w-5"/>
+                    <div  className="h-5 w-5 relative">
+                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/home_toolbar_footer.svg" className="h-5 w-5"/>
+                    </div>
                     Trang chủ</button>
                 )}
                 
@@ -69,13 +77,17 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                     <button type="button" className="btn-nav-bar text-purple-600"
                         // onClick={() => setActiveTabs('home')}
                     >
-                        <Image layout='fill' src="/listing_manage_fill.svg" className="h-5 w-5"/>
+                        <div  className="h-5 w-5 relative">
+                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/listing_manage_fill.svg" />
+                       </div>
                         Quản lí tin</button>
                     ):(
                         <button type="button" className="btn-nav-bar"
                         // onClick={() => setActiveTabs('home')}
                     >
-                        <Image layout='fill' src="/listing-manager.svg" className="h-5 w-5"/>
+                        <div  className="h-5 w-5 relative">
+                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/listing-manager.svg" />
+                        </div>
                         Quản lí tin</button>
                 )}
             </div>
@@ -111,13 +123,17 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                     <button type="button" className="btn-nav-bar text-purple-600"
                         // onClick={() => setActiveTabs('home')}
                     >
-                        <Image layout='fill' src="/favorite-mobile.svg" className="h-5 w-5"/>
+                        <div  className="h-5 w-5 relative">
+                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/favorite-mobile.svg" className="h-5 w-5"/>
+                        </div>
                         Yêu thích</button>
                     ):(
                         <button type="button" className="btn-nav-bar"
                         // onClick={() => setActiveTabs('home')}
                     >
-                        <Image layout='fill' src="/favorite-desktop.svg" className="h-5 w-5"/>
+                        <div  className="h-5 w-5 relative">
+                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/favorite-desktop.svg" className="h-5 w-5"/>
+                        </div>
                         Yêu thích</button>
                 )}
             </div>
@@ -130,23 +146,31 @@ const BottomTab:React.FC<ItabName>=(props)=>{
                         {authState ? 
                         
                             <div className="flex items-center space-x-4 ">
-                                <div className="relative">
-                                    <Image layout='fill' 
-                                        className="w-6 h-6 rounded-full p-1 ring-2 ring-sky-300  relative  overflow-hidden "
-                                        src="/user-toolbar-footer.svg" 
-                                    /> 
+                                <div className="relative w-auto h-auto">
+                                    <div  className="w-5 h-5 rounded-full p-1 ring-2 ring-sky-300    overflow-hidden relative">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  
+                                           
+                                            src="/user-toolbar-footer.svg" 
+                                        /> 
+                                    </div>
                                     <span className="-bottom-1 -right-1 bg-green-400 absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800"></span>
                                 </div>
                             </div>
                             
-                            : <Image layout='fill' src="/user-toolbar-footer.svg" className="h-5 w-5"/>}
-                        
+                            : 
+                            <div className="h-5 w-5 relative" >
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/user-toolbar-footer.svg" />
+                            </div>
+                                }
+                            
                         Tài khoản</button>
                     ):(
                         <button type="button" className="btn-nav-bar"
                         onClick={() => setActiveTabs('account')}
                     >
-                        <Image layout='fill' src="/user-toolbar-footer.svg" className="h-5 w-5"/>
+                        <div className="h-5 w-5 relative" >
+                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/user-toolbar-footer.svg" className="h-5 w-5"/>
+                        </div>
                         Tài khoản</button>
                 )}
             </div>

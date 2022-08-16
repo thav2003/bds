@@ -17,8 +17,8 @@ const LoginPage:NextPageWithLayout =()=>{
                     <div className="flex items-center justify-between w-full">
                         <div className="flex items-center gap-2 flex-[8_1_0%]">
                             <div  className="relative ">
-                                <Image layout='fill' src="/default-user.svg" className=" w-20 h-20"/>
-                                <Image layout='fill' src="/logo_small.svg" className=" w-5 h-5 absolute right-0 bottom-1"/>
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/default-user.svg" className=" w-20 h-20"/>
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/logo_small.svg" className=" w-5 h-5 absolute right-0 bottom-1"/>
                             </div>
                             
                             <div>
@@ -47,7 +47,9 @@ const LoginPage:NextPageWithLayout =()=>{
                             <p>Mã tài khoản</p>
                             <div className="flex justify-between w-full">
                                 <h3 className="font-medium text-black">SE81264</h3>
-                                <Image layout='fill' src="/share.svg"/>
+                                <div className="relative h-6 w-6">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/share.svg"/>
+                                </div>
                             </div>
                            
                         </div>
@@ -60,22 +62,26 @@ const LoginPage:NextPageWithLayout =()=>{
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/tong-quan.svg" className="h-4 w-auto"/>
+                                    <div className="relative h-4 w-4">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/tong-quan.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Tổng quan</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/quan-ly-tin-dang.svg" className="h-4 w-auto"/>
+                                    <div className="relative h-4 w-4">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/quan-ly-tin-dang.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Quản lý tin đăng</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
@@ -92,44 +98,52 @@ const LoginPage:NextPageWithLayout =()=>{
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/nap-tien.svg" className="h-4 w-auto"/>
+                                    <div className="h-4 w-4 relative">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/nap-tien.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Nạp tiền</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/lich_su_nap_tien.svg" className="h-4 w-auto"/>
+                                    <div className="h-4 w-4 relative">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/lich_su_nap_tien.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Lịch sử nạp tiền</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/lich_su_thanh_toan.svg" className="h-4 w-auto"/>
+                                    <div className="relative h-4 w-4">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/lich_su_thanh_toan.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Lịch sử thanh toán</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/quan-ly-khuyen-mai.svg" className="h-4 w-auto"/>
+                                    <div className="relative h-4 w-4">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/quan-ly-khuyen-mai.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Quản lý khuyến mãi</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
@@ -146,55 +160,67 @@ const LoginPage:NextPageWithLayout =()=>{
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/time-icon.svg" className="h-4 w-auto"/>
+                                    <div className="h-4 w-4 relative">
+                                        
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/time-icon.svg" className="h-4 w-auto"/>
+                                        
+                                    </div>
                                     <p>Lịch xem nhà</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/favorite-desktop.svg" className="h-3 w-auto"/>
+                                    <div className="relative h-4 w-4">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/favorite-desktop.svg" className="h-3 w-auto"/>
+                                    </div>
                                     <p>Tin yêu thích</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/notification.svg" className="h-4 w-auto"/>
+                                    <div className="relative h-4 w-4">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/notification.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Thông báo</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/thong-tin-ca-nhan.svg" className="h-4 w-auto"/>
+                                    <div className="relative h-4 w-4">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/thong-tin-ca-nhan.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Thông tin tài khoản</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/doi-mat-khau.svg" className="h-4 w-auto"/>
+                                    <div className="relative h-4 w-4">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/doi-mat-khau.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Thay đổi mật khẩu</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
@@ -210,22 +236,26 @@ const LoginPage:NextPageWithLayout =()=>{
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/huong-dan.svg" className="h-4 w-auto"/>
+                                    <div className="h-4 w-4 relative">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/huong-dan.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Hướng dẫn</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                         </div>
                         <div className="w-full p-3 pb-2">
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
-                                    <Image layout='fill' src="/lien-he.svg" className="h-4 w-auto"/>
+                                    <div className="h-4 w-4 relative">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/lien-he.svg" className="h-4 w-auto"/>
+                                    </div>
                                     <p>Liên hệ</p>
                                 </div>
-                                <div >
-                                    <Image layout='fill' src="/left-icon-path.svg"/>
+                                <div className="relative h-4 w-4">
+                                    <Image width="100%" height="100%" layout="fill"   src="/left-icon-path.svg"/>
                                 </div>
                            </div>
                            
