@@ -1,7 +1,6 @@
 import Head from 'next/head';
 
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import useDevice from '../../hooks/useDevice';
 import type { IPrimaryLayout } from '../../interfaces/interfaces';
 import BottomTab from '../bottomTab/bottomTab';
@@ -16,15 +15,11 @@ const PrimaryLayout:React.FC<IPrimaryLayout>=({
     children,
     ...divProps
 })=>{
-    const [IsMobile,setIsMobile] =useState(false)
+    const {isMobile} =useDevice()
+
 
     const router=useRouter();
-    useEffect(()=>{
-        
-        const {isMobile} =useDevice()
-        if(isMobile)
-            setIsMobile(true)
-    },[])
+  
    
     return( 
         <div {...divProps} className={`min-h-screen flex flex-col select-none laptop:text-sm tablet:mb-[50px]`}>
@@ -33,14 +28,14 @@ const PrimaryLayout:React.FC<IPrimaryLayout>=({
                 <title>NextJs Projects</title>
             </Head>
            
-            {!IsMobile ? (<Header/>):(<HeaderMobile/>)}
+            {!isMobile ? (<Header/>):(<HeaderMobile/>)}
             
-            <main className={`${!IsMobile && "mt-[80px]"}`}>{children}</main>
+            <main className={`${!isMobile && "mt-[80px]"}`}>{children}</main>
             <div className="m-auto" />
-           {!IsMobile ? <Footer/> : IsMobile && router.pathname==='/' && <Footer/> }
+           {!isMobile ? <Footer/> : isMobile && (router.pathname==='/'||router.pathname==='/query/[id]') && <Footer/> }
             
             
-            {IsMobile &&<BottomTab name={name} />}
+            {isMobile &&<BottomTab name={name} />}
             
         </div>
     )

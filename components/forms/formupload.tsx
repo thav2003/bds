@@ -21,7 +21,7 @@ const focusInCurrentTarget = ({ relatedTarget, currentTarget }:any):any => {
   return false;
 }
 
-const renderInput = ({
+const RenderInput = ({
   classNameInput,renderDropLeftIcon,
   classNameLabel,
   input,
@@ -77,7 +77,7 @@ const renderInput = ({
     </div>
   )
 }
-const renderTextArea = ({
+const RenderTextArea = ({
   classNameInput,maxtext,
   id,
   input,
@@ -207,7 +207,7 @@ const RenderPrices=({price,action}:any):any=>{
   )
 }
 
-const renderRadio=({
+const RenderRadio=({
   id,
   input,
   label,
@@ -225,7 +225,7 @@ const renderRadio=({
 }
 
 
-const renderDrop=({
+const RenderDrop=({
   data,renderDropLeftIcon,renderBottom,
   classNameInput,showMoney,
   input,
@@ -384,7 +384,7 @@ const renderDrop=({
   )
 }
 
-const renderInputTime=({
+const RenderInputTime=({
   dateFormat,
   showTimeSelect,
   classNameInput,
@@ -411,7 +411,7 @@ const renderInputTime=({
   )
 }
 
-const renderCheckbox=({
+const RenderCheckbox=({
   classNameInput,
   classNameLabel,
   input,
@@ -432,7 +432,7 @@ const renderCheckbox=({
   )
 
 }
-const renderToggle=({
+const RenderToggle=({
   id,
   input,
   label,
@@ -451,7 +451,7 @@ const renderToggle=({
   )
 
 }
-const renderCountToggle=({
+const RenderCountToggle=({
 
   input,
 
@@ -761,7 +761,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                     shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                     border border-slate-300 
                   `}
-                  component={renderInput}           
+                  component={RenderInput}           
                   type="text"
                   label="Địa chỉ cụ thể"
               />
@@ -802,7 +802,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                   shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                   border border-slate-300 
                 `}
-                component={renderInput}           
+                component={RenderInput}           
                 type="number"
                 label="Diện tích"
               />
@@ -819,7 +819,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                   shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                   border border-slate-300 
                 `}
-                component={renderInput}           
+                component={RenderInput}           
                 type="number"
                 label="Số phòng ngủ"
               />
@@ -836,7 +836,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                   shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                   border border-slate-300 
                 `}
-                component={renderInput}           
+                component={RenderInput}           
                 type="number"
                 label="Số phòng vệ sinh"
               />
@@ -855,7 +855,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                   shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                   border border-slate-300 
                 `}
-                component={renderDrop}           
+                component={RenderDrop}           
                 type="number"
                 label="Giá thuê"
               />
@@ -877,7 +877,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                     shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                     border border-slate-300 
                   `}
-                  component={renderInput}           
+                  component={RenderInput}           
                   type="number"
                   label="Tiền đặt cọc"
               />
@@ -934,7 +934,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                   shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                   border border-slate-300 
                 `}
-                component={renderInput}           
+                component={RenderInput}           
                 type="number"
                 label="Tầng thứ"
               />
@@ -952,7 +952,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                   shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                   border border-slate-300 
                 `}
-                component={renderInput}           
+                component={RenderInput}           
                 type="text"
                 label="Block/tháp"
               />
@@ -1004,23 +1004,23 @@ const UploadForm:React.FC<IValues>=(props) => {
           <p className="font-semibold  ">Tình trạng nội thất {!status && <span className="text-red-500">*</span>}</p>
           <div className='space-x-2 flex select-none w-full tablet:text-xs hideinput' >
               <div>
-                <Field name="status" component={renderRadio} id="none" type="radio" value="none" label="Chưa có"/>
+                <Field name="status" component={RenderRadio} id="none" type="radio" value="none" label="Chưa có"/>
               </div>
               <div>
-                <Field name="status" component={renderRadio} id="basic" type="radio"  value="basic" label="Cơ bản"/>
+                <Field name="status" component={RenderRadio} id="basic" type="radio"  value="basic" label="Cơ bản"/>
               </div>
               <div>
-                <Field name="status" component={renderRadio} id="full" type="radio"  value="full" label="Đầy đủ"/>
+                <Field name="status" component={RenderRadio} id="full" type="radio"  value="full" label="Đầy đủ"/>
               </div>
               <div>
-              <Field name="status" component={renderRadio} id="vip" type="radio"  value="vip" label="Cao cấp"/>
+              <Field name="status" component={RenderRadio} id="vip" type="radio"  value="vip" label="Cao cấp"/>
               </div>
           </div>
         </div>
         <div className="space-y-2">
           <p className="font-semibold  ">Đặc điểm căn hộ</p>
           <div className="tablet:text-xs">
-            <Field name="dac_diem" component={renderRadio} id="can_goc" type="checkbox"  value="1" label="Căn góc"/>
+            <Field name="dac_diem" component={RenderRadio} id="can_goc" type="checkbox"  value="1" label="Căn góc"/>
           </div>
         </div>
         <div>
@@ -1068,7 +1068,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                 bg-white rounded pl-3 py-2 pr-10
                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                 border border-slate-300 "
-                component={renderTextArea}           
+                component={RenderTextArea}           
                 type="number"
                 maxtext={100}
                 label="Tiêu đề"
@@ -1088,7 +1088,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                 bg-white rounded pl-3 py-2 pr-10
                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                 border border-slate-300 "
-                component={renderTextArea}
+                component={RenderTextArea}
                 maxtext={3000}           
                 type="number"
                 label="Mô tả"
@@ -1110,7 +1110,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                 border border-slate-300 
                 `}
-                component={renderInput}           
+                component={RenderInput}           
                 type="text"
                 label="Họ và Tên"
               /> 
@@ -1125,7 +1125,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                 border border-slate-300 
                 `}
-                component={renderInput}           
+                component={RenderInput}           
                 type="number"
                 label="Số điện thoại"
               /> 
@@ -1141,7 +1141,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                 border border-slate-300 
                 `}
-                component={renderInput}           
+                component={RenderInput}           
                 type="number"
                 label="Zalo"
               /> 
@@ -1151,10 +1151,10 @@ const UploadForm:React.FC<IValues>=(props) => {
           <p className="font-semibold  ">Bạn là cá nhân / môi giới</p>
           <div className='space-x-2 flex select-none'>
               <div>
-                <Field name="individual_broker" component={renderRadio} id="individual" type="radio"  value="individual" label="Cá nhân"/>
+                <Field name="individual_broker" component={RenderRadio} id="individual" type="radio"  value="individual" label="Cá nhân"/>
               </div>
               <div>
-                <Field name="individual_broker" component={renderRadio} id="broker" type="radio"  value="broker" label="Môi giới"/>
+                <Field name="individual_broker" component={RenderRadio} id="broker" type="radio"  value="broker" label="Môi giới"/>
 
               </div>
              
@@ -1202,7 +1202,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                 border border-slate-300 
                 `}
-                component={renderInputTime}
+                component={RenderInputTime}
                 dateFormat="dd/MM/yyyy"           
                 placeholder="DD/MM/YYYY"
                 label="Ngày bắt đầu"
@@ -1221,7 +1221,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                 border border-slate-300 
                 `}
                 showTimeSelect={true}
-                component={renderInputTime} 
+                component={RenderInputTime} 
                 dateFormat="h:mm aa"          
                 placeholder="hh/mm"
                 label="Khung giờ"
@@ -1241,7 +1241,7 @@ const UploadForm:React.FC<IValues>=(props) => {
                 form-checkbox rounded
                 `}
                 type="checkbox"
-                component={renderCheckbox} 
+                component={RenderCheckbox} 
               
                 label="Làm nổi bật tin đăng"
               /> 
@@ -1250,7 +1250,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               <Field
                 name="auto_post"
                 type="checkbox"
-                component={renderToggle} 
+                component={RenderToggle} 
                 id="toggle" 
                 label="Tự động đăng tải tin"
               /> 
@@ -1273,7 +1273,7 @@ const UploadForm:React.FC<IValues>=(props) => {
             <Field
                 name="auto_post_count"
                
-                component={renderCountToggle} 
+                component={RenderCountToggle} 
                
               /> 
           

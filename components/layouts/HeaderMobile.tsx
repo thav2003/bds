@@ -4,6 +4,9 @@ import { useRouter } from 'next/router';
 import type { IHeader } from '../../interfaces/interfaces';
 const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
     const router = useRouter()
+    const handleFilter=()=>{
+        router.push('/query/2')
+    }
     return(
         <header 
             {...headerProps}
@@ -50,7 +53,7 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
                         </div>
                         <div className="h-full flex flex-[3_1_0%]">
                        
-                            <button className="filter btn-primary flex border-gray-400 "> 
+                            <button onClick={handleFilter} className="filter btn-primary flex border-gray-400 "> 
                                 <img src="/filter_header.svg" className="h-5 w-5 mr-2"/>
                             Bộ lọc</button> 
                         </div>

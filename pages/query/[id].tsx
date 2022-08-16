@@ -5,8 +5,10 @@ import { useEffect, useState } from 'react';
 import CardHome from '../../components/cards/card';
 import PrimaryLayout from '../../components/layouts/PrimaryLayout';
 import { data } from '../../fakedata';
+import useDevice from '../../hooks/useDevice';
 import { DataProps } from '../../interfaces/interfaces';
 import { NextPageWithLayout } from '../page';
+
 type queryProps={
     id: string;
 }
@@ -63,6 +65,9 @@ const GetCity=(id?:string)=>{
 
 const QueryPage:NextPageWithLayout<Props>=(props) => {
     const router = useRouter();
+    
+    const [IsMobile,setIsMobile] =useState(false)
+    const {isMobile} =useDevice()
     const [isActive,setIsActive]=useState(true)
     const [isGrid,setIsGrid] = useState<boolean>(false)
     const [min,setMin]= useState(0)
@@ -85,6 +90,10 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
        
         
     })
+  
+   
+        
+        
     useEffect(()=>{
         setCity(GetCity(props.specificData.id))
     },[router])
@@ -138,11 +147,11 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
     }
 
     return(
-        <div className="flex flex-col mt-[4.5rem]  justify-center  mb-4 ">
+        <div className={`flex flex-col ${!isMobile&&"mt-[4.5rem]"}  justify-center  mb-4 `}>
             
             
             <div className="home-row py-2 ">
-                <div className=" w-9/12 flex flex-col  gap-2">
+                <div className={`${!isMobile ? "w-9/12" : "w-full"} flex flex-col  gap-2`}>
                     <ol className=" flex items-center text-sm ">
                         <li className="pathMenu ">
                         
@@ -162,8 +171,8 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                 
             </div>
             <div className="home-row pt-2 ">
-                <div className="w-9/12  flex gap-5">
-                    <div className="w-[65%] space-y-4 relative">
+                <div className={`${!isMobile ? "w-9/12" : "w-full"}  flex gap-5`}>
+                    <div className={`${!isMobile ? "w-[65%]" : "w-full"} space-y-4 relative`}>
                         <div className="flex flex-row items-end justify-between">
                             <p className="text-sm text-left ">Tìm thấy 256 căn hộ cho thuê</p>
                             <div className="gap-2 flex flex-shrink ">
@@ -251,7 +260,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                         </div>
                         
                     </div>
-                   <div className="w-[35%] gap-3 flex flex-col">
+                   {!isMobile && <div className="w-[35%] gap-3 flex flex-col">
                         <div className="w-full">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.1557320337456!2d106.74314131428771!3d10.875757360327535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d80ae8eb0495%3A0xd83d1ef5d3286ddd!2zMi0yMCDEkMaw4budbmcgU-G7kSAxNSwgQsOsbmggQ2hp4buDdSwgVGjhu6cgxJDhu6ljLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1660635272734!5m2!1sen!2s" className='h-[5rem] w-full border-0'  allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                         </div>
@@ -360,7 +369,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                               
                             </ul>
                         </div>
-                   </div>
+                   </div>}
                 </div>
                 
             </div>

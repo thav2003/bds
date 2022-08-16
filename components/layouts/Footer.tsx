@@ -2,6 +2,7 @@
 import type { IFooter } from '../../interfaces/interfaces';
 
 const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
+  
   return (
     <footer
       {...footerProps}
