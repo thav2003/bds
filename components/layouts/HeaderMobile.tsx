@@ -1,4 +1,5 @@
 import { Carousel } from 'flowbite-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { IHeader } from '../../interfaces/interfaces';
@@ -17,7 +18,7 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
                     router.back()
                    
                 }}>
-                    <img src="/arrow-left.svg" className="w-4 h-4"/>
+                    <Image src="/arrow-left.svg" className="w-4 h-4"/>
 
                 </a>
                 
@@ -26,7 +27,7 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
                 <div className="flex flex-grow items-center justify-center">
                     <Link href="/">
                         <a >
-                            <img src="/logo.svg" alt="Logo" className="w-auto h-auto"  />
+                            <Image src="/logo.svg" alt="Logo" className="w-auto h-auto"  />
                         </a>
                     </Link>
                 
@@ -48,13 +49,13 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
                                 <option value="3">Audi</option>
                             </select>
                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-1 text-gray-700">
-                                <img src="/khu_vuc.svg" className="w-5 h-5"/>
+                                <Image src="/khu_vuc.svg" className="w-5 h-5"/>
                             </div>
                         </div>
                         <div className="h-full flex flex-[3_1_0%]">
                        
                             <button onClick={handleFilter} className="filter btn-primary flex border-gray-400 "> 
-                                <img src="/filter_header.svg" className="h-5 w-5 mr-2"/>
+                                <Image src="/filter_header.svg" className="h-5 w-5 mr-2"/>
                             Bộ lọc</button> 
                         </div>
                     </div>              
@@ -62,23 +63,23 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
                 <div className="w-full ">
                     <div className="h-40 ">
                             <Carousel slideInterval={5000} >
-                                <img
+                                <Image
                                 src="/banner.png" className="h-full w-full object-cover"
                                 alt="..."
                                 />
-                                <img
+                                <Image
                                 src="/banner.png" className="h-full w-full object-cover"
                                 alt="..."
                                 />
-                                <img
+                                <Image
                                 src="/banner.png" className="h-full w-full object-cover"
                                 alt="..."
                                 />
-                                <img
+                                <Image
                                 src="/banner.png" className="h-full w-full object-cover"
                                 alt="..."
                                 />
-                                <img
+                                <Image
                                 src="/banner.png" className="h-full w-full object-cover"
                                 alt="..."
                                 />

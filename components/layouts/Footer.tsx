@@ -1,8 +1,8 @@
 
+import Image from 'next/image';
 import type { IFooter } from '../../interfaces/interfaces';
-
 const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
-  
+
   return (
     <footer
       {...footerProps}
@@ -17,7 +17,7 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
             </div>
             <div className="space-y-2">
               <div className="flex flex-row">
-                <img src="/mail-footer.svg" className="w-5 h-5 mr-3"/>
+                <Image src="/mail-footer.svg" className="w-5 h-5 mr-3"/>
                 <p>Yêu cầu</p>
               </div>
               <div>
@@ -27,11 +27,11 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
                 <p className="ml-8">Quảng cáo: ads@99.co</p>
               </div>
               <div className="flex flex-row">
-                <img src="/phone-footer.svg" className="w-5 h-5 mr-3"/>
+                <Image src="/phone-footer.svg" className="w-5 h-5 mr-3"/>
                 <p>+65 646 0552 (10 giờ sáng - 6 giờ tối, Thứ Hai - Thứ Sáu)</p>
               </div>
               <div className="flex flex-row">
-                <img src="/facebook-footer.svg" className="w-5 h-5 mr-3"/>
+                <Image src="/facebook-footer.svg" className="w-5 h-5 mr-3"/>
                 <p>Nhóm facebook Đại lý 99.co</p>
               </div>
              

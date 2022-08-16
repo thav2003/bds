@@ -2,7 +2,7 @@ import Link from 'next/link';
 import "react-datepicker/dist/react-datepicker.css";
 import UploadForm from '../components/forms/formupload';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
-import { NextPageWithLayout } from './page';
+import { NextPageWithLayout } from '../page';
 
 const UploadPage:NextPageWithLayout=()=>{
 

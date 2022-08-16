@@ -1,6 +1,6 @@
 
 import { Carousel } from 'flowbite-react';
-
+import Image from 'next/image';
 import { useState } from 'react';
 import CardHome from '../../components/cards/card';
 import CardHome2 from '../../components/cards/card2';
@@ -29,23 +29,23 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                    
                         <Carousel slideInterval={5000} indicators={true}>
                   
-                            <img
+                            <Image
                             src="/banner.png"
                             alt="..."
                             />
-                            <img
+                            <Image
                             src="/banner.png"
                             alt="..."
                             />
-                            <img
+                            <Image
                             src="/banner.png"
                             alt="..."
                             />
-                            <img
+                            <Image
                             src="/banner.png"
                             alt="..."
                             />
-                            <img
+                            <Image
                             src="/banner.png"
                             alt="..."
                             />
@@ -68,7 +68,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
             <div className="home-row "> 
                 <div className="w-9/12 space-y-4  tablet:w-full   "> 
                     <div className="flex flex-row items-center space-x-2">
-                        <img src="apartment_home.svg" className="w-5 h-5"/>
+                        <Image src="apartment_home.svg" className="w-5 h-5"/>
                         <h2>Tìm kiếm nhiều nhất</h2>
                     </div>
                     <div className="bg-slate-100 py-4  shadow-xl   rounded-lg  tablet:overflow-x-auto tablet:overflow-y-hidden">
@@ -76,7 +76,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                             <div className=" flex-[5_1_0%] ">
                                 <div className=" flex space-x-3 ">
                                     <div className="w-[45%]  h-48 rounded-md relative">
-                                        <img src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                        <Image src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
                                         <div  className="absolute bottom-2 left-2">
                                             <h3>Hà Nội</h3>
                                             <p className="text-sm">49.576 tin đăng</p>
@@ -84,7 +84,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                                         
                                     </div>
                                     <div className="w-[45%]  h-48 rounded-md relative">
-                                        <img src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
+                                        <Image src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
                                         <div  className="absolute bottom-2 left-2">
                                             <h3>Hồ Chí MInh</h3>
                                             <p className="text-sm">69.524 tin đăng</p>
@@ -97,14 +97,14 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                                 <div className="flex-[2_1_0%] tablet:flex-none">
                                     <h4>Dự án nổi bật</h4>
                                     <div className="flex flex-row">
-                                        <img src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        <Image src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
                                         <p>Cho thuê căn hộ The Sun</p>
                                     </div>
                                 </div>
                                 <div className="flex-[2_1_0%] tablet:flex-none">
                                     <h4>Khu vực nổi bật</h4>
                                     <div className="flex flex-row">
-                                        <img src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        <Image src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
                                         <p>Cho thuê căn hộ The Sun</p>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
             <div className="home-row">
                 <div  className="w-9/12 space-y-4 tablet:w-full">
                     <div className="flex flex-row items-center space-x-2">
-                        <img src="apartment_home.svg" className="w-5 h-5"/>
+                        <Image src="apartment_home.svg" className="w-5 h-5"/>
                         <h2>Cho thuê chung cư mới nhất</h2>
                     </div>
                     <div className="flex flex-row flex-wrap gap-4 tablet:flex-col">
@@ -137,7 +137,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
 
                   
                         <div className="flex flex-row items-center space-x-2">
-                            <img src="apartment_home.svg" className="w-5 h-5"/>
+                            <Image src="apartment_home.svg" className="w-5 h-5"/>
                             <h2>Tin tức</h2>
                         </div>
                      
@@ -145,7 +145,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         
                         <div className="flex items-center">
                             <a className="text-sm font-bold text-purple-700 flex ">Đến trang tin tức
-                                <img src="/arrow-left.svg" className="h-5 w-8 rotate-180"/>
+                                <Image src="/arrow-left.svg" className="h-5 w-8 rotate-180"/>
                             </a>
                             
                         </div>

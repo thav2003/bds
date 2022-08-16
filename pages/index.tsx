@@ -1,6 +1,6 @@
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { Device } from '../Device';
-import { NextPageWithLayout } from './page';
+import { NextPageWithLayout } from '../page';
 
 import HomeDesktop from './desktop/HomeDesktop';
 
