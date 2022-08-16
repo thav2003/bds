@@ -67,9 +67,8 @@ const pages=[] as any
 const QueryPage:NextPageWithLayout<Props>=(props) => {
     const router = useRouter();
     
-    const [IsMobile,setIsMobile] =useState(false)
     const {isMobile} =useDevice()
-    const [isActive,setIsActive]=useState(true)
+  
     const [isGrid,setIsGrid] = useState<boolean>(false)
     const [min,setMin]= useState(0)
     const [max,setMax]= useState(4)

@@ -35,19 +35,13 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const [isHidden,setIsHidden] =useState(true)
     
     const hanldeDrop=()=>{
-     
             setIsHidden(!isHidden)
-           
-        
+
     }
     const mouseHover=()=>{
-       
-       
         setIsHidden(false)
     }
-    const mouseLeave=()=>{
-        setIsHidden(true)
-    }
+
     const handleFilter=()=>{
         router.push('/query/1')
     }

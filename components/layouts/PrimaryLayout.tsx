@@ -3,10 +3,11 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import useDevice from '../../hooks/useDevice';
 import type { IPrimaryLayout } from '../../interfaces/interfaces';
-
-
-import dynamic from "next/dynamic";
+import BottomTab from '../bottomTab/bottomTab';
+import Footer from './Footer';
+import Header from './Header';
 import HeaderMobile from './HeaderMobile';
+
 
 
 const PrimaryLayout:React.FC<IPrimaryLayout>=({
@@ -16,9 +17,7 @@ const PrimaryLayout:React.FC<IPrimaryLayout>=({
 })=>{
     const {isMobile} =useDevice()
 
-    const Header = dynamic(() => import("./Header"));
-    const Footer = dynamic(() => import("./Footer"));
-    const BottomTab = dynamic(() => import("../bottomTab/bottomTab"))
+ 
     const router=useRouter();
   
    
