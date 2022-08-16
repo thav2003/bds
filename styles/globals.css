@@ -220,10 +220,12 @@
       .modal-content {
         
         background-color: #fefefe;
-       
+      
        
         border: 1px solid #888;
-        width: 50%; /* Could be more or less, depending on screen size */
+        width: 40%; /* Could be more or less, depending on screen size */
+        height: 60vh;
+        
       }
       .info-hover::after:hover{
         background-color: #303030;

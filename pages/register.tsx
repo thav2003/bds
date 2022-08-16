@@ -76,7 +76,15 @@ const RegisterPage:NextPageWithLayout=()=>{
                       />
                       <span className="absolute inset-y-1/2 top-2/3 right-3 flex items-center pl-2 cursor-pointer">
                           <button onClick={changeHide}>
-                              {isHide ===true ? (<Image layout='fill' src="/password-hide.svg" className="w-auto h-auto"/>): (<Image layout='fill' src="/password-visble.svg" className="w-auto h-auto"/>)}
+                              {isHide ===true ? (
+                                <div className="w-6 h-6 relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/password-hide.svg" className="w-auto h-auto"/>
+                                </div>
+                                ): (
+                                <div className="w-6 h-6 relative">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/password-visble.svg" className="w-auto h-auto"/>
+                                </div>
+                            )}
                               
                           </button>
                           
@@ -93,15 +101,21 @@ const RegisterPage:NextPageWithLayout=()=>{
                   </div>
                   <div className="flex flex-wrap">
                       <button type="button" className="btn-login">
-                      <Image layout='fill' src="/facebook.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
+                        <div className="w-5 h-5 mr-2 ml-1 relative">
+                            <Image layout='fill' src="/facebook.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
+                        </div>
                           Đăng kí với Facebook
                       </button>
                       <button type="button" className="btn-login">
-                      <Image layout='fill' src="/google.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
+                        <div className="w-5 h-5 mr-2 ml-1 relative">
+                        <Image layout='fill' src="/google.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
+                          </div>
                           Đăng kí với Google
                       </button>
                       <button type="button" className="btn-login">
+                      <div className="w-5 h-5 mr-2 ml-1 relative">
                       <Image layout='fill' src="/zalo.svg" alt="Logo" className="w-5 h-5 mr-2 ml-1 "  />
+                      </div>
                           Đăng kí với Zalo
                       </button>
                       <p className="flex justify-center items-center w-full text-sm ">Bạn đã có tài khoản <span onClick={login} className="cursor-pointer text-purple-600 ml-2">Đăng nhập ngay</span></p>

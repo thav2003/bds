@@ -168,18 +168,14 @@ const RenderDropLeft=({action,icon,className}:any):any=>{
   }
   return(
     <>
-    <div className="relative">
+    <div >
       <button type="button" 
             onMouseOver={handleMouseOver}
             onMouseLeave={handleMouseLeave} onClick={action} className={`absolute z-[4] -top-8 right-2 flex  items-center ${className}`}>
-            <Image layout='fill'  src={icon} className="w-full h-5"/>
-            { isVisible && 
-        <div className="relative">
-          <div onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="absolute  bg-red-500 w-[200px] z-[60] h-[200px]">
-            test
-          </div>
-        </div>
-      }
+            <div className="w-5 h-5 relative">
+             <Image width="100%" height="100%" layout="fill" objectFit="contain"   src={icon} className="w-full h-5"/>
+             </div>
+      
       </button>
     
     </div>
@@ -339,7 +335,9 @@ const RenderDrop=({
                   <ListGroup.Item>
                     {change} 
                     <button type="button" onClick={clear} className="absolute z-[4] top-2 gap-2 right-1 flex   items-center ">
-                      <Image layout='fill'  src="/closed-btn.svg" className="h-4"/>
+                   
+                       <Image width="100%" height="100%" layout="fill" objectFit="contain"   src="/closed-btn.svg" className="h-4"/>
+                      
                       Thêm mới
                     </button>
                   </ListGroup.Item>
@@ -426,7 +424,7 @@ const RenderCheckbox=({
           <input {...input}  type={type} id="check_note" className={classNameInput}></input>
           <label htmlFor="check_note" className={`${classNameLabel} info-hover`}>{label} </label>
           
-          <RenderDropLeft icon="info-icon.svg" className="-top-0  -right-6 "/>
+          <RenderDropLeft icon="/info-icon.svg" className="-top-0  -right-6 "/>
         
         </div>
     </div>
@@ -446,7 +444,7 @@ const RenderToggle=({
             <input {...input}  type={type} id={id} className="sr-only peer"/>
             <div className="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
             <span className="ml-3 text-sm font-semibold text-gray-900 dark:text-gray-300 ">{label}</span>
-            <RenderDropLeft icon="info-icon.svg" className="-top-[0.625rem] -right-6 "/>
+            <RenderDropLeft icon="/info-icon.svg" className="-top-[0.625rem] -right-6 "/>
         </label>
     </div>
   )
@@ -541,14 +539,15 @@ const RenderPopUp=({
       </button>
       
       <div className={`${isVisible ? 'hidden' : 'block'} modal  flex justify-center items-center `}>
-        <div className="modal-content tablet:w-full tablet:h-full  rounded-lg">
+        <div className="modal-content  tablet:w-full tablet:h-full -translate-y-7 rounded-lg">
           <div className="w-full flex flex-col space-y-4 items-center  bg-slate-50 laptop:text-sm  rounded-lg ">
             {/* header */}
             <div  className={`w-full bg-white flex flex-col relative justify-center items-center py-5 rounded-t-lg shadow select-none gap-4 `}>
                   <div className="absolute flex inset-x-0 bottom-[25px] px-4  w-[50px]  ">
                       <a onClick={onClose}>
-                          <Image layout='fill' src="/arrow-left.svg" className="w-4 h-4"/>
-
+                        <div className="w-4 h-4 relative cursor-pointer">
+                           <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/arrow-left.svg" />
+                        </div>
                       </a>
                       
                   </div>
@@ -560,8 +559,9 @@ const RenderPopUp=({
                   </div>
                   <div className="absolute flex  right-0 bottom-[25px]  px-4    w-[50px]  ">
                       <a onClick={onClose}>
-                          <Image layout='fill' src="/closed-black.svg" className="w-4 h-4"/>
-
+                        <div className="w-4 h-4 relative cursor-pointer">
+                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/closed-black.svg" />
+                        </div>
                       </a>
                       
                   </div>
@@ -578,16 +578,18 @@ const RenderPopUp=({
                   </div>
                   
                 </div>
-                <div className="overflow-y-auto h-[400px] tablet:h-[100vh] w-full relative bnone">
+                <div className="overflow-y-auto h-[50vh] tablet:h-[100vh] w-full relative bnone">
              
                     <ListGroup>
                       <div className="divide-y-[1px]  ">
-                      {input.name ==="du_an" || input.name ==="street"   && change && !data.find((e:any) => e.name === change) &&
+                      {input.name ==="du_an"  && change && !data.find((e:any) => e.name === change) &&
                       <div className="relative">
                         <ListGroup.Item>
                           {change}
                           <button type="button" onClick={add} className="absolute z-[4] top-2 gap-2 right-1 flex   items-center ">
-                            <Image layout='fill'  src="/closed-btn.svg" className="h-4"/>
+                             <div className="h-4 w-4 relative">
+                              <Image width="100%" height="100%" layout="fill" objectFit="contain"   src="/closed-btn.svg" className="h-4"/>
+                              </div>
                             Thêm mới
                           </button>
                         </ListGroup.Item>
@@ -657,7 +659,7 @@ const UploadForm:React.FC<IValues>=(props) => {
           <Field
               name="du_an"
               data={du_an}
-              renderDropLeftIcon="search_grey.svg"
+              renderDropLeftIcon="/search_grey.svg"
               classNameInput={`
               w-full text-placeholder
               placeholder:text-slate-400  
@@ -678,7 +680,7 @@ const UploadForm:React.FC<IValues>=(props) => {
             <Field
               name="city"
               data={city}
-              renderDropLeftIcon="search_grey.svg"
+              renderDropLeftIcon="/search_grey.svg"
               classNameInput={`
                 w-full text-placeholder
                 placeholder:text-slate-400  
@@ -696,7 +698,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               <Field
                 name="district"
                 data={city}
-                renderDropLeftIcon="search_grey.svg"
+                renderDropLeftIcon="/search_grey.svg"
                 classNameInput={`
                   w-full text-placeholder
                   placeholder:text-slate-400  
@@ -715,7 +717,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               <Field
                   name="ward"
                   data={city}
-                  renderDropLeftIcon="search_grey.svg"
+                  renderDropLeftIcon="/search_grey.svg"
                   classNameInput={`
                     w-full text-placeholder
                     placeholder:text-slate-400  
@@ -734,7 +736,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               <Field
                   name="street"
                   data={street}
-                  renderDropLeftIcon="search_grey.svg"
+                  renderDropLeftIcon="/search_grey.svg"
                   classNameInput={`
                     w-full text-placeholder
                     placeholder:text-slate-400  
@@ -777,7 +779,7 @@ const UploadForm:React.FC<IValues>=(props) => {
             <Field
                 name="TypeOfApartment"
                 data={city}
-                renderDropLeftIcon="search_grey.svg"
+                renderDropLeftIcon="/search_grey.svg"
                 classNameInput={`
                   w-full text-placeholder
                   placeholder:text-slate-400  
@@ -888,7 +890,7 @@ const UploadForm:React.FC<IValues>=(props) => {
           <div >
               <Field
                 name="main_door_direction"
-                renderDropLeftIcon="search_grey.svg"
+                renderDropLeftIcon="/search_grey.svg"
                 data={direction}
                 classNameInput={`
                   w-full text-placeholder
@@ -908,7 +910,7 @@ const UploadForm:React.FC<IValues>=(props) => {
           <div className="ml-4 tablet:m-0">
               <Field
                 name="balcony_direction"
-                renderDropLeftIcon="search_grey.svg"
+                renderDropLeftIcon="/search_grey.svg"
                 data={direction}
                 classNameInput={`
                   w-full text-placeholder
@@ -964,7 +966,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               <Field
                 name="minimum_rental_period"
                 data={city}
-                renderDropLeftIcon="search_grey.svg"
+                renderDropLeftIcon="/search_grey.svg"
                 classNameInput={`
                   w-full text-placeholder
                   placeholder:text-slate-400  
@@ -982,7 +984,7 @@ const UploadForm:React.FC<IValues>=(props) => {
           <div className="ml-4 tablet:m-0" >
               <Field
                 name="payment_period"
-                renderDropLeftIcon="search_grey.svg"
+                renderDropLeftIcon="/search_grey.svg"
                 data={city}
                 classNameInput={`
                   w-full text-placeholder
@@ -1033,20 +1035,28 @@ const UploadForm:React.FC<IValues>=(props) => {
         <div className="space-y-2">
           <p className="font-semibold info">Hình ảnh</p>
           <div className="w-full h-36 bg-slate-100 flex flex-col items-center justify-center border-dashed border-slate-300 border-[1px] rounded-lg">
-              <Image layout='fill' src="/upload-image.svg" className=""/>
+              <div className="relative w-auto h-auto">
+               <Image width="100%" height="100%" layout="intrinsic" objectFit="contain"  src="/upload-image.svg" className=""/>
+              </div>
               <p>Đăng từ 1 đến 20 hình ảnh</p>
           </div>
         </div>
         <div className="space-y-2">
           <p className="font-semibold info">Video</p>
           
-          <div className="w-full h-36 bg-slate-100 flex flex-col items-center justify-center border-dashed border-slate-300 border-[1px] rounded-lg">
-              <Image layout='fill' src="/upload-video.svg" className=""/>
+          <div className="w-full  h-36 bg-slate-100 flex flex-col items-center justify-center border-dashed border-slate-300 border-[1px] rounded-lg">
+              <div className="relative w-auto h-auto">
+                <Image width="100%" height="100%" layout="intrinsic" objectFit="contain"  src="/upload-video.svg" className=""/>
+              </div>
+              
               <p>Đăng tối đa 1 video</p>
           </div>
         </div>
         <div className="flex space-x-2">
-          <Image layout='fill' src="/play-button.svg" className="w-5 h-5 bg-black"/>
+          <div className="w-5 h-5 bg-black relative">
+            
+           <Image width="100%" height="100%" layout="intrinsic" objectFit="contain"  src="/play-button.svg" />
+           </div>
           <p>Hoặc thêm video từ Youtube</p>
         </div>
         <div className="flex-grow h-px bg-gray-200 "></div>
@@ -1168,7 +1178,9 @@ const UploadForm:React.FC<IValues>=(props) => {
       <div className="flex flex-row justify-between">
         <h2 className="font-bold">Thông tin gói tin</h2>
         <div className="flex items-center">
-          <Image layout='fill' src="/verified.svg" className="w-5 h-5"/>
+          <div className="w-5 h-5 relative mr-1">
+           <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/verified.svg" />
+           </div>
           <p className="text-purple-500">Tăng hiệu quả đáng tin</p>
         </div>
       </div>
@@ -1176,7 +1188,7 @@ const UploadForm:React.FC<IValues>=(props) => {
             <Field
                 name="time_day"
                 data={city}
-                renderDropLeftIcon="search_grey.svg"
+                renderDropLeftIcon="/search_grey.svg"
                 classNameInput={`
                 w-full text-placeholder
                 placeholder:text-slate-400  
