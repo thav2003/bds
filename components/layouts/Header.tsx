@@ -43,7 +43,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
     }
 
     const handleFilter=()=>{
-        router.push('/query/1')
+        router.push('/contact')
     }
     return(
    
