@@ -1,8 +1,6 @@
 import { InjectedFormProps } from 'redux-form';
+
 export interface IValues extends InjectedFormProps{
-    username?:string;
-    email:string;
-    age:number | string;
     du_an:string;
     city:string;
     district:string;

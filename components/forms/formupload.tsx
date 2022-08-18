@@ -215,7 +215,7 @@ const RenderRadio=({
   return(
     <div>
         <input {...input}  className="form-radio peer hidden" id={id} type={type}  />
-        <label htmlFor={id} className="peer-checked:bg-red-200 px-4 py-2 bg-slate-100 w-20 text-center rounded-3xl">{label}</label>
+        <label htmlFor={id} className="peer-checked:bg-red-200 px-4 py-2 bg-slate-100 w-20 text-center rounded-3xl font-normal peer-hover:bg-red-200">{label}</label>
     </div>
   )
 
@@ -228,7 +228,7 @@ const RenderDrop=({
   input,
   label,
   type,
-  meta: { touched, error, warning },prices
+  meta: { touched, error, warning }
 }:any):any=>{
 
   const [change,setChange]= useState(input.value)
@@ -628,10 +628,11 @@ const RenderPopUp=({
     </div>
   )
 }
+
 const UploadForm:React.FC<IValues>=(props) => {
-  const { handleSubmit, pristine, reset, submitting,status,prices } = props
+  const { handleSubmit, pristine, reset, submitting,status } = props
 
-
+ 
 
   const {isMobile} =useDevice()
 
@@ -848,8 +849,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               <Field
                 name="prices"
                 showMoney={true}
-                prices={prices}
-                data={prices}
+               
                 renderBottom={true}
                 classNameInput={`
                   w-full text-placeholder
@@ -1325,7 +1325,7 @@ const UploadForm:React.FC<IValues>=(props) => {
 }
 
 const selector = formValueSelector('uploadForm')
-const mapState = (state: IValues) => ({
+const mapState = (state:any) => ({
   status:selector(state, 'status'),
   prices:selector(state,'prices'),
 })

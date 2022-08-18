@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Field, formValueSelector, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import type { IValues } from '../../helps/validate';
 import { validate, warn } from '../../helps/validate';
+
 
 const RenderInput = ({
     classNameInput,renderDropLeftIcon,
@@ -70,8 +71,19 @@ const RenderTextArea = ({
       </div>
     )
 }
+
+const data={
+    user_name:'',
+    user_phone:'',
+    email:'',
+    description:''
+}
+
 const ContactForm:React.FC<IValues>=(props)=>{
-    const { handleSubmit, pristine, reset, submitting,status,prices } = props
+    
+    const { handleSubmit, pristine, reset, submitting } = props
+
+
     return(
         <form className="space-y-5 mb-8 " id="formUpload" onKeyPress={(event:any):any=>{
             if (event.which === 13 /* Enter */) {
@@ -178,13 +190,13 @@ const ContactForm:React.FC<IValues>=(props)=>{
         </form>
     )
 }
-const selector = formValueSelector('uploadForm')
-const mapState = (state: IValues) => ({
-  status:selector(state, 'user_name'),
-  prices:selector(state,'prices'),
+
+const mapState = (state: any) => ({
+    initialValues :data
 })
 export default connect(mapState)(reduxForm({
     form: 'contactForm', // a unique identifier for this form
     validate, // <--- validation function given to redux-form
-    warn // <--- warning function given to redux-form
+    warn, // <--- warning function given to redux-form
+    enableReinitialize : true
   })(ContactForm as any))
