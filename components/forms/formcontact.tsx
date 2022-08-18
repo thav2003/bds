@@ -78,14 +78,16 @@ const data={
     email:'',
     description:''
 }
-
-const ContactForm:React.FC<IValues>=(props)=>{
+interface Props extends IValues{
+    hidden: boolean
+}
+const ContactForm:React.FC<Props>=(props)=>{
     
     const { handleSubmit, pristine, reset, submitting } = props
 
 
     return(
-        <form className="space-y-5 mb-8 " id="formUpload" onKeyPress={(event:any):any=>{
+        <form className="space-y-5 mb-4 " id="formUpload" onKeyPress={(event:any):any=>{
             if (event.which === 13 /* Enter */) {
                 event.preventDefault();
               }
@@ -96,21 +98,21 @@ const ContactForm:React.FC<IValues>=(props)=>{
               }}>
 
 
-            <div className="p-5 px-10  bg-white space-y-7 rounded-xl  tablet:px-3">
-                <div className="space-y-4">
+            <div className={`p-5 px-5  ${props.hidden ? "bg-transparent":"bg-white"} space-y-7 rounded-xl  tablet:px-3`}>
+                {!props.hidden && <div className="space-y-4">
                     <h2 className="font-bold">Liên hệ với chúng tôi</h2>
                     <div className="h-[2px] bg-gray-200 "></div>
-                </div>
+                </div>}
                  
                 <div className="flex gap-4">
-                    <div className="flex-[1_1_50%] space-y-4">
+                    {!props.hidden&&<div className="flex-[1_1_50%] space-y-4">
                         <p>Chúng tôi biết bạn có nhiều sự lựa chọn.Nhưng cảm ơn vì đã lựa chọn ABC.com</p>
                         <p><span className="font-semibold">Hotline:</span>090123456</p>
                         <p><span className="font-semibold">Email:</span>xyz@gmail.com</p>
                         <p><span className="font-semibold">Zalo:</span>090123456</p>
                         <p><span className="font-semibold">Viber:</span>090123456</p>
                         <p><span className="font-semibold">Địa chỉ:</span>Tòa nhà Lexington Residence, Số 38 Trần Não, Phường An Phú, Quận 2, Thành phố Hồ Chí Minh</p>
-                    </div>
+                    </div>}
                     <div className="flex-[1_0_50%] space-y-4">
                         <div >
                             <Field
@@ -148,7 +150,7 @@ const ContactForm:React.FC<IValues>=(props)=>{
                         <div >
                             <Field
                                 name="email"
-                                
+                                check={true}
                                 classNameInput={`
                                 w-full text-placeholder
                                 placeholder:text-slate-400  
@@ -161,7 +163,7 @@ const ContactForm:React.FC<IValues>=(props)=>{
                                 label="Email"
                             /> 
                         </div>
-                        <div className="pt-10">
+                        <div className={`${!props.hidden &&"pt-10"}`}>
                             <Field
                                 name="description"
                                 check={true}
@@ -178,7 +180,7 @@ const ContactForm:React.FC<IValues>=(props)=>{
                             /> 
                         </div>
                        
-                        <button type="submit" disabled={submitting} className="bg-purple-500 w-full p-2 rounded-full text-white font-bold">Gửi tin nhắn</button>
+                        <button type="submit" disabled={submitting} className={`${!props.hidden ? "bg-purple-500" : "bg-yellow-400"} w-full p-2 rounded-full text-white font-bold`}>Gửi tin nhắn</button>
              
                     </div>
                 </div>

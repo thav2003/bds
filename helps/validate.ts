@@ -1,6 +1,7 @@
 import { InjectedFormProps } from 'redux-form';
 
 export interface IValues extends InjectedFormProps{
+    email: string;
     du_an:string;
     city:string;
     district:string;
@@ -52,6 +53,9 @@ const IsEmail =(value:string):boolean=>{
 export const validate=(values:IValues):any => {
     const errors={} as any
 
+    if (!values.email) {
+      errors.email = true
+    }
     if (!values.du_an) {
       errors.du_an = true
     }

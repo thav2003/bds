@@ -62,8 +62,20 @@ const GetCity=(id?:string)=>{
         return "Hà Nội"
     }else return ''
 }
+let start=0 
 const pages=[] as any
-
+data.forEach((item:DataProps,index:number)=>{
+    if(index%18==0 ){
+        start++;
+    }
+    if(pages.hasOwnProperty(start)){
+        pages[start].push(item)
+    }else{
+    pages[start]=[item]
+    }
+   
+    
+})
 const QueryPage:NextPageWithLayout<Props>=(props) => {
     const router = useRouter();
     
@@ -72,33 +84,19 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
     const [isGrid,setIsGrid] = useState<boolean>(false)
     const [min,setMin]= useState(0)
     const [max,setMax]= useState(4)
-    const [maxi,setMaxi]= useState(4)
+    const [maxi,setMaxi]= useState(data.length/18-1)
     const [active,setActive] = useState(0)
     const [moretext,setMoreText]=useState(false)
     const [city,setCity]= useState<string>('')
 
-    let start=0 
-    data.forEach((item:DataProps,index:number)=>{
-        if(index%18==0 ){
-            start++;
-        }
-        if(pages.hasOwnProperty(start)){
-            pages[start].push(item)
-        }else{
-        pages[start]=[item]
-        }
-       
-        
-    })
+    
+
   
     
     useEffect(()=>{
         setCity(GetCity(props.specificData.id))
     },[props.specificData.id])
-    useEffect(()=>{
-        setMaxi(data.length/18-1)
 
-    },[pages])
 
     const moreText=()=>{
         setMoreText(!moretext)
@@ -169,30 +167,30 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                 
             </div>
             <div className="home-row pt-2 ">
-                <div className={`${!isMobile ? "w-9/12" : "w-full"}  flex gap-5`}>
+                <div className={`${!isMobile ? "w-9/12" : "w-full"}  flex gap-8`}>
                     <div className={`${!isMobile ? "w-[65%]" : "w-full"} space-y-4 relative`}>
                         <div className="flex flex-row items-end justify-between">
                             <p className="text-sm text-left ">Tìm thấy 256 căn hộ cho thuê</p>
                             <div className="gap-2 flex flex-shrink ">
-                                <select name="location" id="locations"  className='filter w-[100px] pr-8 border-gray-400'>
-                                        
-                                    <option value="1">Mặc định</option>
-                                    <option value="2">Thành phố Hồ Chí Minh</option>
-                                    <option value="2">Opel</option>
-                                    <option value="3">Audi</option>
-                                </select>
-                                <div className="flex border-solid border-[1px]  border-gray-400 rounded-md">
-                                    <button onClick={()=>setIsGrid(false)} className="flex  item-center bg-[#fefefe] border-solid border-r-[1px] rounded-l-md  border-gray-400">
-                                        <div className="relative w-10 h-full">
-                                            <Image width="100%" height="100%" layout="fill"   src={isGrid ? "/list_grey.svg" : "/list_selected.svg" } className={`${!isGrid ? "clickhover" :""} animationhover`}/>
-                                        </div>
-                                    </button>
-                                    <button onClick={()=>setIsGrid(true)} className="flex item-center rounded-r-md bg-[#fefefe]">
-                                        <div className="relative w-10 h-full">
-                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src={isGrid ? "/grid_selected.svg" : "/grid_grey.svg"} className={`${isGrid ? "clickhover" :""} animationhover`}/>
-                                        </div>
-                                    </button>
-                                </div>
+                            <select name="location" id="locations"  className='filter w-[100px] tablet:hidden pr-8 border-gray-400'>
+                                    
+                                <option value="1">Mặc định</option>
+                                <option value="2">Thành phố Hồ Chí Minh</option>
+                                <option value="2">Opel</option>
+                                <option value="3">Audi</option>
+                            </select>
+                            <div className="flex border-solid border-[1px]  border-gray-400 rounded-md">
+                                <button onClick={()=>setIsGrid(false)} className="flex  item-center bg-[#fefefe] border-solid border-r-[1px] rounded-l-md  border-gray-400">
+                                    <div className={`${isGrid ? "clickhover" :""} animationhover relative w-10 h-10`}>
+                                        <Image width="100%" height="100%" layout="fill"   src={isGrid ? "/list_grey.svg" : "/list_selected.svg" } />
+                                    </div>
+                                </button>
+                                <button onClick={()=>setIsGrid(true)} className="flex item-center rounded-r-md bg-[#fefefe]">
+                                    <div className={`${isGrid ? "clickhover" :""} animationhover relative w-10 h-10`}>
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src={isGrid ? "/grid_selected.svg" : "/grid_grey.svg"}  />
+                                    </div>
+                                </button>
+                            </div>
                                     
                              
                         </div>
