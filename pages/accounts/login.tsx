@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import PrimaryLayout from '../../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from '../../page';
@@ -8,6 +9,10 @@ const LoginPage:NextPageWithLayout =()=>{
     const authState = useSelector(selectAuthState);
     const logout=()=>{
         dispatch(setAuthState(false))
+    }
+    const router = useRouter()
+    const naviGate=(link:string)=>{
+        router.push(link)
     }
     return(
         <div className={`w-full flex flex-col mb-8  items-center p-0 select-none bg-slate-50 `}>
@@ -198,7 +203,7 @@ const LoginPage:NextPageWithLayout =()=>{
                                 </div>
                            </div>
                         </div>
-                        <div className="w-full p-3 pb-2">
+                        <div className="w-full p-3 pb-2 " onClick={() =>naviGate('/profile')}>
                            <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
                                     <div className="relative h-4 w-4">

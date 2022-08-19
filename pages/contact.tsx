@@ -32,7 +32,7 @@ const ContactPage:NextPageWithLayout=()=>{
             <div className=" w-8/12 flex flex-col  m-4 tablet:m-0 tablet:w-full ">
 
                 
-                <ContactForm onSubmit={showResults}/>
+                <ContactForm hidden={false} onSubmit={showResults}/>
             </div>
         </div>
     )

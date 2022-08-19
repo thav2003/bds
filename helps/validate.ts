@@ -22,8 +22,8 @@ export interface IValues extends InjectedFormProps{
     payment_period:number;
     status:string;
     dac_diem:string;
-    // image
-    // video
+    image:any;
+    video:any;
     title:string;
     description:string;
     user_name:string;
@@ -80,10 +80,6 @@ export const validate=(values:IValues):any => {
         errors.address = true
     }
 
-    if (!values.TypeOfApartment) {
-      errors.TypeOfApartment = true
-    }
-
     if(!values.areas){ 
         errors.areas = true
     }else if(values.areas < 10){
@@ -111,7 +107,7 @@ export const validate=(values:IValues):any => {
     if(!values.status){ 
         errors.status = true
     }
-    //img
+   
     if (!values.title) {
         errors.title = true
     }else if(values.title.length < 30){

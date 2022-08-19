@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import useBlur from '../../hooks/useBlur';
 import type { IHeader } from '../../interfaces/interfaces';
 import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
-
 
 
 const Header : React.FC<IHeader>=({ ...headerProps })=>{
@@ -13,6 +13,13 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const authState = useSelector(selectAuthState);
     const [patnName,setPathName]=useState<boolean>(true)
     const dispatch = useDispatch();
+    const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+    const handleClick=()=>{
+       setIsComponentVisible(!isComponentVisible)
+
+
+    }
+
     useEffect(()=>{
         const setPath=()=>{
             if(router.pathname==='/'){
@@ -29,21 +36,18 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
     
     
     const submitLogout=()=>{
-        setIsHidden(true)
+        
         dispatch(setAuthState(false))
+        setIsComponentVisible(false)
     }
-    const [isHidden,setIsHidden] =useState(true)
-    
-    const hanldeDrop=()=>{
-            setIsHidden(!isHidden)
 
-    }
-    const mouseHover=()=>{
-        setIsHidden(false)
-    }
+
 
     const handleFilter=()=>{
         router.push('/profile')
+    }
+    const naviGate=(link:string)=>{
+        router.push(link)
     }
     return(
    
@@ -57,7 +61,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     <Link href="/" >
                         <a className="w-1/2 ">
                             <div className="w-full h-full relative " >
-                                <Image width="100%" height="100%" layout="fill"  src="/logo.svg"  alt="Logo"  />
+                                <Image  layout="fill"  src="/logo.svg"  alt="Logo"  />
                             </div>
                         </a>
                     </Link>
@@ -75,7 +79,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                         />
                         <span className="absolute inset-y-0 right-3 flex items-center pl-2">
                             <div className="w-5 h-5 relative">
-                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/search_black.svg" className="w-5 h-5"/>
+                                <Image  layout="fill" objectFit="contain"  src="/search_black.svg" className="w-5 h-5"/>
                             </div>
                         </span>
                     </label>
@@ -133,18 +137,18 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                     </div>
                                 </div>
                      
-                                <div  className="labelDrop  relative group ">
+                                <div  className="labelDrop  relative group " ref={ref}>
                                   
                                         <div className="w-fit flex items-center">
-                                            <button onMouseOver={mouseHover} className="flex items-center truncate ">Nguyễn Văn Nam
+                                            <button onClick={handleClick} className="flex items-center truncate ">Nguyễn Văn Nam
                                                 
                                             </button>
-                                            <div className="cursor-pointer h-4 w-3 ml-2 relative">
-                                                <Image width="100%" height="100%" layout="fill" objectFit="contain"   onClick={hanldeDrop}  src="/down_button_black.svg" className="cursor-pointer h-4 w-3 ml-2"/>
+                                            <div className="cursor-pointer h-4 w-3 ml-2 relative" onClick={handleClick} >
+                                                <Image width="100%" height="100%" layout="fill" objectFit="contain"    src="/down_button_black.svg" className="cursor-pointer h-4 w-3 ml-2"/>
                                             </div>
                                         </div> 
-
-                                        <div  className={`dropbackground w-[350px] rounded-lg ${isHidden ? "hidden" : "block"}`}>
+                                     
+                                        {isComponentVisible &&<div  className={`dropbackground w-[350px] rounded-lg   block"}`}>
                                             <div  className="py-4 px-4 text-sm h-[130px]  text-gray-700 dark:text-gray-200">
                                                    <div className="w-full h-full flex  justify-between gap-2 ">
                                                         <div className="bg-gray-100 flex-[1_0_50%] py-4 p-2 h-full rounded-lg space-y-2">
@@ -182,7 +186,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                                 <div onClick={submitLogout} className="w-full">Quản lý khuyến mãi</div>
                                             </div>
                                             <div className="dropItem">
-                                                <div onClick={submitLogout} className="w-full">Thông tin tài khoản</div>
+                                                <div onClick={()=>naviGate('/profile')} className="w-full">Thông tin tài khoản</div>
                                             </div>
                                             <div className="dropItem">
                                                 <div onClick={submitLogout} className="w-full">Thay đổi mật khẩu</div>
@@ -190,8 +194,8 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                             <div className="dropItem">
                                                 <div onClick={submitLogout} className="w-full">Đăng xuất</div>
                                             </div>
-                                        </div>
-                                    
+                                        </div>}
+                                        
                                    
                                      
                                       

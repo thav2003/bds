@@ -1,26 +1,16 @@
 import { ListGroup } from 'flowbite-react';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 import type { IValues } from '../../helps/validate';
 import { validate, warn } from '../../helps/validate';
+import useBlur from '../../hooks/useBlur';
 import useDevice from '../../hooks/useDevice';
 import { IPrices } from '../../interfaces/interfaces';
-const focusInCurrentTarget = ({ relatedTarget, currentTarget }:any):any => {
-  if (relatedTarget === null) return false;
-  
-  var node = relatedTarget.parentNode;
-        
-  while (node !== null) {
-    if (node === currentTarget) return true;
-    node = node.parentNode;
-  }
-
-  return false;
-}
+import ScrollButton from '../button/scrollbutton';
 
 const RenderInput = ({
   classNameInput,renderDropLeftIcon,
@@ -30,6 +20,7 @@ const RenderInput = ({
   type,
   meta: { touched, error, warning }
 }:any):any => {
+  const [isClick,setIsClick]=useState(true)
   const [change,setChange]=useState(input.value)
   useEffect(()=>{
     if(input.name ==="room" || input.name ==="wc"){
@@ -56,7 +47,7 @@ const RenderInput = ({
     <div className="space-y-1">
       
       <label className="font-semibold">{label}</label>
-      {touched &&
+      {isClick &&
           ((error && <span className="error">*</span>) ||
             (warning && <span className="warning">*</span>))}
       <div>
@@ -88,7 +79,7 @@ const RenderTextArea = ({
 }:any):any => {
   const [countTitle, setCountTitle] = useState(0);
   const [isFull,setIsFull]=useState(false)
-
+  const [isClick,setIsClick] =useState(true)
   const hanldeChange=(e:any)=>{
    
     if(!isFull){
@@ -113,34 +104,58 @@ const RenderTextArea = ({
     }
   
   },[input.name,countTitle])
- 
+  const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+  const handleClick=()=>{
+    setIsComponentVisible(true)
+  }
   return(
 
     <div className="space-y-1">
           <label htmlFor={id} className="font-semibold">{label}</label>
-          {touched &&
+          {isClick &&
           ((error && <span className="error">*</span>) ||
             (warning && <span className="warning">*</span>))}
+          <div ref={ref}>
             <textarea {...input}  id={id}  
                 onKeyDown={(e)=>{if(e.key==="Backspace"){
                   setIsFull(false)
                 }}}
+                onClick={handleClick}
                 className={classNameInput}
                 placeholder={label}
                 onChange={hanldeChange}
             ></textarea>
-          <div className="flex flex-row justify-between">
-            <p className="text-sm opacity-60">Tối thiểu 30 ký tự, tối đa {maxtext} ký tự</p>
-            <p>{countTitle}/{maxtext}</p>
-          </div>
+            <div className="flex flex-row justify-between">
+              <p className="text-sm opacity-60">Tối thiểu 30 ký tự, tối đa {maxtext} ký tự</p>
+              <p>{countTitle}/{maxtext}</p>
+            </div>
+          
+             
+              {isComponentVisible && 
+           
+                
+                  <div className=" bg-slate-300 shadow-lg rounded-lg flex flex-col gap-4 w-[w-full] py-4 px-5">
+                      <div className="flex gap-2">
+                          <div>img</div>
+                          <p>Chỉ nhập tên sản phẩm cần rao bán</p>
+                      </div>
+                      <div className="flex gap-2">
+                          <div>img</div>
+                          <p>Chỉ nhập tên sản phẩm cần rao bán</p>
+                      </div>
+                  </div>
+           
+         
+              }
+            </div>
     </div>
   )
 }
-
-const prices=new Array(5).fill({
-  name:150000
+const data_infos=new Array(5).fill({
+  name:"Vip đặc biệt 24 ảnh"
 })
-const du_an=new Array(120).fill({
+
+const du_an_data=new Array(120).fill({
   name:"du an" 
 })
 const street=new Array(120).fill({
@@ -158,22 +173,16 @@ const direction=[
 ]
 
 const RenderDropLeft=({action,icon,className}:any):any=>{
-  const [isVisible,setIsVisible]=useState(false)
-  const handleMouseOver = () => {
-    setIsVisible(true);
-}
+  
 
- const handleMouseLeave = () => {
-    setIsVisible(false);
-  }
   return(
     <>
     <div >
       <button type="button" 
-            onMouseOver={handleMouseOver}
-            onMouseLeave={handleMouseLeave} onClick={action} className={`absolute z-[4] -top-8 right-2 flex  items-center ${className}`}>
+            
+             onClick={action} className={`absolute z-[4] -top-8 right-2 flex  items-center ${className}`}>
             <div className="w-5 h-5 relative">
-             <Image width="100%" height="100%" layout="fill" objectFit="contain"   src={icon} className="w-full h-5"/>
+              <Image width="100%" height="100%" layout="fill" objectFit="contain"   src={icon} className="w-full h-5"/>
              </div>
       
       </button>
@@ -232,30 +241,23 @@ const RenderDrop=({
 }:any):any=>{
 
   const [change,setChange]= useState(input.value)
-  const [isFocus,setIsFocus]=useState<boolean>(false)
+  const [isClick,setIsClick]=useState(true)
+  const [isButton,setIsButton]=useState(true)
+  const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+  
   const [renderPrices,setRenderPrices]=useState<IPrices[]>([])
   const [stringBottom,setStringBottom]=useState<string>('')
   const clear=()=>{
-    setIsFocus(false)
     setChange('')
   }
-  const focusInput=()=>{
-   
-    setIsFocus(true)
+  const handleClick=()=>{
+    setIsComponentVisible(true)
   }
   const selectItem=(item:any):any=>{
    
     input.onChange(input.value =`${item.name}`)
     setChange(`${item.name}`)
-    setIsFocus(false)
-  }
-  const onBlur = (e:any):any => {
-    if (!focusInCurrentTarget(e)) {
-      input.onChange(input.value =change)
-      console.log(change)
-     
-      setIsFocus(false)
-    }
+    setIsComponentVisible(false)
   }
 
   useEffect(()=>{
@@ -263,15 +265,6 @@ const RenderDrop=({
     const len=change.toString().length
     const base=change <= 1000000 ? 100000 : change <= 10000000 ? 1000000 : 10000000 <= 100000000 ? 10000000 : 1000000000
     for(var i=0;i<4;i++){
-      /*  base 150
-          100 000 x 150 000 00 chia 10^length-1 (2)
-          1 000 000 x 1 500 000 00 chia 10^length-1 (2)
-          10 000 000 x 15 000 000 00 chia 10^length-1 (2) 
-          100 000 000 x 150 000 000 00 chia 10^length-1(2)
-          1 000 000 000 x 1 500 000 000 00 chia 10^length-1(2)
-          
-      */
-      // => cong thuc console.log((a*(100000*Math.pow(10,i)))/Math.pow(10,len-1))
       temp.push({price:change*(base*Math.pow(10,i))/Math.pow(10,len-1)})
     }
     change && setStringBottom(`${new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(change)} / tháng`)
@@ -299,12 +292,27 @@ const RenderDrop=({
   return(
     <div className="space-y-1">
       <label className="font-semibold">{label}</label>
-      {/* <button onClick={()=>console.log(new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(input.value))}>test</button> */}
-      {touched &&
+      {isClick &&
           ((error && <span className="error">*</span>) ||
             (warning && <span className="warning">*</span>))}
-      <div className="relative"     >
-        <input {...input}   placeholder={label} onClick={focusInput}   type={type} onChange={e => setChange(e.target.value)} value={change} autoComplete="off"  className={classNameInput}/>
+      <div className="relative"  ref={ref}   >
+        <input {...input}   placeholder={label} onClick={handleClick}   
+                type={type}
+                onChange={(e:any) => {
+                  if(isButton){
+                    setChange(e.target.value)
+                  }
+              
+                }} 
+                onKeyDown={(e:any)=>{
+                  if(!((e.keyCode > 95 && e.keyCode < 106)
+                    || (e.keyCode > 47 && e.keyCode < 58) 
+                    || e.keyCode == 8) && type==="number") {
+                      setIsButton(false);
+                  }else setIsButton(true)
+                }}
+              
+                value={change} autoComplete="off"  className={classNameInput}/>
         
        
         {renderDropLeftIcon && renderDropLeftIcon.search('/') === -1 && 
@@ -319,7 +327,7 @@ const RenderDrop=({
             </div>
           </div>
         }
-        {isFocus &&
+        {isComponentVisible &&
         <div className="relative" >
             {renderDropLeftIcon && renderDropLeftIcon.search('/') !== -1 && <RenderDropLeft action={clear} icon={renderDropLeftIcon}/>
 
@@ -330,20 +338,7 @@ const RenderDrop=({
             <div className="bnone">
               <ListGroup>
                 <div className="divide-y-[1px]">
-                {!showMoney && input.name ==="du_an" || input.name ==="street" && change && !data.find((e:any) => e.name === change)   &&
-                <div className="relative">
-                  <ListGroup.Item>
-                    {change} 
-                    <button type="button" onClick={clear} className="absolute z-[4] top-2 gap-2 right-1 flex   items-center ">
-                   
-                       <Image width="100%" height="100%" layout="fill" objectFit="contain"   src="/closed-btn.svg" className="h-4"/>
-                      
-                      Thêm mới
-                    </button>
-                  </ListGroup.Item>
-                  </div>
-                  
-                }
+             
                 
                 {showMoney &&  change &&
                   renderPrices.map((item,i)=>{
@@ -352,10 +347,6 @@ const RenderDrop=({
                     )
                   })
                 }
-                  
-               
-                  
-                  
                   {!showMoney && data.map((item:any,index:any):any=>{
                     return(
                       <ListGroup.Item key={index} onClick={()=>selectItem(item)}
@@ -368,7 +359,18 @@ const RenderDrop=({
                   <div></div>
                 </div>
               </ListGroup>
+              {change.toString().length===0 &&<div className=" bg-slate-300 shadow-lg rounded-lg flex flex-col gap-4 w-[w-full] py-4 px-5">
+                      <div className="flex gap-2">
+                          <div>img</div>
+                          <p>Chỉ nhập tên sản phẩm cần rao bán</p>
+                      </div>
+                      <div className="flex gap-2">
+                          <div>img</div>
+                          <p>Chỉ nhập tên sản phẩm cần rao bán</p>
+                      </div>
+                </div>}
             </div>
+           
         </div>
         }
         {renderBottom && stringBottom &&
@@ -411,20 +413,34 @@ const RenderInputTime=({
 }
 
 const RenderCheckbox=({
-  classNameInput,
+  classNameInput,data,
   classNameLabel,
   input,
   label,
   type,
   popup
 }:any):any=>{
+  const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+  const handleClick=()=>{
+    setIsComponentVisible(true)
+  }
   return(
     <div>
         <div className="flex relative ">
           <input {...input}  type={type} id="check_note" className={classNameInput}></input>
           <label htmlFor="check_note" className={`${classNameLabel} info-hover`}>{label} </label>
           
-          <RenderDropLeft icon="/info-icon.svg" className="-top-0  -right-6 "/>
+          <div ref={ref}>
+              <RenderDropLeft action={handleClick} icon="/info-icon.svg" className="-top-0 -right-6 "/>
+              {isComponentVisible && 
+           
+                  
+                  <div className="absolute inset-x-1/2 top-5 bg-[#f7f7f7] shadow-round w-[18rem] z-[60] ">
+                        <RenderInfo data={data}/>
+                  </div>
+         
+              }
+            </div>
         
         </div>
     </div>
@@ -432,19 +448,36 @@ const RenderCheckbox=({
 
 }
 const RenderToggle=({
-  id,
+  id,data,
   input,
   label,
   type,
 }:any):any=>{
+  const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+  const handleClick=()=>{
+    setIsComponentVisible(true)
+  }
   return(
     <div>
         
-       <label htmlFor={id} className="inline-flex relative items-center cursor-pointer">
+       <label htmlFor={id} className="inline-flex relative items-center cursor-pointer item-center">
             <input {...input}  type={type} id={id} className="sr-only peer"/>
             <div className="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
             <span className="ml-3 text-sm font-semibold text-gray-900 dark:text-gray-300 ">{label}</span>
-            <RenderDropLeft icon="/info-icon.svg" className="-top-[0.625rem] -right-6 "/>
+          
+            <div ref={ref}>
+              <RenderDropLeft action={handleClick} icon="/info-icon.svg" className="-top-0 -right-6 "/>
+              {isComponentVisible && 
+           
+                  
+                  <div className="absolute inset-x-1/2 top-5 bg-[#f7f7f7] shadow-round w-[18rem] z-[60] ">
+                        <RenderInfo data={data}/>
+                  </div>
+          
+              }
+            </div>
+
+
         </label>
     </div>
   )
@@ -486,38 +519,28 @@ const RenderPopUp=({
   page,
   label,
   type,
-  meta: { touched, error, warning }
+  meta: {  error, warning }
 }:any):any=>{
-  const [temp,setTemp]=useState(input.value) // chỗ này dùng redux để móc data cũ ra
+
   const [isVisible,setIsVisible] = useState(true)
   const [change,setChange]= useState(input.value)
-  const [isClick,setIsClick]=useState(false)
+  const [isClick,setIsClick]=useState(true)
   const onOpen=()=>{
-    //console.log(temp)
-    
     setIsVisible(false)
   }
   const onClose=()=>{
-    setIsClick(true)
     setIsVisible(true)
   }
   const search=()=>{
-    console.log("search",input)
+    
   }
   const selectItem=(item:any):any=>{
- 
-    setChange(`${item.name}`)
-    input.onChange(input.value =`${item.name}`)
-    console.log(input)
+    input.onChange(`${item.name}`)
     setIsVisible(true)
-    setIsClick(true)
   }
 
   const add=()=>{
-    input.value=change
     setIsVisible(true)
-    setIsClick(true)
-    console.log("add")
   }
 
 
@@ -528,14 +551,14 @@ const RenderPopUp=({
       {isClick &&
           ((error && <span className="error">*</span>) ||
             (warning && <span className="warning">*</span>))}
-      <button className={`w-full text-placeholder
+      <button type="button" className={`w-full text-placeholder
               placeholder:text-slate-400  
               bg-white rounded pl-3 py-2 pr-10
               shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
-              border border-slate-300 text-left ${input.value ? 'text-black':'text-slate-400 '} `}  onClick={onOpen}
+              border border-slate-300 text-left ${change ? 'text-black':'text-slate-400 '} `}  onClick={onOpen}
               
       >
-        {input.value  ? input.value : label}
+        {change  ? change : label}
       </button>
       
       <div className={`${isVisible ? 'hidden' : 'block'} modal  flex justify-center items-center `}>
@@ -629,8 +652,208 @@ const RenderPopUp=({
   )
 }
 
+const RenderInfo=({data}:any)=>{
+  return(
+    <div className="p-3 px-4">
+        <p className="font-semibold">Số lượng tối đa được tải lên</p>
+        <ul className="list-square list-inside">
+          {data.map((item:any,index:any):any=>{
+            return(
+              <li key={index}>
+                <a className="font-normal">{item.name}</a>
+              </li>
+            )
+          })}
+        </ul>
+       
+    </div>
+  )
+}
+
+const RenderImage=({data,action}:any):any=>{
+
+  
+  return(
+    <div className="flex gap-7 flex-wrap w-full pt-3">
+      {data.length<20 && 
+        <button  onClick={action} className="w-[8.5rem] h-[8.5rem] ">
+          <div className="relative w-[8.5rem] h-[8.5rem] border-[1px] border-dashed rounded-lg">
+              <Image  layout="fill" objectFit="contain"  src="/upload-image.svg"  />
+          </div>
+        </button>
+      }
+      {data.map((item:any,index:any):any=>{
+        return(
+          <div key={index} className="relative w-[8.5rem] h-[8.5rem] border-[1px] border-solid rounded-lg">
+            <Image   layout="fill" objectFit="contain"   src={item} />
+            <div className="absolute -right-2 -top-2.5">
+              <button className="w-5 h-5  bg-black rounded-full">
+                <div className="relative w-5 h-5 ">
+                  <Image   layout="fill" objectFit="contain"   src="/closed-white.svg" />
+                </div>
+              </button>
+            </div>
+          </div>
+        )
+      })}
+      
+    </div>
+  )
+}
+const RenderVideo=({data,action}:any):any=>{
+
+  
+  return(
+    <div className="flex gap-2 flex-wrap w-full h-full pt-3">
+      {data.map((item:any,index:any):any=>{
+        return(
+          <div key={index} className="relative w-full h-full">
+            <video controls width="100%" height="100%">
+              <source src={item}  />
+    
+            </video>
+            <div className="absolute -right-2 -top-2.5">
+              <button className="w-5 h-5  bg-black rounded-full">
+                <div className="relative w-5 h-5 ">
+                  <Image  width="100%" height="100%" layout="fill" objectFit="contain"   src="/closed-white.svg" />
+                </div>
+              </button>
+            </div>
+          </div>
+        )
+      })}
+ 
+    </div>
+  )
+}
+
+const RenderLink=({  
+  input,data,
+  label,description,
+  img,type,
+  meta: { touched, error, warning }
+}:any):any=>{
+  const [change,setChange]= useState()
+  const [selectedFile, setSelectedFile] = useState([])
+  const [preview, setPreview] = useState([])
+  const fileUpload = useRef<any>(null);
+  const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+  const handleClick=()=>{
+    setIsComponentVisible(true)
+  }
+  useEffect(() => {
+    if(input.name==="image"){
+      if (selectedFile.length===0) {
+          setPreview([])
+          return
+      }
+      let array=[] as any
+      [...selectedFile].forEach((file) => {
+        const objectUrl = URL.createObjectURL(file) 
+        array.push(objectUrl)
+      })
+      
+      setPreview(array)
+      input.onChange(array)
+    }else if(input.name==="video"){
+      if (selectedFile.length===0) {
+        setPreview([])
+        return
+      }
+      let array=[] as any
+      [...selectedFile].forEach((file) => {
+        const objectUrl = URL.createObjectURL(file) 
+        array.push(objectUrl)
+      })
+      setPreview(array)
+      input.onChange(array)
+      console.log("a")
+    }
+  }, [selectedFile])
+  const onSelectFile = (e:any) => {
+
+      if (!e.target.files || e.target.files.length === 0) {
+          setSelectedFile([])
+          return
+      }
+      let droppedFiles = e.target.files;
+      setSelectedFile(droppedFiles)
+  }
+
+  const handleUpload = () => {
+
+    fileUpload.current.click()
+  };
+  return(
+    <div>
+        
+        <div className="inline-flex relative items-center cursor-pointer item-center">
+          <p className="font-semibold ">{label}</p>
+          <RenderDropLeft action={handleClick} icon="/info-icon.svg" className="-top-0 -right-6 "/>
+          <div ref={ref}>
+                
+                {isComponentVisible && data &&
+            
+                    
+                    <div className="absolute inset-x-1/2 top-5 bg-[#f7f7f7] shadow-round w-[18rem] z-[60] ">
+                          <RenderInfo data={data}/>
+                    </div>
+            
+                }
+            </div>
+        </div>
+        <input ref={fileUpload} className="hidden"  type={type} accept={input.name === "image" ? "image/*" : "video/*"} onChange={onSelectFile} multiple={input.name === "video" ? false : true}/>
+          {selectedFile.length > 0 ? 
+            ( (input.name==="image" && <RenderImage data={preview} action={handleUpload}/>)||
+              (input.name==="video" && <RenderVideo  data={preview} action={handleUpload}/>)
+            )
+          :
+            <button onClick={() => handleUpload()} className="w-full">
+            <div className="w-full h-36 bg-slate-100 flex flex-col items-center justify-center border-dashed border-slate-300 border-[1px] rounded-lg">
+                <div className="relative w-auto h-auto">
+                  <Image width="100%" height="100%" layout="intrinsic" objectFit="contain"  src={img} />
+                </div>
+                <p>{description}</p>
+            </div>
+            </button>
+          }
+    </div>
+  )
+
+}
+const RenderLink2=({  
+  input,classNameInput,
+  label,description,
+  img,type,
+
+}:any):any=>{
+ 
+  const [change,setChange]=useState(input.value)
+  const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+  const handleClick=()=>{
+    setIsComponentVisible(true)
+  }
+
+  return(
+    <div className="flex gap-2">
+       <div className="w-5 h-5 bg-black relative">
+          <Image width="100%" height="100%" layout="intrinsic" objectFit="contain"  src={img} />
+        </div>
+        <div className="relative" ref={ref} >
+        <button type="button" onClick={handleClick} className="text-left">{input.value ? input.value : description}</button> 
+        {isComponentVisible && (
+            <div className="absolute top-6 ">
+              <input {...input} type={type} placeholder={label} value={change}  onChange={e => setChange(e.target.value)} className={`${classNameInput}`}/>
+            </div>
+        )}  
+        </div>
+    </div>
+  )
+
+}
+
 const UploadForm:React.FC<IValues>=(props) => {
-  const { handleSubmit, pristine, reset, submitting,status } = props
+  const { handleSubmit, pristine, reset, submitting,status,image,du_an } = props
 
  
 
@@ -643,11 +866,7 @@ const UploadForm:React.FC<IValues>=(props) => {
       if (event.which === 13 /* Enter */) {
         event.preventDefault();
       }
-    }} onSubmit={(e)=>{
-      
-      e.preventDefault();
-      handleSubmit
-      }}>
+    }} onSubmit={handleSubmit}>
         
  
   
@@ -659,7 +878,7 @@ const UploadForm:React.FC<IValues>=(props) => {
        
           <Field
               name="du_an"
-              data={du_an}
+              data={du_an_data}
               renderDropLeftIcon="/search_grey.svg"
               classNameInput={`
               w-full text-placeholder
@@ -1033,31 +1252,41 @@ const UploadForm:React.FC<IValues>=(props) => {
             </div>
         </div>
         <div className="space-y-2">
-          <p className="font-semibold info">Hình ảnh</p>
-          <div className="w-full h-36 bg-slate-100 flex flex-col items-center justify-center border-dashed border-slate-300 border-[1px] rounded-lg">
-              <div className="relative w-auto h-auto">
-               <Image width="100%" height="100%" layout="intrinsic" objectFit="contain"  src="/upload-image.svg" className=""/>
-              </div>
-              <p>Đăng từ 1 đến 20 hình ảnh</p>
-          </div>
+            <Field
+                name="image"
+                component={RenderLink}           
+                label="Hình ảnh"
+                data={data_infos}
+                description="Đăng từ 1 đến 20 hình ảnh"
+                img="/upload-image.svg"
+                type="file" 
+            />
         </div>
         <div className="space-y-2">
-          <p className="font-semibold info">Video</p>
-          
-          <div className="w-full  h-36 bg-slate-100 flex flex-col items-center justify-center border-dashed border-slate-300 border-[1px] rounded-lg">
-              <div className="relative w-auto h-auto">
-                <Image width="100%" height="100%" layout="intrinsic" objectFit="contain"  src="/upload-video.svg" className=""/>
-              </div>
-              
-              <p>Đăng tối đa 1 video</p>
-          </div>
+            <Field
+                name="video"
+                data={data_infos}
+                component={RenderLink}           
+                label="Video"
+                type="file"   
+                description="Đăng tối đa 1 video"
+                img="/upload-video.svg"
+            />
         </div>
-        <div className="flex space-x-2">
-          <div className="w-5 h-5 bg-black relative">
-            
-           <Image width="100%" height="100%" layout="intrinsic" objectFit="contain"  src="/play-button.svg" />
-           </div>
-          <p>Hoặc thêm video từ Youtube</p>
+        <div >
+            <Field
+                name="youtube"
+                component={RenderLink2}  
+                type="text"     
+                description="Hoặc thêm video từ Youtube"
+                img="/play-button.svg"
+                classNameInput="w-[20rem] h-[3rem] text-placeholder
+                  placeholder:text-slate-400  
+                  bg-white rounded pl-3 py-2 pr-10
+                  shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                  border border-slate-300"
+                label="Nhập link youtube"
+            />
         </div>
         <div className="flex-grow h-px bg-gray-200 "></div>
         
@@ -1247,6 +1476,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               <Field
                 name="check_note"
                 popup={true}
+                data={data_infos}
                 classNameLabel={`
                    text-sm font-semibold ml-10 
                 `}
@@ -1263,6 +1493,7 @@ const UploadForm:React.FC<IValues>=(props) => {
               <Field
                 name="auto_post"
                 type="checkbox"
+                data={data_infos}
                 component={RenderToggle} 
                 id="toggle" 
                 label="Tự động đăng tải tin"
@@ -1314,7 +1545,9 @@ const UploadForm:React.FC<IValues>=(props) => {
 
     {/*container 6 */}
     <div className="p-5 px-14 bg-white space-y-4 rounded-xl flex justify-center items-center  tablet:px-8">
+          {!isMobile && <ScrollButton className="left-[0] bottom-[8%] " submitting={submitting} isSubmitButton={true}/>}
           <button type="submit" disabled={submitting} className="bg-pink-800 w-full p-3 rounded-lg text-white font-bold">Đăng tin</button>
+
     </div>
 
 
@@ -1327,7 +1560,9 @@ const UploadForm:React.FC<IValues>=(props) => {
 const selector = formValueSelector('uploadForm')
 const mapState = (state:any) => ({
   status:selector(state, 'status'),
-  prices:selector(state,'prices'),
+  initialValues:{
+    du_an:''
+  }
 })
 
 

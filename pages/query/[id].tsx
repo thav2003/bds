@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import CardHome from '../../components/cards/card';
+import CardHome2 from '../../components/cards/card2';
 import PrimaryLayout from '../../components/layouts/PrimaryLayout';
 import { data } from '../../fakedata';
 import useDevice from '../../hooks/useDevice';
@@ -197,42 +198,49 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
 
                         </div>
                      
-                         <div className={`  w-full  `} >
-                            {pages.map((page:any, i:number) =>{
-                                return(
-                                <div key={i} className={`${active!==i-1 && "hidden"} ${isGrid ? "grid grid-cols-2" :" flex-col flex"} overflow-hidden gap-4 max-h-[3750px] relative"`}>
-                                  
-                                    {page.map((item:any,i:number)=>{
+                        <div className={`  w-full  `} >
+                                    {!isMobile && pages.map((page:any, i:number) =>{
                                         return(
-                                            <CardHome key={i} data={item} isVertical={!isGrid && true}/>
+                                        <div key={i} className={`${active!==i-1 && "hidden"} ${isGrid ? "grid grid-cols-2" :" flex-col flex"} overflow-hidden gap-4 max-h-[3750px] tablet:max-h-[2800px] relative `}>
+                                        
+                                            {page.map((item:any,i:number)=>{
+                                                return(
+                                                    <CardHome key={i} data={item} isVertical={!isGrid && true}/>
+                                                 
+                                                )
+                                            })}
+                                
+                                        </div>
                                         )
                                     })}
-                        
+                                    {isMobile && !isGrid &&
+                                        pages.map((page:any, i:number) =>{
+                                            
+                                            return(
+                                                <div key={i} className={`${active!==i-1 && "hidden"}  flex-col flex overflow-hidden gap-4 max-h-[3750px] tablet:max-h-[2800px] relative `}>
+                                                
+                                                    {page.map((item:any,i:number)=>{
+                                                        return(
+                                                            <CardHome key={i} data={item} isVertical={!isGrid && true}/>
+                                                        
+                                                        )
+                                                    })}
+                                        
+                                                </div>
+                                            )
+                                    })}
+                                    
+                                 
+                                    {isMobile && isGrid &&
+                                        <div className="flex flex-row flex-wrap gap-4 tablet:flex-col">
+                                            <CardHome2 data={data[0]}/> 
+                                            <CardHome2 data={data[0]}/> 
+                                            <CardHome2 data={data[0]}/> 
+                                        </div> 
+                                    }
+                                
+                            
                                 </div>
-                                )
-                            })}
-                            {/* <div className={`${active!==0 && "hidden"} ${isGrid ? "grid grid-cols-2" :" flex-col flex"} overflow-hidden gap-4 max-h-[3750px] relative"`}>
-                            <CardHome data={data[0]} isVertical={!isGrid && true}/>
-                            <CardHome data={data[1]} isVertical={!isGrid && true}/>
-                    
-                            </div>
-                            <div className={`${active!==1 && "hidden"}  ${isGrid ? "grid grid-cols-2" :" flex-col flex"} overflow-hidden gap-4 max-h-[3750px] relative`} >
-                            
-                            <CardHome data={data[0]} isVertical={!isGrid && true}/>
-                            <CardHome data={data[1]} isVertical={!isGrid && true}/>
-                            <CardHome data={data[2]} isVertical={!isGrid && true}/>
-                            <CardHome data={data[3]} isVertical={!isGrid && true}/>
-                            <CardHome data={data[4]} isVertical={!isGrid && true}/>
-                            
-                           
-                            
-                           
-                    
-                            </div>  */}
-                            
-                           
-                    
-                        </div>
                         
                         <div >
                             <ul className="flex justify-center items-center gap-2">

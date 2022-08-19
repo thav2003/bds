@@ -3,9 +3,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import UploadForm from '../components/forms/formupload';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from '../page';
-
+const sleep = (ms:number) => new Promise(resolve => setTimeout(resolve, ms));
 const UploadPage:NextPageWithLayout=()=>{
-  const sleep = (ms:number) => new Promise(resolve => setTimeout(resolve, ms));
+ 
 
   const  showResults =async  (values:any) =>{
     console.log(values)

@@ -72,22 +72,24 @@ const RenderTextArea = ({
     )
 }
 
-const data={
-    user_name:'',
-    user_phone:'',
-    email:'',
-    description:''
-}
-interface Props extends IValues{
+// const data={
+//     user_name:'',
+//     user_phone:'',
+//     email:'',
+//     description:''
+// }
+
+interface IProps extends  IValues  {
     hidden: boolean
 }
-const ContactForm:React.FC<Props>=(props)=>{
+
+const ContactForm:React.FC< IProps> =(props:IProps)=>{
     
-    const { handleSubmit, pristine, reset, submitting } = props
+    const { handleSubmit, pristine, reset, submitting,hidden } = props
 
-
+    console.log(hidden)
     return(
-        <form className="space-y-5 mb-4 " id="formUpload" onKeyPress={(event:any):any=>{
+        <form className="space-y-5 mb-4 " id="formContact" onKeyPress={(event:any):any=>{
             if (event.which === 13 /* Enter */) {
                 event.preventDefault();
               }
@@ -98,14 +100,14 @@ const ContactForm:React.FC<Props>=(props)=>{
               }}>
 
 
-            <div className={`p-5 px-5  ${props.hidden ? "bg-transparent":"bg-white"} space-y-7 rounded-xl  tablet:px-3`}>
-                {!props.hidden && <div className="space-y-4">
+            <div className={`p-5 px-5  ${hidden ? "bg-transparent":"bg-white"} space-y-7 rounded-xl  tablet:px-3`}>
+                {!hidden && <div className="space-y-4">
                     <h2 className="font-bold">Liên hệ với chúng tôi</h2>
                     <div className="h-[2px] bg-gray-200 "></div>
                 </div>}
                  
                 <div className="flex gap-4">
-                    {!props.hidden&&<div className="flex-[1_1_50%] space-y-4">
+                    {!hidden&&<div className="flex-[1_1_50%] space-y-4">
                         <p>Chúng tôi biết bạn có nhiều sự lựa chọn.Nhưng cảm ơn vì đã lựa chọn ABC.com</p>
                         <p><span className="font-semibold">Hotline:</span>090123456</p>
                         <p><span className="font-semibold">Email:</span>xyz@gmail.com</p>
@@ -163,7 +165,7 @@ const ContactForm:React.FC<Props>=(props)=>{
                                 label="Email"
                             /> 
                         </div>
-                        <div className={`${!props.hidden &&"pt-10"}`}>
+                        <div className={`${!hidden &&"pt-10"}`}>
                             <Field
                                 name="description"
                                 check={true}
@@ -180,7 +182,7 @@ const ContactForm:React.FC<Props>=(props)=>{
                             /> 
                         </div>
                        
-                        <button type="submit" disabled={submitting} className={`${!props.hidden ? "bg-purple-500" : "bg-yellow-400"} w-full p-2 rounded-full text-white font-bold`}>Gửi tin nhắn</button>
+                        <button type="submit" disabled={submitting} className={`${!hidden ? "bg-purple-500" : "bg-yellow-400"} w-full p-2 rounded-full text-white font-bold`}>Gửi tin nhắn</button>
              
                     </div>
                 </div>
@@ -194,9 +196,11 @@ const ContactForm:React.FC<Props>=(props)=>{
 }
 
 const mapState = (state: any) => ({
-    initialValues :data
+    initialValues :{
+        emai:''
+    }
 })
-export default connect(mapState)(reduxForm({
+export default connect<{},{},any>(mapState)(reduxForm({
     form: 'contactForm', // a unique identifier for this form
     validate, // <--- validation function given to redux-form
     warn, // <--- warning function given to redux-form
