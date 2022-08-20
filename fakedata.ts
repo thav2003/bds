@@ -1,7 +1,7 @@
 import type { DataProps } from "./interfaces/interfaces"
 
 export const data:DataProps[]=new Array(103).fill({
-    title: 'Cho thuê nhà Thủ Đức',
+    title: 'Chung cư cao cấp Hawall bán đảo Kim cương sssssss ssfsfs sds',
     prices:4,
     followBy: 'tháng',
     room:2,
@@ -10,5 +10,6 @@ export const data:DataProps[]=new Array(103).fill({
     address:"Paml Heighs - Quận 3, Hồ Chí Minh",
     author:"Nam Thái Vinhome",
     datetime: new Date(),
-    image:'/banner.png'
+    image:'/test.jpg',
+    image2:'/test2.jpg'
 })

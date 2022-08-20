@@ -6,16 +6,16 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
   return (
     <footer
       {...footerProps}
-      className={`w-full py-5 bg-slate-100 tablet:p-0 tablet:pb-8`}
+      className={`w-full py-5 bg-slate-100 px-10 tablet:p-0 tablet:pb-8`}
     >
       <div className="flex justify-center ">
-        <div className="w-9/12 flex flex-row justify-between space-x-3 tablet:px-0 tablet:py-5 p-10 tablet:grid  gap-2 ">
-          <div className="  flex-[2_1_0%] flex flex-col  space-y-2 tablet:col-start-1 tablet:cols-end-3 col-span-2">
+        <div className="w-9/12 flex flex-row justify-between space-x-3 tablet:w-full tablet:px-8 tablet:py-5 tablet:grid  gap-2 ">
+          <div className="  flex-[2_1_0%] flex flex-col  space-y-6 tablet:col-start-1 tablet:mb-4 tablet:cols-end-3 col-span-2">
             <div>
-              <h3 className="font-bold">Chào mừng bạn đến với 99.co!</h3>
-              <p>99.co là cổng thông tin bất động sản phát triển nhanh nhất Singpore. i chúng tôi, bạn sẽ cảm thấy như đang ở nhà khi tìm kiếm nhà ở, chung cư, căn hộ, và bán và cho thuê tại Singapore</p>
+              <h3 className="font-bold mb-4">Chào mừng bạn đến với 99.co!</h3>
+              <p className="text-base">99.co là cổng thông tin bất động sản phát triển nhanh nhất Singpore. i chúng tôi, bạn sẽ cảm thấy như đang ở nhà khi tìm kiếm nhà ở, chung cư, căn hộ, và bán và cho thuê tại Singapore</p>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-4">
               <div className="flex flex-row">
                 <div className="w-5 h-5 relative mr-3">
                   <Image layout='fill' src="/mail-footer.svg" />
@@ -44,9 +44,9 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
              
             </div>
           </div>
-          <div className=" space-y-1  flex-1 tablet:col-start-1 tablet:cols-end-2">
+          <div className=" space-y-4  flex-1 tablet:col-start-1 tablet:cols-end-2">
             <div>
-              <h3 className="font-bold">Công ty</h3>
+              <h3 className="font-bold  mb-4">Công ty</h3>
             </div>
             <div>
                 Về chúng tôi
@@ -70,9 +70,9 @@ const Footer: React.FC<IFooter> = ({ ...footerProps }) => {
                 Chính sách bảo mật
             </div>
           </div>
-          <div className="space-y-1  flex-1 tablet:col-start-2 tablet:cols-end-3">
+          <div className="space-y-4  flex-1 tablet:col-start-2 tablet:cols-end-3">
             <div>
-              <h3 className="font-bold">Phát hiện</h3>
+              <h3 className="font-bold  mb-4">Phát hiện</h3>
             </div>
             <div>
                 Nhà nghiên cứu

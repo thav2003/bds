@@ -14,7 +14,7 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
             {...headerProps}
             className={`w-full flex flex-col relative items-center py-5 shadow z-10 select-none gap-4`}>
            
-            <div className="absolute  inset-x-0  px-4  w-[50px]  ">
+            {router.pathname!=='/' &&<div className="absolute  inset-x-0  px-4  w-[50px]  ">
                 <a onClick={()=>{
                     router.back()
                    
@@ -24,7 +24,7 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
                     </div>
                 </a>
                 
-            </div>
+            </div>}
             <div className=" w-11/12 flex items-center justify-between">
                 <div className="flex flex-grow items-center justify-center">
                     <Link href="/">

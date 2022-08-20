@@ -56,7 +56,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             className={`w-full fixed bg-white  flex flex-col px-10 justify-center  items-center p-5 shadow z-[80] select-none `}
         >
             <div className=" w-9/12 flex  items-center justify-between ">
-
+                
                 <div className="flex  w-1/2  space-x-4  ">
                     <Link href="/" >
                         <a className="w-1/2 ">
@@ -238,7 +238,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                             </div>
                         </div>
                     </div>
-                
+                  
                         
                     <select name="prices" id="prices"  className='filter text-xs pr-8 border-gray-400 flex-shrink'>
                         <option value="1">Giá thuê</option>

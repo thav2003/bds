@@ -5,7 +5,7 @@ const CardHome2:React.FC<Card>=(props)=>{
     return(
         <div  className=" w-full select-none h-[17rem] mb-2">
              <div  className="flex flex-col   h-full  w-full shadow  rounded-lg flex-grow ">
-                <div className="w-full flex-[1_0_65%] grid gap-1">
+                <div className="w-full flex-[1_0_45%] grid gap-1">
                     <div className="col-start-1 col-end-4 row-span-2">
                         <div className="w-full h-full   relative">
                             <Image width="100%" height="100%" layout="fill"   src={data.image} className="rounded-l-lg rounded-b-[0px]"/>
@@ -29,7 +29,7 @@ const CardHome2:React.FC<Card>=(props)=>{
                         <div className="flex flex-col gap-2 tablet:col-start-1 tabletcol-end-2 tablet:col-span-2">
 
                         
-                            <h3 className="text-base  font-semibold text-purple-600  ">{`${data.prices} triệu/${data.followBy}`}</h3>
+                            <h3 className="text-base  font-semibold text-purple-600  ">{`${data.prices} triệu`}<span className="tablet:hidden">{`/${data.followBy}`}</span></h3>
                             <p className=" truncate whitespace-normal text-sm font-bold ">{data.title}</p>
                         </div>
                         <div className="  flex flex-row w-full  flex-wrap tablet:text-xs gap-2  tablet:gap-1 tablet:col-start-1 tabletcol-end-2 ">

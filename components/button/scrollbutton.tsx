@@ -51,9 +51,9 @@ const ScrollButton = (props:any) =>{
                 </div>
             </div>
             :
-            <button onClick={scrollToTop} >
-                <div className="relative w-10 h-10 rotate-180 bg-gray-500 opacity-50">
-                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/down_button_grey.svg"/>
+            <button onClick={scrollToTop} className="bg-[#fefefe] h-10 w-10 flex items-center justify-center rounded-full">
+                <div className="relative w-5 h-5 rotate-90 ">
+                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/arrow-red.svg"/>
                 </div>
             </button>
             }

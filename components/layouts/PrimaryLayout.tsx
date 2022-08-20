@@ -30,7 +30,7 @@ const PrimaryLayout:React.FC<IPrimaryLayout>=({
             {!isMobile ? (<Header/>):(<HeaderMobile/>)}
             
             <main className={`${!isMobile && "mt-[80px]"}`}>{children}</main>
-            <ScrollButton isMobile={isMobile} className="bottom-[20%] left-[90%]"/>
+            <ScrollButton isMobile={isMobile} className={`bottom-[20%] ${isMobile? "left-[85%]":"left-[90%]"}`}/>
             <div className="m-auto" />
            {!isMobile ? <Footer/> : isMobile && (router.pathname==='/'||router.pathname==='/query/[id]') && <Footer/> }
             

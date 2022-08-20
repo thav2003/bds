@@ -205,4 +205,4 @@ export default connect<{},{},any>(mapState)(reduxForm({
     validate, // <--- validation function given to redux-form
     warn, // <--- warning function given to redux-form
     enableReinitialize : true
-  })(ContactForm as any))
+})(ContactForm as any))

@@ -82,7 +82,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         <div className="relative h-5 w-5">
                             <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg"  className="w-5 h-5"/>
                         </div>
-                        <h2>Tìm kiếm nhiều nhất</h2>
+                        <h2 className="font-bold">Tìm kiếm nhiều nhất</h2>
                     </div>
                     <div className="bg-slate-100 py-4  shadow-xl   rounded-lg  tablet:overflow-x-auto tablet:overflow-y-hidden">
                         <div className="tablet:min-w-[900px] w-full flex  flex-row">
@@ -140,9 +140,9 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         <div className="w-5 h-5 relative">
                         <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg" className="w-5 h-5"/>
                         </div>
-                        <h2>Cho thuê chung cư mới nhất</h2>
+                        <h2 className="font-bold">Cho thuê chung cư mới nhất</h2>
                     </div>
-                    <div className="flex flex-row flex-wrap gap-4 tablet:flex-col">
+                    <div className="grid grid-cols-4 tablet:flex  tablet:flex-col gap-4">
                         {isMobile ? <CardHome2 data={data[0]}/> :  <CardHome data={data[0]}/>}
                         <CardHome data={data[1]} />
                         <CardHome data={data[2]}/>
@@ -163,7 +163,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                             <div  className="w-5 h-5 relative" >
                             <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg" className="w-5 h-5"/>
                             </div>
-                            <h2>Tin tức</h2>
+                            <h2 className="font-bold">Tin tức</h2>
                         </div>
                      
                         

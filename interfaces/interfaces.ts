@@ -19,6 +19,7 @@ export interface DataProps{
     author: string;
     datetime: Date;
     image:string;
+    image2:string
 }
 export interface Card extends React.ComponentPropsWithoutRef<'div'> {
     data:DataProps,

@@ -86,13 +86,14 @@
         @apply text-red-500
     }
     .cardTitle{
-
+      font-size:14px
     }
     .cardHead{
 
     }
     .cardInfo{
       font-size:12px;
+      @apply text-gray-500
     }
     .navBarButton{
       font-size:14px;
@@ -106,6 +107,7 @@
     }
     .cardText{
       font-size:14px;
+    
     }
     .indicator{
       overflow: hidden;
