@@ -1,17 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
-import useDevice from '../hooks/useDevice';
 import { NextPageWithLayout } from '../page';
 
 const postPage: NextPageWithLayout = () => {
-  const { isMobile } = useDevice();
-  const [IsMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    if (isMobile) setIsMobile(true);
-  }, []);
+ 
   return (
     <div className="flex flex-col mt-5 tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
       <div className="home-row pt-3">

@@ -1,23 +1,19 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
-import useDevice from '../hooks/useDevice';
 import { NextPageWithLayout } from '../page';
-
 const postDetail: NextPageWithLayout = () => {
-  const { isMobile } = useDevice();
-  const [IsMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    if (isMobile) setIsMobile(true);
-  }, []);
+  
   return (
     <div className="flex flex-col tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
       <div className="home-row py-10">
         <div className="w-8/12 tablet:w-full">
           <div className="flex items-center gap-x-1">
-            <a href="/" className="text-[#216bfe] text-sm">
-              Trang chủ
-            </a>
+            <Link href="/">
+              <a  className="text-[#216bfe] text-sm">
+                Trang chủ
+              </a>
+            </Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="12"
@@ -33,9 +29,11 @@ const postDetail: NextPageWithLayout = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <a href="/tin-tuc" className="text-[#216bfe] text-sm">
-              Tin tức
-            </a>
+            <Link href="/tin-tuc">
+              <a  className="text-[#216bfe] text-sm">
+                Tin tức
+              </a>
+            </Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="12"

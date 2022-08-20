@@ -1,14 +1,8 @@
-import { useEffect, useState } from 'react';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
-import useDevice from '../hooks/useDevice';
 import { NextPageWithLayout } from '../page';
 
 const qaaPage: NextPageWithLayout = () => {
-  const { isMobile } = useDevice();
-  const [IsMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    if (isMobile) setIsMobile(true);
-  }, []);
+
   return (
     <div className="flex flex-col tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
       <div className="home-row py-10">
