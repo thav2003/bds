@@ -86,7 +86,7 @@ const CardHome:React.FC<Card>=(props)=>{
                     
                     <div className="boder-solid border-t-[1px] py-1 tablet:hidden flex justify-between items-center">
                         <div className="flex flex-row items-center space-x-1">
-                            <div className="h-7 w-7 relative">
+                            <div className="h-6 w-6 relative">
                                 <Image layout='fill' src="/default-user.svg" />
                             </div>
                             <p className="cardAuthor font-semibold"> {data.author}</p>

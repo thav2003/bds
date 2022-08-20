@@ -13,8 +13,8 @@ export const RenderDropLeft=({action,icon,className}:any):any=>{
       <div >
         <button type="button" 
               
-               onClick={action} className={`absolute z-[4] -top-8 right-2 flex  items-center ${className}`}>
-              <div className="w-5 h-5 relative">
+               onClick={action} className={`absolute z-[4]  top-0 ml-1 flex  items-center ${className}`}>
+              <div className="w-4 h-5 relative">
                 <Image width="100%" height="100%" layout="fill" objectFit="contain"   src={icon} className="w-full h-5"/>
                </div>
         
@@ -268,7 +268,7 @@ export const RenderCheckbox=({
                 {isComponentVisible && 
              
                     
-                    <div className="absolute inset-x-1/2 top-5 bg-[#f7f7f7] shadow-round w-[18rem] z-[60] ">
+                    <div className="absolute   bg-[#fefefe] shadow-round w-[18rem] z-[60] ">
                           <RenderInfo data={data}/>
                     </div>
            
@@ -292,10 +292,10 @@ export const RenderToggle=({
     }
     return(
       <div>
-          
+       
          <label htmlFor={id} className="inline-flex relative items-center cursor-pointer item-center">
-              <input {...input}  type={type} id={id} className="sr-only peer"/>
-              <div className="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              <input {...input}  type={type} id={id} className="sr-only peer "/>
+              <div className="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-['x'] after:absolute after:top-[2px] after:left-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
               <span className="ml-3 text-sm font-semibold text-gray-900 dark:text-gray-300 ">{label}</span>
             
               <div ref={ref}>
@@ -303,7 +303,7 @@ export const RenderToggle=({
                 {isComponentVisible && 
              
                     
-                    <div className="absolute inset-x-1/2 top-5 bg-[#f7f7f7] shadow-round w-[18rem] z-[60] ">
+                    <div className="absolute top-5 bg-[#fefefe] shadow-round w-[18rem] z-[60] ">
                           <RenderInfo data={data}/>
                     </div>
             
@@ -394,7 +394,7 @@ export const RenderPopUp=({
                 
         >
           {change  ? change : label}
-          <div className="absolute right-3 top-1">
+          <div className="absolute right-1 top-[0.25rem]">
             <div className="relative  h-8 w-8">
               <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/down_button_grey.svg" />
             </div>
@@ -433,12 +433,21 @@ export const RenderPopUp=({
               <div className="w-full flex flex-col  p-5 bg-white rounded-b-lg ">
                 <div className=" w-full flex flex-col  space-y-4  ">
                   
-                  <div >
+                  <div className="relative w-full">
                     <input {...input}  placeholder={label} type={type} onChange={e => setChange(e.target.value)}  value={change} autoComplete="off" className={classNameInput}/>
-                  
-                    <div className="relative" >
+                 
+                            <button type="button" 
+                                
+                                className={`absolute z-[4] top-2 right-2 flex  items-center`}>
+                                <div className="w-6 h-7 relative">
+                                    <Image  layout="fill" objectFit="contain"   src={renderDropLeftIcon} />
+                                </div>
+                            
+                            </button>
+                 
+                    {/* <div className="relative" >
                       <RenderDropLeft action={search} icon={renderDropLeftIcon}/>
-                    </div>
+                    </div> */}
                     
                   </div>
                   <div className="overflow-y-auto h-[50vh] tablet:h-[100vh] w-full relative bnone">
@@ -494,9 +503,9 @@ export const RenderPopUp=({
   
 export const RenderInfo=({data}:any)=>{
     return(
-      <div className="p-3 px-4">
+      <div className="p-3 px-4 w-[20rem] ">
           <p className="font-semibold">Số lượng tối đa được tải lên</p>
-          <ul className="list-square list-inside">
+          <ul className="list-square list-inside ">
             {data.map((item:any,index:any):any=>{
               return(
                 <li key={index}>
@@ -621,7 +630,7 @@ export const RenderLink=({
                   {isComponentVisible && data &&
               
                       
-                      <div className="absolute inset-x-1/2 top-5 bg-[#f7f7f7] shadow-round w-[18rem] z-[60] ">
+                      <div className="absolute  top-5 bg-[#fefefe] shadow-round w-[18rem] z-[60] ">
                             <RenderInfo data={data}/>
                       </div>
               

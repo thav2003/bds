@@ -5,12 +5,13 @@ import Image from 'next/image';
 const ScrollButton = (props:any) =>{
     const {isMobile,className,isSubmitButton,submitting}=props
     const [visible, setVisible] = useState(false)
+    const body = document.body
+    const html = document.documentElement;
+    const height = Math.max( body.scrollHeight, body.offsetHeight,html.clientHeight, html.scrollHeight, html.offsetHeight );
+
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
-        const body = document.body
-        const html = document.documentElement;
-        const height = Math.max( body.scrollHeight, body.offsetHeight,html.clientHeight, html.scrollHeight, html.offsetHeight );
-
+       
         if(!isSubmitButton){
             if (scrolled > 300){
                 setVisible(true)

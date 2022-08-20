@@ -21,7 +21,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     
     
     return(
-        <div className="flex flex-col mt-[4.5rem] tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
+        <div className="flex flex-col mt-[4.5rem] tablet:mt-3 justify-center placeholder-red-500 mb-8 ">
             {!isMobile &&<div className="home-row tablet:hidden ">
                 <div className="w-9/12 bigger:w-7/12">
                    
@@ -142,7 +142,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         </div>
                         <h2 className="font-bold">Cho thuê chung cư mới nhất</h2>
                     </div>
-                    <div className="grid grid-cols-4 tablet:flex  tablet:flex-col gap-4">
+                    <div className="grid grid-cols-4 tablet:flex  tablet:flex-col gap-x-4 gap-y-8  bigger:gap-8 tablet:gap-4">
                         {isMobile ? <CardHome2 data={data[0]}/> :  <CardHome data={data[0]}/>}
                         <CardHome data={data[1]} />
                         <CardHome data={data[2]}/>
@@ -178,7 +178,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         </div>
                     </div>
                     <div className="tablet:overflow-x-auto tablet:overflow-y-hidden ">
-                        <div className="w-full  tablet:min-w-[900px] flex    flex-wrap  ">
+                        <div className="w-full  tablet:min-w-[900px] flex    flex-wrap ">
                             <CardNews />
                             <CardNews />
                             <CardNews />

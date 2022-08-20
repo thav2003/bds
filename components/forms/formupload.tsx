@@ -3,14 +3,50 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 import {
-  RenderCheckbox, RenderCountToggle, RenderDrop, RenderInput, RenderInputTime, RenderLink,
-  RenderLink2, RenderPopUp, RenderRadio, RenderTextArea, RenderToggle
+  RenderCheckbox, RenderCountToggle, RenderDrop, RenderDropLeft, RenderInfo, RenderInput, RenderInputTime, RenderLink,
+  RenderLink2, RenderPopUp, RenderRadio, RenderTextArea
 } from '../../helps/render';
 import type { IValues } from '../../helps/validate';
 import { validate, warn } from '../../helps/validate';
+import useBlur from '../../hooks/useBlur';
 import useDevice from '../../hooks/useDevice';
 import ScrollButton from '../button/scrollbutton';
+const RenderToggle=({
+  id,data,
+  input,
+  label,
+  type,
+}:any):any=>{
+  const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+  const handleClick=()=>{
+    setIsComponentVisible(true)
+  }
+  return(
+    <div>
+     
+       <label htmlFor={id} className="inline-flex relative items-center cursor-pointer item-center">
+            <input {...input}  type={type} id={id} className="sr-only peer "/>
+            <div className="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            <span className="ml-3 text-sm font-semibold text-gray-900 dark:text-gray-300 ">{label}</span>
+          
+            <div ref={ref}>
+              <RenderDropLeft action={handleClick} icon="/info-icon.svg" className="-top-0 -right-6 "/>
+              {isComponentVisible && 
+           
+                  
+                  <div className="absolute top-5 bg-[#fefefe] shadow-round w-[18rem] z-[60] ">
+                        <RenderInfo data={data}/>
+                  </div>
+          
+              }
+            </div>
 
+
+        </label>
+    </div>
+  )
+
+}
 const data_infos=new Array(5).fill({
   name:"Vip đặc biệt 24 ảnh"
 })
