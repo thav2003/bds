@@ -8,10 +8,10 @@ const CardHome:React.FC<Card>=(props)=>{
     const img=2
     const video=2
     return(
-        <div  className={` tablet:w-full ${!isVertical ? "flex-[1_0_21%] h-80": "h-full "}  tablet:p-0 select-none  rounded-lg`}>
-            <div  className={`flex ${!isVertical && "flex-col"}  tablet:p-2 gap-1 tablet:h-full tablet:gap-2  tablet:flex-row h-full   w-full shadow   rounded-lg flex-grow` }>
-                <div className={` ${!isVertical && "flex-[1_0_45%]" } tablet:flex-[1_0_30%]  relative  indicator`}>
-                    {!isVertical && <div className=" absolute tablet:hidden z-[60] bottom-2 left-2 opacity-90">
+        <div  className={` tablet:w-full ${!isVertical ? "flex-[1_0_21%] h-80": "h-full p-2 border-solid border-[1px]"} shadow tablet:p-0 select-none  rounded-lg`}>
+            <div  className={`flex ${!isVertical ? "flex-col ":""}  tablet:p-2 gap-1 tablet:h-full tablet:gap-2  tablet:flex-row h-full   w-full    rounded-lg flex-grow` }>
+                <div className={` ${!isVertical ? "flex-[1_0_45%]" :"flex-[1_0_20%] "} tablet:flex-[1_0_30%]  relative  indicator`}>
+                    { <div className=" absolute tablet:hidden z-[60] bottom-2 left-2 opacity-90">
                         <div className="gap-2 flex ">
                             <div className="bg-gray-700  rounded-md p-1  flex items-end">
                                 <div className="flex  items-center gap-1">

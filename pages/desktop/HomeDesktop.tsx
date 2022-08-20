@@ -22,8 +22,8 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     
     return(
         <div className="flex flex-col mt-[4.5rem] tablet:mt-3 justify-center placeholder-red-500 mb-4 ">
-            {!isMobile &&<div className="home-row tablet:hidden">
-                <div className="w-9/12 ">
+            {!isMobile &&<div className="home-row tablet:hidden ">
+                <div className="w-9/12 bigger:w-7/12">
                    
                     <div className="h-56 laptop:h-40 ">
                        
@@ -70,14 +70,14 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
      
     
             <div className="home-row">
-                <div className="w-9/12 text-center tablet:w-full tablet:text-left">
+                <div className="w-9/12 text-center tablet:w-full tablet:text-left bigger:w-7/12">
                     <h1 className="font-bold">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h1>
                     <p className="text-sm text-left">Cho thuê căn hộ chung cư mini: Giá rẻ, chất lượng, chính chủ, đầy đủ nội thất, an ninh đảm bảo. Đăng tin cho thuê căn hộ hiệu quả với 1.000.000+ truy cập mỗi tháng</p>
                 </div>
             </div>
             
             <div className="home-row "> 
-                <div className="w-9/12 space-y-4  tablet:w-full   "> 
+                <div className="w-9/12 space-y-4  tablet:w-full bigger:w-7/12  "> 
                     <div className="flex flex-row items-center space-x-2">
                         <div className="relative h-5 w-5">
                             <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg"  className="w-5 h-5"/>
@@ -135,7 +135,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row">
-                <div  className="w-9/12 space-y-4 tablet:w-full">
+                <div  className="w-9/12 space-y-4 tablet:w-full bigger:w-7/12">
                     <div className="flex flex-row items-center space-x-2">
                         <div className="w-5 h-5 relative">
                         <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg" className="w-5 h-5"/>
@@ -155,7 +155,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row ">
-                <div  className="w-9/12 space-y-4 tablet:w-full  overflow-hidden">
+                <div  className="w-9/12 space-y-4 tablet:w-full bigger:w-7/12 overflow-hidden">
                     <div className="flex  w-full justify-between">
 
                   
@@ -190,7 +190,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 </div>
             </div>
             <div className="home-row">
-                <div  className="w-9/12 space-y-4 px-6 tablet:w-full tablet:px-0">
+                <div  className="w-9/12 space-y-4 px-6 tablet:w-full tablet:px-0 bigger:w-7/12">
                     <div className="w-full bg-[#fefefe] p-5  shadow-md border-[1px] border-solid border-gray-100 rounded-lg">
                         <div className="flex justify-center items-center">
                             <h2 className="font-bold">CHO THUÊ CĂN HỘ CHUNG CƯ - CHO THUÊ CHUNG CƯ MINI</h2>

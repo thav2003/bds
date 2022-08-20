@@ -55,7 +55,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             {...headerProps}
             className={`w-full fixed bg-white  flex flex-col px-10 justify-center  items-center p-5 shadow z-[80] select-none `}
         >
-            <div className=" w-9/12 flex  items-center justify-between ">
+            <div className=" w-9/12 flex bigger:w-7/12 items-center justify-between ">
                 
                 <div className="flex  w-1/2  space-x-4  ">
                     <Link href="/" >
@@ -223,7 +223,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                 </div>
             </div>
             {patnName  && 
-                <div className="w-9/12  flex flex-row  pt-7  items-center flex-wrap gap-2 ">
+                <div className="w-9/12 bigger:w-7/12 flex flex-row  pt-7  items-center flex-wrap gap-2 ">
                     <div className="relative flex-shrink ">
                         <select name="location" id="locations"  className='filter text-xs pl-6 pr-8 border-gray-400'>
                             

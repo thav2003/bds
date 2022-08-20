@@ -144,10 +144,10 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
     }
 
     return(
-        <div className={`flex flex-col ${!isMobile&&"mt-[4.5rem]"}  justify-center  mb-4 `}>
+        <div className={`flex flex-col ${!isMobile&&"mt-[5.5rem]"}  justify-center  mb-4 `}>
             
             
-            <div className="home-row py-2 ">
+            <div className="home-row py-2 mb-3">
                 <div className={`${!isMobile ? "w-9/12" : "w-full"} flex flex-col  gap-2`}>
                     <ol className=" flex items-center text-sm ">
                         <li className="pathMenu ">
@@ -163,7 +163,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                         </li>
                     
                     </ol>
-                    <h2 className="font-bold">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h2>
+                    <h1 className="font-bold ">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h1>
                 </div>  
                 
             </div>
@@ -217,7 +217,7 @@ const QueryPage:NextPageWithLayout<Props>=(props) => {
                                         pages.map((page:any, i:number) =>{
                                             
                                             return(
-                                                <div key={i} className={`${active!==i-1 && "hidden"}  flex-col flex overflow-hidden gap-4 max-h-[3750px] tablet:max-h-[2800px] relative `}>
+                                                <div key={i} className={`${active!==i-1 && "hidden"} w-full flex-col flex overflow-hidden gap-4 max-h-[3750px] tablet:max-h-[2800px] relative `}>
                                                 
                                                     {page.map((item:any,i:number)=>{
                                                         return(

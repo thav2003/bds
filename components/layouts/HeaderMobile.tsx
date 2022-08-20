@@ -39,9 +39,27 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
             </div>
             {router.pathname==='/' && 
                 <>
-                <div className="w-full   flex flex-row px-2   items-center flex-wrap gap-2">
-                    <div className="w-full">
-                        <input type="text" className="w-full"/>
+                <div className="w-full   flex flex-row px-2   items-center flex-wrap gap-4">
+                    <div className="w-full relative">
+                        <input type="text" className="w-full text-placeholder
+                            placeholder:text-slate-400 
+                            bg-gray-200 rounded pl-3 py-2 pr-10
+                            shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                            border border-slate-300 rounded-lg"
+                            placeholder="Nhập địa điểm, dự án"
+                            />
+
+                        <div >
+                            <button type="button" 
+                                
+                                className={`absolute z-[4] top-2 right-2 flex  items-center`}>
+                                <div className="w-6 h-7 relative">
+                                    <Image  layout="fill" objectFit="contain"   src="/search_pink.svg" />
+                                </div>
+                            
+                            </button>
+                        
+                        </div>
                     </div>
                     <div className="flex w-full gap-2">
                         <div className="relative flex-[7_1_0%] ">

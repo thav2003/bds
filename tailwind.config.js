@@ -18,6 +18,7 @@ module.exports = {
       tablet: {max: '768px'},
       laptop: {max: '1024px'},
       desktop: {max: '1200px'},
+      bigger: '1650px'
       
       
     },
