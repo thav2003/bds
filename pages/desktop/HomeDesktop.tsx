@@ -85,10 +85,10 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         <h2 className="font-bold">Tìm kiếm nhiều nhất</h2>
                     </div>
                     <div className="bg-slate-100 py-4  shadow-xl   rounded-lg  tablet:overflow-x-auto tablet:overflow-y-hidden">
-                        <div className="tablet:min-w-[900px] w-full flex  flex-row">
+                        <div className="tablet:min-w-[900px] w-full flex  flex-row ">
                             <div className=" flex-[5_1_0%] ">
-                                <div className=" flex space-x-3 ">
-                                    <div className="w-[45%]  h-48 rounded-md relative">
+                                <div className=" flex space-x-3 h-full">
+                                    <div className="w-[45%]  h-full rounded-md relative">
                                         
                                         <Image  layout="fill" src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
                                      
@@ -98,7 +98,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                                         </div>
                                         
                                     </div>
-                                    <div className="w-[45%]  h-48 rounded-md relative">
+                                    <div className="w-[45%]  h-full rounded-md relative">
                                       
                                             <Image  layout="fill"  src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
                                      
@@ -110,23 +110,96 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                                 
                                 </div>
                             </div>
-                            <div className=" flex-[7_1_0%]   flex flex-row tablet:gap-4">
-                                <div className="flex-[2_1_0%] tablet:flex-none">
-                                    <h4>Dự án nổi bật</h4>
+                            <div className="text-gray-500  flex-[7_1_0%]  gap-5 flex flex-row tablet:gap-4">
+                                <div className="flex-[2_1_0%] flex flex-col gap-1 tablet:flex-none">
+                                    <h4 className="font-semibold">Dự án nổi bật</h4>
                                     <div className="flex flex-row">
                                         <div className="w-5 h-5 relative">
                                             <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
                                         </div>
-                                        <p>Cho thuê căn hộ The Sun</p>
+                                        <p>Cho thuê căn hộ The Sun Avenue</p>
                                     </div>
-                                </div>
-                                <div className="flex-[2_1_0%] tablet:flex-none">
-                                    <h4>Khu vực nổi bật</h4>
                                     <div className="flex flex-row">
-                                    <div className="w-5 h-5 relative">
+                                        <div className="w-5 h-5 relative">
                                             <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
                                         </div>
-                                        <p>Cho thuê căn hộ The Sun</p>
+                                        <p>VinhHomes Ocean Park</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>VinhHomes Grand Park</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Centena Thủ Thiêm</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Đảo Kim Cương - Diamond Island</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Cho thuê căn hộ The Sun Avenue</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>VinhHomes Grand Park</p>
+                                    </div>
+                                </div>
+                                <div className="flex-[2_1_0%] flex flex-col gap-1 tablet:flex-none">
+                                    <h4 className="font-semibold">Khu vực nổi bật</h4>
+                                    
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Cho thuê căn hộ Quận 1</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Cho thuê căn hộ Quận 7</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Cho thuê căn hộ Hoàn Kiếm</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Cho thuê căn hộ Thủ Đức</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Cho thuê căn hộ Bình Thạnh</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Cho thuê căn hộ Ba Đình</p>
+                                    </div>
+                                    <div className="flex flex-row">
+                                        <div className="w-5 h-5 relative">
+                                            <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
+                                        </div>
+                                        <p>Cho thuê căn hộ Đống Đa</p>
                                     </div>
                                 </div>
                             </div>
