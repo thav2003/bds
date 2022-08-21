@@ -69,14 +69,14 @@ const direction=[
 ]
 
 
+
 const UploadForm:React.FC<IValues>=(props) => {
   const { handleSubmit, pristine, reset, submitting,status,image,du_an } = props
 
- 
-
   const {isMobile} =useDevice()
 
-
+ 
+ 
 
   return (
     <form className="space-y-5 mb-8 " id="formUpload" onKeyPress={(event:any):any=>{
@@ -762,8 +762,10 @@ const UploadForm:React.FC<IValues>=(props) => {
 
     {/*container 6 */}
     <div className="p-5 px-14 bg-white space-y-4 rounded-xl flex justify-center items-center  tablet:px-8">
-          {!isMobile && <ScrollButton className="left-[0] bottom-[8%] " submitting={submitting} isSubmitButton={true}/>}
-          <button type="submit" disabled={submitting} className="bg-pink-800 w-full p-3 rounded-lg text-white font-bold">Đăng tin</button>
+          {!isMobile && <ScrollButton   className="left-[0] bottom-[8%] " submitting={submitting} isSubmitButton={true}/>} 
+     
+    
+        <button id="buttonB" type="submit" disabled={submitting} className="bg-pink-800 w-full p-3 rounded-lg text-white font-bold">Đăng tin</button>
 
     </div>
 

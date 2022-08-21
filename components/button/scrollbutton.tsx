@@ -1,26 +1,29 @@
-import { useState } from 'react';
-
 import Image from 'next/image';
+import { useState } from 'react';
   
 const ScrollButton = (props:any) =>{
     const {isMobile,className,isSubmitButton,submitting}=props
-    const [visible, setVisible] = useState(false)
-    const body = document.body
-    const html = document.documentElement;
-    const height = Math.max( body.scrollHeight, body.offsetHeight,html.clientHeight, html.scrollHeight, html.offsetHeight );
 
+    const [visible, setVisible] = useState(false)
+    
+
+   
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
-       
+        const body = document.body
+        const html = document.documentElement;
+        const height = Math.max( body.scrollHeight, body.offsetHeight,html.clientHeight, html.scrollHeight, html.offsetHeight );
         if(!isSubmitButton){
             if (scrolled > 300){
                 setVisible(true)
             } 
-            else if (scrolled <= 300){
+            else if (scrolled <= 300 ){
                 setVisible(false)
             }
-        }else{
-            if (scrolled < 0.7*height){
+     
+        }
+        else if(isSubmitButton){
+            if (scrolled < 0.666*height){
                 setVisible(true)
             } 
             else {
@@ -47,7 +50,7 @@ const ScrollButton = (props:any) =>{
             <div className={`relative w-[100vw]  h-10`}>
                 <div className="w-full h-10  flex items-center justify-center">
                  
-                        <button type="submit" disabled={submitting} className="bg-pink-800 h-auto p-3 rounded-lg text-white text-xs font-bold">Đăng tin</button>
+                        <button id={isSubmitButton && "buttonA"} type="submit" disabled={submitting} className="bg-pink-800 h-auto p-3 rounded-lg text-white text-xs font-bold">Đăng tin</button>
                  
                 </div>
             </div>
