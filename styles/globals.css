@@ -86,7 +86,7 @@
         @apply text-red-500
     }
     .cardTitle{
-      font-size:14px
+      font-size:13px
     }
     .cardHead{
 
@@ -249,6 +249,9 @@
         cursor: pointer;
         color: green;
  
+      }
+      .shadow-e1{
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
       }
       
       

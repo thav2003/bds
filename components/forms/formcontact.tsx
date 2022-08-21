@@ -100,13 +100,13 @@ const ContactForm:React.FC< IProps> =(props:IProps)=>{
               }}>
 
 
-            <div className={`p-5 px-5  ${hidden ? "bg-transparent":"bg-white"} space-y-7 rounded-xl  tablet:px-3`}>
+            <div className={`p-5 px-5  ${hidden ? "bg-gray-50 shadow-e1 border-solid border-[1px]":"bg-white"} space-y-7 rounded-xl  tablet:px-3`}>
                 {!hidden && <div className="space-y-4">
                     <h2 className="font-bold">Liên hệ với chúng tôi</h2>
                     <div className="h-[2px] bg-gray-200 "></div>
                 </div>}
                  
-                <div className="flex gap-4">
+                <div className="flex gap-4 ">
                     {!hidden&&<div className="flex-[1_1_50%] space-y-4">
                         <p>Chúng tôi biết bạn có nhiều sự lựa chọn.Nhưng cảm ơn vì đã lựa chọn ABC.com</p>
                         <p><span className="font-semibold">Hotline:</span>090123456</p>

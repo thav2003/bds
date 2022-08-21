@@ -3,9 +3,9 @@ import type { Card } from '../../interfaces/interfaces';
 const CardHome2:React.FC<Card>=(props)=>{
     const {data} = props
     return(
-        <div  className=" w-full select-none h-[17rem] mb-2">
+        <div  className=" w-full select-none h-[17rem] mb-2 border-solid border-[1px] rounded-lg">
              <div  className="flex flex-col   h-full  w-full shadow  rounded-lg flex-grow ">
-                <div className="w-full flex-[1_0_45%] grid gap-1">
+                <div className="w-full flex-[1_0_45%] grid gap-3">
                     <div className="col-start-1 col-end-4 row-span-2">
                         <div className="w-full h-full   relative">
                             <Image width="100%" height="100%" layout="fill"   src={data.image} className="rounded-l-lg rounded-b-[0px]"/>

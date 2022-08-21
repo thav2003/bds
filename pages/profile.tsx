@@ -109,13 +109,13 @@ const PageProfile:NextPageWithLayout=()=>{
                                 /> 
                             
                             </div>
-                            <div className="space-y-2 ">
-                                <h1 className="font-medium">Nguyễn Văn Nam</h1>
-                                <p className="text-[14px]">Ngày tham gia XXX</p>
-                                <p className="flex items-center gap-1"><span className=" bg-green-400  h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800"></span>Đang hoạt dộng</p>
+                            <div className="space-y-2 w-[15rem]">
+                                <h1 className="font-medium text-xl">Nguyễn Văn Nam</h1>
+                                <p className="text-[13px]">Ngày tham gia XXX</p>
+                                <p className="flex items-center gap-1 text-[12px]"><span className=" bg-green-400  h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800"></span>Đang hoạt dộng</p>
                                 <div className="flex gap-4 ">
-                                    <button className="text-[13px]  flex items-center justify-center bg-purple-600 text-white font-semibold rounded-lg text-center w-[50%]  py-2">viber</button>
-                                    <button className="text-[13px]  flex items-center justify-center bg-white border-solid border-[1.5px] border-gray-200 font-semibold rounded-lg text-center w-[50%] py-2">Nhắn tin Zalo</button>
+                                    <button className="text-[13px]  flex items-center justify-center bg-purple-600 text-white font-semibold rounded-lg text-center w-[50%]  p-1">viber</button>
+                                    <button className="text-[13px]  flex items-center justify-center bg-white border-solid border-[1.5px] border-gray-200 font-semibold rounded-lg text-center w-[50%] p-1">Nhắn tin Zalo</button>
                                 </div>
 
                             </div>
@@ -237,7 +237,7 @@ const PageProfile:NextPageWithLayout=()=>{
                                 
                                 <p className="font-medium">Yêu cầu tư vấn</p>
                             
-                                <div className="bg-gray-100 rounded-lg">
+                                <div className=" rounded-lg ">
 
                                     <ContactForm hidden={true} onSubmit={showResults}/>
                                 </div>

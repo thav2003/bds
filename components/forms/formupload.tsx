@@ -100,7 +100,7 @@ const RenderPopUp=({
       >
         {change  ? change : label}
         <div className="absolute right-1 top-[0.25rem]">
-            <div className="relative  h-8 w-8">
+            <div className="relative  h-8 w-6">
               <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/down_button_grey.svg" />
             </div>
           </div>
@@ -147,7 +147,7 @@ const RenderPopUp=({
                             
                             </button>
                   </div>
-                <div className="overflow-y-auto h-[50vh] tablet:h-[100vh] w-full relative bnone">
+                <div className="overflow-y-auto h-[40vh] tablet:h-[100vh] w-full relative bnone">
              
                     <ListGroup>
                       <div className="divide-y-[1px]  ">
@@ -190,7 +190,7 @@ const RenderPopUp=({
                       
                  
             
-              </div>const
+              </div>
             </div>
           </div>
         </div>
@@ -354,18 +354,7 @@ const RenderDrop=({
   
   const [renderPrices,setRenderPrices]=useState<IPrices[]>([])
   const [stringBottom,setStringBottom]=useState<string>('')
-  const clear=()=>{
-    setChange('')
-  }
-  const handleClick=()=>{
-    setIsComponentVisible(true)
-  }
-  const selectItem=(item:any):any=>{
-   
-    input.onChange(input.value =`${item.name}`)
-    setChange(`${item.name}`)
-    setIsComponentVisible(false)
-  }
+ 
 
   useEffect(()=>{
     const temp:IPrices[]=[]
@@ -395,7 +384,18 @@ const RenderDrop=({
       setStringBottom('')
     }
   },[change,input])
- 
+  const clear=()=>{
+    setChange('')
+  }
+  const handleClick=()=>{
+    setIsComponentVisible(true)
+  }
+  const selectItem=(item:any):any=>{
+   
+    input.onChange(input.value =`${item.name}`)
+    setChange(`${item.name}`)
+    setIsComponentVisible(false)
+  }
   return(
     <div className="space-y-1">
       <label className="font-semibold">{label}</label>
@@ -406,18 +406,9 @@ const RenderDrop=({
         <input {...input}   placeholder={label} onClick={handleClick}   
                 type={type}
                 onChange={(e:any) => {
-                  if(isButton){
                     setChange(e.target.value)
-                  }
-              
                 }} 
-                onKeyDown={(e:any)=>{
-                  if(!((e.keyCode > 95 && e.keyCode < 106)
-                    || (e.keyCode > 47 && e.keyCode < 58) 
-                    || e.keyCode == 8) && type==="number") {
-                      setIsButton(false);
-                  }else setIsButton(true)
-                }}
+             
               
                 value={change} autoComplete="off"  className={classNameInput}/>
         
@@ -708,7 +699,7 @@ const RenderLink=({
   return(
     <div>
         
-        <div className="inline-flex relative items-center cursor-pointer item-center">
+        <div className="inline-flex relative items-center cursor-pointer item-center mb-2">
           <p className="font-semibold ">{label}</p>
           <RenderDropLeft action={handleClick} icon="/info-icon.svg" className="-top-0 -right-6 "/>
           <div ref={ref}>

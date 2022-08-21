@@ -87,7 +87,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                     <div className="bg-slate-100 py-4  shadow-xl   rounded-lg  tablet:overflow-x-auto tablet:overflow-y-hidden">
                         <div className="tablet:min-w-[900px] w-full flex  flex-row ">
                             <div className=" flex-[5_1_0%] ">
-                                <div className=" flex space-x-3 h-full">
+                                <div className=" flex space-x-5  h-full">
                                     <div className="w-[45%]  h-full rounded-md relative">
                                         
                                         <Image  layout="fill" src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
@@ -110,7 +110,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                                 
                                 </div>
                             </div>
-                            <div className="text-gray-500  flex-[7_1_0%]  gap-5 flex flex-row tablet:gap-4">
+                            <div className="text-gray-500  flex-[7_1_0%] text-xs gap-5 flex flex-row tablet:gap-4">
                                 <div className="flex-[2_1_0%] flex flex-col gap-1 tablet:flex-none">
                                     <h4 className="font-semibold">Dự án nổi bật</h4>
                                     <div className="flex flex-row">

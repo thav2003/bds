@@ -1,3 +1,4 @@
+import { ListGroup } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,18 +8,21 @@ import useBlur from '../../hooks/useBlur';
 import type { IHeader } from '../../interfaces/interfaces';
 import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
 
+const city=new Array(120).fill({
+    name:"Hồ Chí Minh" 
+})
 
 const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const router = useRouter()
     const authState = useSelector(selectAuthState);
     const [patnName,setPathName]=useState<boolean>(true)
     const dispatch = useDispatch();
+    const [isVisible,setIsVisible] = useState(true)
+    const [change,setChange]= useState('')
+    const [popUp,setPopUp] = useState(1)
+    
     const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
-    const handleClick=()=>{
-       setIsComponentVisible(!isComponentVisible)
-
-
-    }
+  
 
     useEffect(()=>{
         const setPath=()=>{
@@ -33,7 +37,22 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
         }
         setPath()
     },[router])
-    
+    const handleClick=()=>{
+        setIsComponentVisible(!isComponentVisible)
+ 
+ 
+     }
+    const onOpen=()=>{
+        setIsVisible(false)
+      }
+      const onClose=()=>{
+        setIsVisible(true)
+      }
+      const selectItem=(item:any):any=>{
+          setChange(item.name)
+  
+          setIsVisible(true)
+      }
     
     const submitLogout=()=>{
         
@@ -224,17 +243,238 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             </div>
             {patnName  && 
                 <div className="w-9/12 bigger:w-7/12 flex flex-row  pt-7  items-center flex-wrap gap-2 ">
-                    <div className="relative flex-shrink ">
-                        <select name="location" id="locations"  className='filter text-xs pl-6 pr-8 border-gray-400'>
-                            
-                            <option value="1">Toàn quốc</option>
-                            <option value="2">Thành phố Hồ Chí Minh</option>
-                            <option value="2">Opel</option>
-                            <option value="3">Audi</option>
-                        </select>
-                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-1 text-gray-700">
-                            <div className="w-6 h-5 relative">
-                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/khu_vuc.svg" className="w-6 h-5"/>
+                    <div >
+                        <button type="button" className={`w-[8rem] text-placeholder
+                                placeholder:text-slate-400  relative text-xs text-center
+                                bg-white rounded  py-2 pr-8
+                                shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                                border border-slate-300   `}  
+                                onClick={onOpen}
+                        >
+                            Toàn quốc
+                            <div className="absolute right-1 top-[0.25rem]">
+                                <div className="relative  h-6 w-6">
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/down_button_grey.svg" />
+                                </div>
+                            </div>
+                        </button>
+                       
+                        <div className={`${isVisible ? 'hidden' : 'block'} modal  flex justify-center items-center `}>
+                            <div className="modal-content  tablet:w-full tablet:h-full -translate-y-7  rounded-lg">
+                                <div className="w-full  bg-slate-50 flex flex-col  items-center     rounded-lg ">
+                                    {/* header */}
+                                    <div  className={`w-full mb-4  bg-white flex flex-col relative justify-center items-center py-5 rounded-t-lg shadow select-none gap-4 `}>
+                                        <div className="absolute flex inset-x-0 bottom-[25px] px-4  w-[50px]  ">
+                                            <a onClick={onClose}>
+                                                <div className="w-4 h-4 relative cursor-pointer">
+                                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/arrow-left.svg" />
+                                                </div>
+                                            </a>
+                                            
+                                        </div>
+
+                                        <h3 className="w-full text-center text-xl font-bold">Chọn khu vực</h3>
+
+                                        <div className="absolute flex  right-0 bottom-[25px]  px-4    w-[50px]  ">
+                                            <a onClick={onClose}>
+                                                <div className="w-4 h-4 relative cursor-pointer">
+                                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/closed-black.svg" />
+                                                </div>
+                                            </a>
+                                            
+                                        </div>
+                                    </div>
+                                    {/*slug*/}
+                                    <div className="w-full flex  px-5 pt-1 gap-3  bg-white">
+                                        {popUp===1 ? 
+                                            <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
+                                                <p className="text-purple-600">Tỉnh/Thành</p>
+                                            </div>
+                                            :
+                                            <div className="cursor-pointer" onClick={()=>setPopUp(1)}>
+                                                <p>Tỉnh/Thành</p>
+                                            </div>
+                                        }
+                                        {popUp===2 ? 
+                                            <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
+                                                <p className="text-purple-600">Quận/Huyện</p>
+                                            </div>
+                                            :
+                                            <div className="cursor-pointer" onClick={()=>setPopUp(2)}>
+                                                <p>Quận/Huyện</p>
+                                            </div>
+                                        }
+                                        {popUp===3 ? 
+                                            <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
+                                                <p className="text-purple-600">Phường/Xã</p>
+                                            </div>
+                                            :
+                                            <div className="cursor-pointer" onClick={()=>setPopUp(3)}>
+                                                <p>Phường/Xã</p>
+                                            </div>
+                                        }
+                             
+                                    </div>
+                                    {/* body */}
+                                    {popUp===1 && <div className="w-full flex flex-col  p-5 bg-white rounded-b-lg ">
+                                        <div className=" w-full flex flex-col  space-y-4  ">
+                                            
+                                            <div className="relative w-full">
+                                                <input   placeholder="Chọn Tỉnh/Thành" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
+                                                    className="              
+                                                        w-full text-placeholder
+                                                        placeholder:text-slate-400  
+                                                        bg-white pl-9 py-2 pr-10
+                                                        shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                                                        border border-slate-300 rounded-lg"
+                                                        />
+                                                
+                                                <button type="button" 
+                                                    
+                                                    className={`absolute z-[4] top-2 left-2 flex  items-center`}>
+                                                    <div className="w-6 h-7 relative">
+                                                        <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
+                                                    </div>
+                                                
+                                                </button>
+                                            </div>
+                                            <div className="overflow-y-auto h-[40vh]  w-full relative bnone">
+                                            <ul className="list-square list-inside p-2">
+                                                <div className="divide-y-[1px]  ">
+                                                
+                                                
+
+
+                                                {city.map((item:any,index:any):any=>{
+                                                    return(
+                                                    <li className="py-2 text-base relative cursor-pointer hover:bg-gray-200 hover:rounded-lg" key={index} onClick={()=>selectItem(item)}
+                                                    >
+                                                   
+                                                        <a>{item.name}</a>
+                                                        <div className={`absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                            <div className="w-4 h-7 relative -rotate-90 opacity-50">
+                                                                <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                                            </div>
+                                                        </div>
+                                                   
+                                                        
+                                                    </li>
+                                                    )
+                                                })}
+                                                    <div></div>
+                                                </div>
+                                            </ul>
+                                       
+                                            
+                                            
+                                        
+                                            
+                                            </div>
+                                        </div>
+                                    </div>}
+                                    {popUp===2 && <div className="w-full flex flex-col  p-5 bg-white rounded-b-lg ">
+                                        <div className=" w-full flex flex-col  space-y-4  ">
+                                            
+                                            <div className="relative w-full">
+                                                <input   placeholder="Chọn Quận/Huyện" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
+                                                    className="              
+                                                        w-full text-placeholder
+                                                        placeholder:text-slate-400  
+                                                        bg-white pl-3 py-2 pr-10
+                                                        shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                                                        border border-slate-300 rounded-lg"
+                                                        />
+                                                
+                                                <button type="button" 
+                                                    
+                                                    className={`absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                    <div className="w-6 h-7 relative">
+                                                        <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
+                                                    </div>
+                                                
+                                                </button>
+                                            </div>
+                                            <div className="overflow-y-auto h-[40vh]  w-full relative bnone">
+                                            <ListGroup>
+                                                <div className="divide-y-[1px]  ">
+                                                
+                                                
+
+
+                                                {city.map((item:any,index:any):any=>{
+                                                    return(
+                                                    <ListGroup.Item key={index} onClick={()=>selectItem(item)}
+                                                    >
+                                                        <div className="py-1">
+                                                        {item.name}
+                                                        </div>
+                                                        
+                                                    </ListGroup.Item>
+                                                    )
+                                                })}
+                                                    <div></div>
+                                                </div>
+                                            </ListGroup>
+                                       
+                                            
+                                            
+                                        
+                                            
+                                            </div>
+                                        </div>
+                                    </div>}
+                                    {popUp===3 && <div className="w-full flex flex-col  p-5 bg-white rounded-b-lg ">
+                                        <div className=" w-full flex flex-col  space-y-4  ">
+                                            
+                                            <div className="relative w-full">
+                                                <input   placeholder="Chọn Phường/Xã" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
+                                                    className="              
+                                                        w-full text-placeholder
+                                                        placeholder:text-slate-400  
+                                                        bg-white pl-3 py-2 pr-10
+                                                        shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                                                        border border-slate-300 rounded-lg"
+                                                        />
+                                                
+                                                <button type="button" 
+                                                    
+                                                    className={`absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                    <div className="w-6 h-7 relative">
+                                                        <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
+                                                    </div>
+                                                
+                                                </button>
+                                            </div>
+                                            <div className="overflow-y-auto h-[40vh]  w-full relative bnone">
+                                            <ListGroup>
+                                                <div className="divide-y-[1px]  ">
+                                                
+                                                
+
+
+                                                {city.map((item:any,index:any):any=>{
+                                                    return(
+                                                    <ListGroup.Item key={index} onClick={()=>selectItem(item)}
+                                                    >
+                                                        <div className="py-1">
+                                                        {item.name}
+                                                        </div>
+                                                        
+                                                    </ListGroup.Item>
+                                                    )
+                                                })}
+                                                    <div></div>
+                                                </div>
+                                            </ListGroup>
+                                       
+                                            
+                                            
+                                        
+                                            
+                                            </div>
+                                        </div>
+                                    </div>}
+                                </div>
                             </div>
                         </div>
                     </div>
