@@ -43,7 +43,7 @@ const HeaderMobile: React.FC<IHeader>=({ ...headerProps })=>{
                     <div className="w-full relative">
                         <input type="text" className="w-full text-placeholder
                             placeholder:text-slate-400 
-                            bg-gray-200 rounded pl-3 py-2 pr-10
+                            bg-gray-200  pl-3 py-2 pr-10
                             shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                             border border-slate-300 rounded-lg"
                             placeholder="Nhập địa điểm, dự án"

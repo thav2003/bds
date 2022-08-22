@@ -1,28 +1,118 @@
-import { ListGroup } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import useBlur from '../../hooks/useBlur';
 import type { IHeader } from '../../interfaces/interfaces';
 import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
-
-const city=new Array(120).fill({
+import RangeSlider from '../button/rangeslider';
+const cities=new Array(120).fill({
     name:"Hồ Chí Minh" 
 })
+type PopUpProps = {
+    label?:string,
+    page:string,
+    className?:string,
+    filter?:boolean,
+    img?:string,
+    children: React.ReactNode; // 👈️ type children
+};
+const RenderPopUp=(props: PopUpProps)=>{
+    const [isVisible,setIsVisible] = useState(true)
+
+    const onOpen=()=>{
+        setIsVisible(false)
+      }
+      const onClose=()=>{
+        setIsVisible(true)
+      }
+    return(
+        <div>
+            <button type="button" className={` text-placeholder
+                    placeholder:text-slate-400  relative text-xs text-left
+                    bg-white rounded  py-1  ${!props.img ? "pl-3 pr-1 justify-between" : "pr-3 pl-2 gap-2"}   flex   items-center
+                    shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                    border border-slate-300   ${props.className}`}  
+                    onClick={onOpen}
+            >
+                {props.img && 
+                    <div  className="h-6 w-3  relative">
+                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src={props.img} />
+                    </div>
+                }
+                {props.label}
+               
+                {!props.img && 
+                    <div className="relative ">
+                        <div className="relative  h-6 w-6">
+                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/down_button_grey.svg" />
+                        </div>
+                    </div>
+                }
+                {props.img ==="/khu_vuc.svg" && 
+                    <div className="relative ml-auto">
+                        <div className="relative  h-6 w-6">
+                            <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/down_button_grey.svg" />
+                        </div>
+                    </div>
+                }
+            </button>
+            <div className={`${isVisible ? 'hidden' : 'block'} modal  flex justify-center items-center `}>
+                <div className="modal-content  tablet:w-full tablet:h-full -translate-y-20  rounded-lg">
+                    <div className="w-full  bg-slate-50 flex flex-col  items-center     rounded-lg ">
+                        {/* header */}
+                        <div  className={`w-full mb-4  bg-white flex flex-col relative justify-center items-center py-5 rounded-t-lg shadow select-none gap-4 `}>
+                            <div className="absolute flex inset-x-0 bottom-[25px] px-4  w-[50px]  ">
+                                <a onClick={onClose}>
+                                    <div className="w-4 h-4 relative cursor-pointer">
+                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/arrow-left.svg" />
+                                    </div>
+                                </a>
+                                
+                            </div>
+
+                            <h3 className="w-full text-center text-xl font-bold">{props.page}</h3>
+                            
+                            { !props.filter ?
+                            <div className="absolute flex  right-0 bottom-[25px]  px-4    w-[50px]  ">
+                                <a onClick={onClose}>
+                                    <div className="w-4 h-4 relative cursor-pointer">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/closed-black.svg" />
+                                    </div>
+                                </a>
+                                
+                            </div>
+                            :
+                            <div className="absolute flex  right-0 bottom-[25px]  px-4    w-[5rem]  ">
+                                <button onClick={onClose} className="text-pink-600 w-auto h-4">Đặt lại</button>
+                            </div>
+                            }
+                        </div>
+                        {props.children}
+                    </div>
+                </div>
+                
+            </div>
+        </div> 
+    )
+}
 
 const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const router = useRouter()
-    const authState = useSelector(selectAuthState);
-    const [patnName,setPathName]=useState<boolean>(true)
-    const dispatch = useDispatch();
-    const [isVisible,setIsVisible] = useState(true)
-    const [change,setChange]= useState('')
-    const [popUp,setPopUp] = useState(1)
-    
     const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
+    const authState = useSelector(selectAuthState);
+    const dispatch = useDispatch();
+
+    const [patnName,setPathName]=useState<boolean>(true)
+
   
+    const [change,setChange]= useState('')
+    const [popUp,setPopUp] = useState<number>(1) //change pop khu vực
+    const [city,setCity]=useState<string>('')
+    const [district,setDistrict]=useState<string>('')
+    const [ward,setWard]=useState<string>('')
+    const [location,setLocation]=useState<string>('')
 
     useEffect(()=>{
         const setPath=()=>{
@@ -41,18 +131,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
         setIsComponentVisible(!isComponentVisible)
  
  
-     }
-    const onOpen=()=>{
-        setIsVisible(false)
-      }
-      const onClose=()=>{
-        setIsVisible(true)
-      }
-      const selectItem=(item:any):any=>{
-          setChange(item.name)
-  
-          setIsVisible(true)
-      }
+    }
     
     const submitLogout=()=>{
         
@@ -78,13 +157,13 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                 
                 <div className="flex  w-1/2  space-x-4  ">
                     <Link href="/" >
-                        <a className="w-1/2 ">
+                        <a className="w-[15rem] h-[3rem]">
                             <div className="w-full h-full relative " >
                                 <Image  layout="fill"  src="/logo.svg"  alt="Logo"  />
                             </div>
                         </a>
                     </Link>
-                    <label className="relative  laptop:hidden">
+                    <label className="relative laptop:hidden">
                         <input 
                             className=" 
                                 w-full 
@@ -243,285 +322,1070 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             </div>
             {patnName  && 
                 <div className="w-9/12 bigger:w-7/12 flex flex-row  pt-7  items-center flex-wrap gap-2 ">
-                    <div >
-                        <button type="button" className={`w-[8rem] text-placeholder
-                                placeholder:text-slate-400  relative text-xs text-center
-                                bg-white rounded  py-2 pr-8
-                                shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
-                                border border-slate-300   `}  
-                                onClick={onOpen}
-                        >
-                            Toàn quốc
-                            <div className="absolute right-1 top-[0.25rem]">
-                                <div className="relative  h-6 w-6">
-                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/down_button_grey.svg" />
-                                </div>
+                    
+                    
+                
+                    {/*chọn location*/}
+                    <RenderPopUp label="Toàn quốc" className="w-[9rem]" page="Chọn khu vực" img="/khu_vuc.svg">
+                        <div className="w-full  bg-slate-50 flex flex-col  items-center     rounded-lg ">
+                            {/*slug*/}
+                            <div className="w-full flex  px-5 pt-1 gap-3  bg-white">
+                                {popUp===1 ? 
+                                    <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
+                                        <p className="text-purple-600">Tỉnh/Thành</p>
+                                    </div>
+                                    :
+                                    <div className="cursor-pointer" onClick={()=>setPopUp(1)}>
+                                        <p>Tỉnh/Thành</p>
+                                    </div>
+                                }
+                                {popUp===2 ? 
+                                    <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
+                                        <p className="text-purple-600">Quận/Huyện</p>
+                                    </div>
+                                    :
+                                    <div className="cursor-pointer" onClick={()=>setPopUp(2)}>
+                                        <p>Quận/Huyện</p>
+                                    </div>
+                                }
+                                {popUp===3 ? 
+                                    <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
+                                        <p className="text-purple-600">Phường/Xã</p>
+                                    </div>
+                                    :
+                                    <div className="cursor-pointer" onClick={()=>setPopUp(3)}>
+                                        <p>Phường/Xã</p>
+                                    </div>
+                                }
+                        
                             </div>
-                        </button>
-                       
-                        <div className={`${isVisible ? 'hidden' : 'block'} modal  flex justify-center items-center `}>
-                            <div className="modal-content  tablet:w-full tablet:h-full -translate-y-7  rounded-lg">
-                                <div className="w-full  bg-slate-50 flex flex-col  items-center     rounded-lg ">
-                                    {/* header */}
-                                    <div  className={`w-full mb-4  bg-white flex flex-col relative justify-center items-center py-5 rounded-t-lg shadow select-none gap-4 `}>
-                                        <div className="absolute flex inset-x-0 bottom-[25px] px-4  w-[50px]  ">
-                                            <a onClick={onClose}>
-                                                <div className="w-4 h-4 relative cursor-pointer">
-                                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/arrow-left.svg" />
-                                                </div>
-                                            </a>
+                            {/* body */}
+                           <div className={`${popUp===1 ? "flex" :"hidden"} w-full  flex-col   p-5 bg-white rounded-b-lg `}>
+                                <div className=" w-full flex flex-col  space-y-4  ">
+                                    
+                                    <div className="relative w-full">
+                                        <input   placeholder="Chọn Tỉnh/Thành" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
+                                            className="              
+                                                w-full text-placeholder
+                                                placeholder:text-slate-400  
+                                                bg-gray-100 pl-9 py-2 pr-10
+                                                shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                                                border border-slate-300 rounded-lg"
+                                                />
+                                        
+                                        <button type="button" 
                                             
-                                        </div>
-
-                                        <h3 className="w-full text-center text-xl font-bold">Chọn khu vực</h3>
-
-                                        <div className="absolute flex  right-0 bottom-[25px]  px-4    w-[50px]  ">
-                                            <a onClick={onClose}>
-                                                <div className="w-4 h-4 relative cursor-pointer">
-                                                    <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/closed-black.svg" />
-                                                </div>
-                                            </a>
-                                            
-                                        </div>
+                                            className={`absolute z-[4] top-2 left-2 flex  items-center`}>
+                                            <div className="w-6 h-7 relative">
+                                                <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
+                                            </div>
+                                        
+                                        </button>
                                     </div>
-                                    {/*slug*/}
-                                    <div className="w-full flex  px-5 pt-1 gap-3  bg-white">
-                                        {popUp===1 ? 
-                                            <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
-                                                <p className="text-purple-600">Tỉnh/Thành</p>
-                                            </div>
-                                            :
-                                            <div className="cursor-pointer" onClick={()=>setPopUp(1)}>
-                                                <p>Tỉnh/Thành</p>
-                                            </div>
-                                        }
-                                        {popUp===2 ? 
-                                            <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
-                                                <p className="text-purple-600">Quận/Huyện</p>
-                                            </div>
-                                            :
-                                            <div className="cursor-pointer" onClick={()=>setPopUp(2)}>
-                                                <p>Quận/Huyện</p>
-                                            </div>
-                                        }
-                                        {popUp===3 ? 
-                                            <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
-                                                <p className="text-purple-600">Phường/Xã</p>
-                                            </div>
-                                            :
-                                            <div className="cursor-pointer" onClick={()=>setPopUp(3)}>
-                                                <p>Phường/Xã</p>
-                                            </div>
-                                        }
-                             
-                                    </div>
-                                    {/* body */}
-                                    {popUp===1 && <div className="w-full flex flex-col  p-5 bg-white rounded-b-lg ">
-                                        <div className=" w-full flex flex-col  space-y-4  ">
-                                            
-                                            <div className="relative w-full">
-                                                <input   placeholder="Chọn Tỉnh/Thành" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
-                                                    className="              
-                                                        w-full text-placeholder
-                                                        placeholder:text-slate-400  
-                                                        bg-white pl-9 py-2 pr-10
-                                                        shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
-                                                        border border-slate-300 rounded-lg"
-                                                        />
-                                                
-                                                <button type="button" 
+                                    <div className="overflow-y-auto h-[50vh]    w-full relative ">
+                                    <ul className="divide-y-[1px]  p-2">
+                                      
+                                            {cities.map((item:any,index:any):any=>{
+                                                return(
+                                                <li className=" flex items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" key={index} 
+                                                >
+                                                    <input type="radio" id={"city"+index}  name="city" className=" appearance-none
+                                                            border-[2px] border-gray-300  w-4 h-4 
+                                                            check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                            checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                    <label htmlFor={"city"+index} className='font-[500] cursor-pointer w-full  py-2'>
+                                                        {item.name}
                                                     
-                                                    className={`absolute z-[4] top-2 left-2 flex  items-center`}>
-                                                    <div className="w-6 h-7 relative">
-                                                        <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
-                                                    </div>
-                                                
-                                                </button>
-                                            </div>
-                                            <div className="overflow-y-auto h-[40vh]  w-full relative bnone">
-                                            <ul className="list-square list-inside p-2">
-                                                <div className="divide-y-[1px]  ">
-                                                
-                                                
-
-
-                                                {city.map((item:any,index:any):any=>{
-                                                    return(
-                                                    <li className="py-2 text-base relative cursor-pointer hover:bg-gray-200 hover:rounded-lg" key={index} onClick={()=>selectItem(item)}
-                                                    >
-                                                   
-                                                        <a>{item.name}</a>
-                                                        <div className={`absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                        <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
                                                             <div className="w-4 h-7 relative -rotate-90 opacity-50">
                                                                 <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
                                                             </div>
                                                         </div>
-                                                   
-                                                        
-                                                    </li>
-                                                    )
-                                                })}
-                                                    <div></div>
-                                                </div>
-                                            </ul>
-                                       
-                                            
-                                            
-                                        
-                                            
-                                            </div>
-                                        </div>
-                                    </div>}
-                                    {popUp===2 && <div className="w-full flex flex-col  p-5 bg-white rounded-b-lg ">
-                                        <div className=" w-full flex flex-col  space-y-4  ">
-                                            
-                                            <div className="relative w-full">
-                                                <input   placeholder="Chọn Quận/Huyện" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
-                                                    className="              
-                                                        w-full text-placeholder
-                                                        placeholder:text-slate-400  
-                                                        bg-white pl-3 py-2 pr-10
-                                                        shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
-                                                        border border-slate-300 rounded-lg"
-                                                        />
-                                                
-                                                <button type="button" 
+                                                    </label>
                                                     
-                                                    className={`absolute z-[4] top-2 right-2 flex  items-center`}>
-                                                    <div className="w-6 h-7 relative">
-                                                        <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
-                                                    </div>
-                                                
-                                                </button>
-                                            </div>
-                                            <div className="overflow-y-auto h-[40vh]  w-full relative bnone">
-                                            <ListGroup>
-                                                <div className="divide-y-[1px]  ">
-                                                
-                                                
-
-
-                                                {city.map((item:any,index:any):any=>{
-                                                    return(
-                                                    <ListGroup.Item key={index} onClick={()=>selectItem(item)}
-                                                    >
-                                                        <div className="py-1">
-                                                        {item.name}
-                                                        </div>
-                                                        
-                                                    </ListGroup.Item>
-                                                    )
-                                                })}
-                                                    <div></div>
-                                                </div>
-                                            </ListGroup>
+                                                </li>
+                                                )
+                                            })}
+                                            <div></div>
                                        
-                                            
-                                            
+                                    </ul>
+                                
+                                    
+                                    
+                                
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={`${popUp===2 ? "flex" :"hidden"} w-full  flex-col   p-5 bg-white rounded-b-lg `}>
+                                <div className=" w-full flex flex-col  space-y-4  ">
+                                    
+                                    <div className="relative w-full">
+                                        <input   placeholder="Chọn Quận/Huyện" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
+                                            className="              
+                                                w-full text-placeholder
+                                                placeholder:text-slate-400  
+                                                bg-gray-100 pl-9 py-2 pr-10
+                                                shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                                                border border-slate-300 rounded-lg"
+                                                />
                                         
+                                        <button type="button" 
                                             
+                                            className={`absolute z-[4] top-2 left-2 flex  items-center`}>
+                                            <div className="w-6 h-7 relative">
+                                                <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
                                             </div>
-                                        </div>
-                                    </div>}
-                                    {popUp===3 && <div className="w-full flex flex-col  p-5 bg-white rounded-b-lg ">
-                                        <div className=" w-full flex flex-col  space-y-4  ">
-                                            
-                                            <div className="relative w-full">
-                                                <input   placeholder="Chọn Phường/Xã" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
-                                                    className="              
-                                                        w-full text-placeholder
-                                                        placeholder:text-slate-400  
-                                                        bg-white pl-3 py-2 pr-10
-                                                        shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
-                                                        border border-slate-300 rounded-lg"
-                                                        />
-                                                
-                                                <button type="button" 
+                                        
+                                        </button>
+                                    </div>
+                                    <div className="overflow-y-auto h-[50vh]    w-full relative ">
+                                    <ul className="divide-y-[1px] p-2">
+                                      
+                                            {cities.map((item:any,index:any):any=>{
+                                                return(
+                                                <li className=" flex items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" key={index} 
+                                                >
+                                                    <input type="radio" id={"district"+index} name="district" className=" appearance-none
+                                                            border-[2px] border-gray-300  w-4 h-4 
+                                                            check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                            checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                    <label htmlFor={"district"+index} className='font-[500] cursor-pointer w-full  py-2'>
+                                                        {item.name}
                                                     
-                                                    className={`absolute z-[4] top-2 right-2 flex  items-center`}>
-                                                    <div className="w-6 h-7 relative">
-                                                        <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
-                                                    </div>
-                                                
-                                                </button>
-                                            </div>
-                                            <div className="overflow-y-auto h-[40vh]  w-full relative bnone">
-                                            <ListGroup>
-                                                <div className="divide-y-[1px]  ">
-                                                
-                                                
-
-
-                                                {city.map((item:any,index:any):any=>{
-                                                    return(
-                                                    <ListGroup.Item key={index} onClick={()=>selectItem(item)}
-                                                    >
-                                                        <div className="py-1">
-                                                        {item.name}
+                                                        <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                            <div className="w-4 h-7 relative -rotate-90 opacity-50">
+                                                                <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                                            </div>
                                                         </div>
-                                                        
-                                                    </ListGroup.Item>
-                                                    )
-                                                })}
-                                                    <div></div>
-                                                </div>
-                                            </ListGroup>
-                                       
-                                            
-                                            
+                                                    </label>
+                                                    
+                                                </li>
+                                                )
+                                            })}
+                                            <div></div>
+                                      
+                                    </ul>
+                                
+                                    
+                                    
+                                
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={`${popUp===3 ? "flex" :"hidden"} w-full  flex-col   p-5 bg-white rounded-b-lg `}>
+                                <div className=" w-full flex flex-col  space-y-4  ">
+                                    
+                                    <div className="relative w-full">
+                                        <input   placeholder="Chọn Phường/Xã" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
+                                            className="              
+                                                w-full text-placeholder
+                                                placeholder:text-slate-400  
+                                                bg-gray-100 pl-9 py-2 pr-10
+                                                shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                                                border border-slate-300 rounded-lg"
+                                                />
                                         
+                                        <button type="button" 
                                             
+                                            className={`absolute z-[4] top-2 left-2 flex  items-center`}>
+                                            <div className="w-6 h-7 relative">
+                                                <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
                                             </div>
+                                        
+                                        </button>
+                                    </div>
+                                    <div className="overflow-y-auto h-[50vh]    w-full relative ">
+                                    <ul className="divide-y-[1px] p-2">
+                                       
+                                            {cities.map((item:any,index:any):any=>{
+                                                return(
+                                                <li className=" flex items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" key={index} 
+                                                >
+                                                    <input type="radio" id={"ward"+index} name="ward" className=" appearance-none
+                                                            border-[2px] border-gray-300  w-4 h-4 
+                                                            check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                            checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                    <label htmlFor={"ward"+index} className='font-[500] cursor-pointer w-full  py-2'>
+                                                        {item.name}
+                                                    
+                                                        <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                            <div className="w-4 h-7 relative -rotate-90 opacity-50">
+                                                                <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    
+                                                </li>
+                                                )
+                                            })}
+                                            <div></div>
+                                       
+                                    </ul>
+                                
+                                    
+                                    
+                                
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </RenderPopUp>
+
+                    {/*chọn prices*/}
+                    <RenderPopUp label="Giá thuê" page="Giá cho thuê" className="w-[5.75rem]" filter={true}>
+                            <div className="w-full  space-y-8 flex flex-col  p-5 bg-white rounded-b-lg ">
+                                <RangeSlider
+                                        initialMin={0}
+                                        initialMax={2100}
+                                        min={0}
+                                        max={2100} 
+                                        step={105}
+                                        priceGap={106}
+                                        label="Từ 0 - 50 triệu"
+                                />  
+                                <div className="h-[50vh] relative">
+                                    <div>
+                                        <div className="flex items-center gap-1">
+                                            <span className="flex-shrink text-[14px] text-gray-400   font-light">Hoặc chọn nhanh khoảng giá</span>
+                                            <div className="flex-grow h-px bg-gray-200 "></div>
                                         </div>
-                                    </div>}
+                                    </div>
+                                    <ul className="p-2 grid grid-cols-3 ">
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                        >
+                                            <input type="radio" id="0."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="0." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                Tất cả
+                                            </label>
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                        >
+                                            <input type="radio" id="1."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="1." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                Dưới 3 triệu
+                                            </label>    
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                        >
+                                            <input type="radio" id="2."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="2." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                3 - 5 triệu
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="3."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="3." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                5 - 7 triệu
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="4."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="4." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                7 - 10 triệu
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="5."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="5." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                10 - 15 triệu
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="6."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="6." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                15 - 30 triệu
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="7."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="7." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                30 - 50 triệu
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="8."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="8." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                Trên 50 triệu
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="9."  name="prices" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="9." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                Thỏa thuận
+                                            </label>
+                                            
+                                        </li>
+                                        
+                                      
+                                        
+                                       
+                                    </ul> 
+                                   <div className="absolute bottom-0 w-full">
+                                            <button className="w-full  text-white font-semibold rounded-full p-2 bg-pink-500">Áp dụng</button>
+                                   </div>
+                                </div>
+                            </div>
+                    </RenderPopUp>
+
+                    {/*chọn ares*/}
+                    <RenderPopUp label="Diện tích" page="Diện tích" className="w-[5.75rem]" filter={true}>
+                            <div className="w-full  space-y-8 flex flex-col  p-5 bg-white rounded-b-lg ">
+                                <RangeSlider
+                                    initialMin={0}
+                                    initialMax={2100}
+                                    min={0}
+                                    max={2100} 
+                                    step={105}
+                                    priceGap={106}
+                                    label="Từ 0 - 500 m2"
+                                />
+                                <div className="h-[50vh] relative">
+                                    <div>
+                                        <div className="flex items-center gap-1">
+                                            <span className="flex-shrink text-[14px] text-gray-400   font-light">Hoặc chọn nhanh diện tích</span>
+                                            <div className="flex-grow h-px bg-gray-200 "></div>
+                                        </div>
+                                    </div>
+                                    <ul className="p-2 grid grid-cols-3 ">
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                        >
+                                            <input type="radio" id="0."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="0." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                Tất cả
+                                            </label>
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                        >
+                                            <input type="radio" id="1.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="1.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                Dưới 30 m<sup>2</sup>
+                                            </label>    
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                        >
+                                            <input type="radio" id="2.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="2.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                30 - 50 m<sup>2</sup>
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="3.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="3.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                50 - 70 m<sup>2</sup>
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="4.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="4.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                70 - 100 m<sup>2</sup>
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="5.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="5.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                100 - 150 m<sup>2</sup>
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="6.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="6.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                150 - 200 m<sup>2</sup>
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="7.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="7.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                200 - 300 m<sup>2</sup>
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="8.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="8.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                300 - 500 m<sup>2</sup>
+                                            </label>
+                                            
+                                        </li>
+                                        <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                        >
+                                            <input type="radio" id="9.."  name="areas" className=" appearance-none
+                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                            <label htmlFor="9.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
+                                                Trên 500 m<sup>2</sup>
+                                            </label>
+                                            
+                                        </li>
+                                        
+                                      
+                                        
+                                       
+                                    </ul> 
+                                    <div className="absolute bottom-0 w-full">
+                                        <button className="w-full  text-white font-semibold rounded-full p-2 bg-pink-500">Áp dụng</button>
+                                   </div>
+                                </div>
+                            </div>
+                    </RenderPopUp>
+
+                    {/*chọn room*/}
+                    <RenderPopUp label="Số phòng ngủ" page="Số phòng ngủ" className="w-[7.5rem] " filter={true}>
+                        <div className="w-full  space-y-8 flex flex-col  p-5 bg-white rounded-b-lg ">
+                            <div className="h-[60vh] relative">
+                                <div>
+                                    <div className="flex items-center gap-1">
+                                        <span className="flex-shrink text-[14px] text-gray-400   font-light">Chọn số phòng ngủ</span>
+
+                                    </div>
+                                </div>
+                                <ul className="py-2 grid grid-cols-1 gap-3">
+                                    <li className=" flex items-center gap-2 
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    >
+                                        <input type="checkbox" id="0...."  name="room" className=" appearance-none
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                 text-purple-500 bg-white focus:ring-purple-500
+                                                checked:border-none  checked:!bg-purple-500  peer"/>
+                                        <label htmlFor="0...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
+                                            1 phòng ngủ
+                                        </label>
+                                            
+                                    </li>
+                                    <li className=" flex items-center gap-2 
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    >
+                                        <input type="checkbox" id="1...."  name="room" className=" appearance-none
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                 text-purple-500 bg-white focus:ring-purple-500
+                                                checked:border-none  checked:!bg-purple-500  peer"/>
+                                        <label htmlFor="1...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
+                                            2 phòng ngủ
+                                        </label>
+                                            
+                                    </li>
+                                    <li className=" flex items-center gap-2 
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    >
+                                        <input type="checkbox" id="2...."  name="room" className=" appearance-none
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                 text-purple-500 bg-white focus:ring-purple-500
+                                                checked:border-none  checked:!bg-purple-500  peer"/>
+                                        <label htmlFor="2...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
+                                            3 phòng ngủ
+                                        </label>
+                                            
+                                    </li>
+                                    <li className=" flex items-center gap-2 
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    >
+                                        <input type="checkbox" id="3...."  name="room" className=" appearance-none
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                 text-purple-500 bg-white focus:ring-purple-500
+                                                checked:border-none  checked:!bg-purple-500  peer"/>
+                                        <label htmlFor="3...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
+                                            4 phòng ngủ
+                                        </label>
+                                            
+                                    </li>
+                                    <li className=" flex items-center gap-2 
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    >
+                                        <input type="checkbox" id="4...."  name="room" className=" appearance-none
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                 text-purple-500 bg-white focus:ring-purple-500
+                                                checked:border-none  checked:!bg-purple-500  peer"/>
+                                        <label htmlFor="4...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
+                                            5+ phòng ngủ
+                                        </label>
+                                            
+                                    </li>
+                                </ul>
+
+                                <div className="absolute bottom-0 w-full">
+                                        <button className="w-full  text-white font-semibold rounded-full p-2 bg-pink-500">Áp dụng</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                  
-                        
-                    <select name="prices" id="prices"  className='filter text-xs pr-8 border-gray-400 flex-shrink'>
-                        <option value="1">Giá thuê</option>
-                        <option value="2">Saab</option>
-                        <option value="2">Opel</option>
-                        <option value="3">Audi</option>
-                    </select>
-            
-                    <select name="areas" id="areas"  className='filter text-xs pr-8 border-gray-400 flex-shrink'>
-                        <option value="1">Diện tích</option>
-                        <option value="2">Saab</option>
-                        <option value="2">Opel</option>
-                        <option value="3">Audi</option>
-                    </select>
-                
-                    <select name="rooms" id="rooms"  className='filter text-xs pr-8 border-gray-400 flex-shrink'>
-                        <option value="1">Số phòng ngủ</option>
-                        <option value="2">Saab</option>
-                        <option value="2">Opel</option>
-                        <option value="3">Audi</option>
-                    </select>
-                
-                    <select name="projects" id="projects"  className='filter text-xs pr-8 border-gray-400 flex-shrink'>
-                        <option value="1">Dự án</option>
-                        <option value="2">Saab</option>
-                        <option value="2">Opel</option>
-                        <option value="3">Audi</option>
-                    </select>
-                
-                    <select name="types" id="types"  className='filter text-xs  pr-8 border-gray-400 flex-shrink'>
-                        <option value="1">Loại hình căn hộ</option>
-                        <option value="2">Saab</option>
-                        <option value="2">Opel</option>
-                        <option value="3">Audi</option>
-                    </select>
-                    <div className="h-full flex flex-shrink">
-                       
-                        <button onClick={handleFilter} className="filter text-xs btn-primary flex items-center border-gray-400"> 
-                            <div  className="h-4 w-3 mr-1 relative">
-                                <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/fillter-black.svg" className="h-4 w-3 mr-1"/>
+                    </RenderPopUp>
+
+                    {/*chọn du_an*/}
+                    <RenderPopUp label="Dự án" page="Dự án" className="w-[5rem]" filter={true}>
+                        <div className="w-full  space-y-8 flex flex-col  p-5  bg-white rounded-b-lg ">
+                            
+                            <div className=" w-full flex flex-col  space-y-4  ">
+                                <div className="relative w-full">
+                                    <input   placeholder="Tìm dự án" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
+                                        className="              
+                                            w-full text-placeholder
+                                            placeholder:text-slate-400  
+                                            bg-gray-100 pl-9 py-2 pr-10
+                                            shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                                            border border-slate-300 rounded-lg"
+                                            />
+                                    
+                                    <button type="button" 
+                                        
+                                        className={`absolute z-[4] top-2 left-2 flex  items-center`}>
+                                        <div className="w-6 h-7 relative">
+                                            <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
+                                        </div>
+                                    
+                                    </button>
+                                </div>
+                                <div className="overflow-y-auto h-[50vh]    w-full relative ">
+                                    <ul className=" p-2 grid gap-1 ">
+                                     
+                                        {cities.map((item:any,index:any):any=>{
+                                            return(
+                                                <Fragment key={index}>
+                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                                    >
+                                                        <input type="radio" id={"du_an"+index} name="du_an" className=" appearance-none
+                                                                border-[2px] border-gray-300  w-4 h-4 
+                                                                check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                                checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                        <label htmlFor={"du_an"+index} className='font-[500] cursor-pointer w-full  py-2'>
+                                                            {item.name}
+                                                        
+                                                            <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                                <div className="w-4 h-7 relative -rotate-90 opacity-50">
+                                                                    <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        
+                                                    </li>
+                                                    <div className=" h-px bg-gray-200 "></div>
+                                        
+                                                </Fragment>
+                                            )
+                                        })}
+                                            
+                                       
+                                    </ul>
+                                </div>
                             </div>
-                        Lọc thêm</button> 
-                    </div>
+                       
+                        </div>               
+                    </RenderPopUp>
+
+                    {/*loại hình căn hộ*/}
+                    <RenderPopUp label="Loại hình căn hộ" page="Loại hình căn hộ" className="w-[8.5rem]" filter={true}>
+                        <div className="w-full  space-y-8 flex flex-col  p-5  bg-white rounded-b-lg ">
+                            <div className=" w-full flex flex-col  space-y-4  ">
+                                <div className="overflow-y-auto h-[60vh]    w-full relative ">
+                                    <ul className=" p-2 grid gap-1 ">
+                                        <Fragment >
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            >
+                                                <input type="radio" id={"TypeOfApartment"+0} name="TypeOfApartment" className=" appearance-none
+                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                        checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                <label htmlFor={"TypeOfApartment"+0} className='font-[500] cursor-pointer w-full  py-2'>
+                                                    Tất cả
+                                                </label>
+                                                
+                                            </li>
+                                            <div className=" h-px bg-gray-200 "></div>
+
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            >
+                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                        checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                    Chung cư
+                                                </label>
+                                                
+                                            </li>
+                                            <div className=" h-px bg-gray-200 "></div>
+
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            >
+                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                        checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                    Duplex
+                                                </label>
+                                                
+                                            </li>
+                                            <div className=" h-px bg-gray-200 "></div>
+
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            >
+                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                        checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                    Penthouse
+                                                </label>
+                                                
+                                            </li>
+                                            <div className=" h-px bg-gray-200 "></div>
+
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            >
+                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                        checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                    Căn hộ dịch vụ, mini
+                                                </label>
+                                                
+                                            </li>
+                                            <div className=" h-px bg-gray-200 "></div>
+
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            >
+                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                        checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                   Tập thể, cư xá
+                                                </label>
+                                                
+                                            </li>
+                                            <div className=" h-px bg-gray-200 "></div>
+
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            >
+                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                        checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                   Officetel
+                                                </label>
+                                                
+                                            </li>
+                                            <div className=" h-px bg-gray-200 "></div>
+                                
+                                        </Fragment>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> 
+                    </RenderPopUp>
+            
+                    
+                    {/*lọc thêm*/}
+                    <RenderPopUp label="Lọc thêm" page="Lọc thêm" className="w-[5.75rem]" filter={true} img="/fillter-black.svg">
+                        <div className="w-full  space-y-8 flex flex-col  p-5 pt-0 bg-white rounded-b-lg ">
+                            <div className=" w-full flex flex-col  space-y-4  ">
+                                <div className="overflow-y-auto h-[60vh]    w-full relative ">
+                                    <div className="space-y-3 py-4">
+                                        <p className="font-semibold  text-[14px]">Số phòng vệ sinh</p>
+                                        <div className="gap-2 flex select-none w-full">
+                                            <div className="">
+                                                <input type="checkbox" id="wc1" name="wc" className=" peer hidden"  />
+                                                <label htmlFor="wc1" className="cursor-pointer text-[12px] h-10 w-10 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>1</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="wc2" name="wc"  className=" peer hidden"  />
+                                                <label htmlFor="wc2" className="cursor-pointer text-[12px] h-10 w-10 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>2</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="wc3" name="wc"  className=" peer hidden"  />
+                                                <label htmlFor="wc3" className="cursor-pointer text-[12px] h-10 w-10 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>3</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="wc4" name="wc"  className=" peer hidden"  />
+                                                <label htmlFor="wc4" className="cursor-pointer text-[12px] h-10 w-10 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>4</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="wc5" name="wc"  className=" peer hidden"  />
+                                                <label htmlFor="wc5" className="cursor-pointer text-[12px] h-10 w-10 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>5 +</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className=" h-px bg-gray-200 "></div>
+
+                                    <div className="space-y-3 py-4">
+                                        <p className="font-semibold  text-[14px]">Tình trạng nội thất</p>
+                                        <div className="gap-2 flex flex-wrap select-none w-full">
+                                            <div className="">
+                                                <input type="checkbox" id="status1" name="status" className=" peer hidden"  />
+                                                <label htmlFor="status1" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>Tất cả</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="status2" name="status"  className=" peer hidden"  />
+                                                <label htmlFor="status2" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Cao cấp</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="status3" name="status"  className=" peer hidden"  />
+                                                <label htmlFor="status3" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100  rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Đầy đủ</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="status4" name="status"  className=" peer hidden"  />
+                                                <label htmlFor="status4" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Cơ bản</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="status5" name="status"  className=" peer hidden"  />
+                                                <label htmlFor="status5" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Chưa có</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className=" h-px bg-gray-200 "></div>
+                                    
+                                    <div className="space-y-3 py-4">
+                                        <p className="font-semibold  text-[14px]">Hướng cửa chính</p>
+                                        <div className="gap-x-2 gap-y-4 flex flex-wrap select-none w-full">
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction1" name="main_door_direction" className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction1" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>Tất cả</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction2" name="main_door_direction"  className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction2" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Đông</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction3" name="main_door_direction"  className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction3" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100  rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Tây</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction4" name="main_door_direction"  className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction4" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Nam</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction5" name="main_door_direction"  className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction5" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Bắc</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction6" name="main_door_direction"  className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction6" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Đông Bắc</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction7" name="main_door_direction"  className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction7" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Đông Nam</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction8" name="main_door_direction"  className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction8" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Tây Nam</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="main_door_direction9" name="main_door_direction"  className=" peer hidden"  />
+                                                <label htmlFor="main_door_direction9" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Tây Bắc</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className=" h-px bg-gray-200 "></div>
+
+                                    <div className="space-y-3 py-4">
+                                        <p className="font-semibold  text-[14px]">Hướng ban công</p>
+                                        <div className="gap-x-2 gap-y-4 flex flex-wrap select-none w-full">
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction1" name="balcony_direction" className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction1" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>Tất cả</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction2" name="balcony_direction"  className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction2" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Đông</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction3" name="balcony_direction"  className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction3" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100  rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Tây</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction4" name="balcony_direction"  className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction4" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Nam</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction5" name="balcony_direction"  className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction5" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Bắc</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction6" name="balcony_direction"  className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction6" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Đông Bắc</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction7" name="balcony_direction"  className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction7" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Đông Nam</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction8" name="balcony_direction"  className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction8" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Tây Nam</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="balcony_direction9" name="balcony_direction"  className=" peer hidden"  />
+                                                <label htmlFor="balcony_direction9" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Tây Bắc</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className=" h-px bg-gray-200 "></div>
+
+
+                                    <div className="space-y-3 py-4">
+                                        <p className="font-semibold  text-[14px]">Đặc điểm dự án</p>
+                                        <div className="gap-x-2 gap-y-4 flex flex-wrap select-none w-full">
+                                            <div className="">
+                                                <input type="checkbox" id="dac_diem1" name="dac_diem" className=" peer hidden"  />
+                                                <label htmlFor="dac_diem1" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>Căn góc</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="checkbox" id="dac_diem2" name="dac_diem"  className=" peer hidden"  />
+                                                <label htmlFor="dac_diem2" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Tin có video</p>
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div className=" h-px bg-gray-200 "></div>
+
+                                    <div className="space-y-3 py-4">
+                                        <p className="font-semibold  text-[14px]">Người đăng tin</p>
+                                        <div className="gap-x-2 gap-y-4 flex flex-wrap select-none w-full">
+                                            <div className="">
+                                                <input type="radio" id="individual_broker1" name="individual_broker" className=" peer hidden"  />
+                                                <label htmlFor="individual_broker1" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>Môi giới</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="radio" id="individual_broker2" name="individual_broker"  className=" peer hidden"  />
+                                                <label htmlFor="individual_broker2" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>Cá nhân</p>
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div className=" h-px bg-gray-200 "></div>
+
+                                    <div className="space-y-3 py-4">
+                                        <p className="font-semibold  text-[14px]">Ngày đăng tin</p>
+                                        <div className="gap-x-2 gap-y-4 flex flex-wrap select-none w-full">
+                                            <div className="">
+                                                <input type="checkbox" id="time_day1" name="time_day" className=" peer hidden"  />
+                                                <label htmlFor="time_day1" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
+                                                    <p>Tất cả</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="radio" id="time_day2" name="time_day"  className=" peer hidden"  />
+                                                <label htmlFor="time_day2" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>1 ngày</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="radio" id="time_day3" name="time_day"  className=" peer hidden"  />
+                                                <label htmlFor="time_day3" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>3 ngày</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="radio" id="time_day4" name="time_day"  className=" peer hidden"  />
+                                                <label htmlFor="time_day4" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>5 ngày</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="radio" id="time_day5" name="time_day"  className=" peer hidden"  />
+                                                <label htmlFor="time_day5" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>7 ngày</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="radio" id="time_day6" name="time_day"  className=" peer hidden"  />
+                                                <label htmlFor="time_day6" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>15 ngày</p>
+                                                </label>
+                                            </div>
+                                            <div className="">
+                                                <input type="radio" id="time_day7" name="time_day"  className=" peer hidden"  />
+                                                <label htmlFor="time_day7" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
+                                                    <p>30 ngày</p>
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+
+                                    <div className="space-y-3 py-4">
+
+                                        <button className="w-full  text-white font-semibold rounded-full p-2 bg-pink-500">Áp dụng</button>
+                                    </div>
+
+                                    
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </RenderPopUp>
+        
                     <div className="h-full flex flex-shrink">
                        
                         <button className="  btn-primary flex border-gray-400 "> 

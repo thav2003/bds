@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from '../page';
-import { selectAuthState, setAuthState } from "../reducers/actions/auth";
+import { setAuthState } from "../reducers/actions/auth";
 const LoginPage:NextPageWithLayout=()=>{
     const [isHide,setHide]=useState(true)
     const router = useRouter()
-    const authState = useSelector(selectAuthState);
+
     const dispatch = useDispatch();
     const changeHide=()=>{
         setHide(!isHide)

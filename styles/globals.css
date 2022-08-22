@@ -21,6 +21,11 @@
         font-size: 16px;
         @apply scrollbar  
     }
+    input[type=radio]:checked{
+      background:white;
+      
+    }
+ 
 
     input[type=number]::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { 
@@ -40,6 +45,16 @@
     label{
       
       @apply font-bold 
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      pointer-events: auto;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      -webkit-appearance: none;
+      @apply bg-white border-[3px] border-purple-500 border-solid ;
+    
+      /* @apply w-6 h-6 appearance-none pointer-events-auto; */
     }
  
     
@@ -172,24 +187,16 @@
         justify-content: center;
         align-items: center;
         z-index: 20;
-        
-       
-      
       }
       .circle-nav{
         border-radius:100%;
         
         width:5em; 
         height:5em;
-    
-        
         box-shadow: 
-                0 -2px 7px 0.5px rgba(0,0,0,0.3),
-        
+            0 -2px 7px 0.5px rgba(0,0,0,0.3),
             inset 0rem 0rem 0px 5px  white,
             inset 0rem 0rem 0px 15px rgb(126 58 242);
-        
-       
       }
       .shadow-round{
         box-shadow: 
@@ -224,13 +231,11 @@
         
       }
       .modal-content {
-        
         background-color: #fefefe;
-      
-       
         border: 1px solid #888;
-        width: 40%; /* Could be more or less, depending on screen size */
+    
         height: 60vh;
+        @apply w-[40%] smalllaptop:w-[50%]
         
       }
       .info-hover::after:hover{
@@ -253,6 +258,10 @@
       .shadow-e1{
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
       }
-      
+    
+      .check-shadow{
+        box-shadow: 0px 0px 0px 2px white inset;
+      }
+
       
   }
