@@ -32,7 +32,7 @@ const RangeSlider = ({ initialMin, initialMax, min, max, step, priceGap,label }:
         }
     };
     useEffect(()=>{
-        if(label.includes('m2')){
+        if(label && label.includes('m2')){
             setisMath(true)
             setLabels(label.replace('m2',''))
         }
@@ -58,7 +58,7 @@ const RangeSlider = ({ initialMin, initialMax, min, max, step, priceGap,label }:
                     ref={progressRef}
                     >             
                     </div>
-                    <ul className="flex justify-between w-full h-1 text-[9px] pt-3">
+                    <ul className="flex  w-full h-1 text-[9px] pt-3 tablet:px-1">
                         <li className="flex justify-center relative flex-grow items-center"><span className="absolute text-[14px]  pt-[0.15rem]">|</span></li>
                         <li className="flex justify-center relative flex-grow items-center"><span className="absolute  ">|</span></li>
                         <li className="flex justify-center relative flex-grow items-center"><span className="absolute  ">|</span></li>

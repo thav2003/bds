@@ -20,7 +20,14 @@ type PopUpProps = {
 };
 const RenderPopUp=(props: PopUpProps)=>{
     const [isVisible,setIsVisible] = useState(true)
-
+    useEffect(() => {
+        if(!isVisible){
+            document.body.style.overflow = 'hidden';
+        }else{
+            document.body.style.overflow = 'unset';
+        }
+        
+     }, [isVisible ]);
     const onOpen=()=>{
         setIsVisible(false)
       }
@@ -139,11 +146,6 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
         setIsComponentVisible(false)
     }
 
-
-
-    const handleFilter=()=>{
-        router.push('/profile')
-    }
     const naviGate=(link:string)=>{
         router.push(link)
     }
@@ -383,32 +385,36 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         </button>
                                     </div>
                                     <div className="overflow-y-auto h-[50vh]    w-full relative ">
-                                    <ul className="divide-y-[1px]  p-2">
-                                      
+                                        <ul className=" p-2 grid gap-1 ">
+                                     
                                             {cities.map((item:any,index:any):any=>{
                                                 return(
-                                                <li className=" flex items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" key={index} 
-                                                >
-                                                    <input type="radio" id={"city"+index}  name="city" className=" appearance-none
-                                                            border-[2px] border-gray-300  w-4 h-4 
-                                                            check-shadow text-purple-500 bg-white focus:ring-purple-500
-                                                            checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
-                                                    <label htmlFor={"city"+index} className='font-[500] cursor-pointer w-full  py-2'>
-                                                        {item.name}
-                                                    
-                                                        <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
-                                                            <div className="w-4 h-7 relative -rotate-90 opacity-50">
-                                                                <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    
-                                                </li>
+                                                    <Fragment key={index}>
+                                                        <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                                        >
+                                                            <input type="radio" id={"du_an"+index} name="du_an" className=" appearance-none
+                                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                                    check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                                    checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                            <label htmlFor={"du_an"+index} className='font-[500] cursor-pointer w-full  py-2'>
+                                                                {item.name}
+                                                            
+                                                                <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                                    <div className="w-4 h-7 relative -rotate-90 opacity-50">
+                                                                        <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                            
+                                                        </li>
+                                                        <div className=" h-px bg-gray-200 "></div>
+                                            
+                                                    </Fragment>
                                                 )
                                             })}
-                                            <div></div>
-                                       
-                                    </ul>
+                                                
+                                            
+                                        </ul>
                                 
                                     
                                     
@@ -440,31 +446,35 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         </button>
                                     </div>
                                     <div className="overflow-y-auto h-[50vh]    w-full relative ">
-                                    <ul className="divide-y-[1px] p-2">
-                                      
-                                            {cities.map((item:any,index:any):any=>{
-                                                return(
-                                                <li className=" flex items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" key={index} 
-                                                >
-                                                    <input type="radio" id={"district"+index} name="district" className=" appearance-none
-                                                            border-[2px] border-gray-300  w-4 h-4 
-                                                            check-shadow text-purple-500 bg-white focus:ring-purple-500
-                                                            checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
-                                                    <label htmlFor={"district"+index} className='font-[500] cursor-pointer w-full  py-2'>
-                                                        {item.name}
-                                                    
-                                                        <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
-                                                            <div className="w-4 h-7 relative -rotate-90 opacity-50">
-                                                                <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                    <ul className=" p-2 grid gap-1 ">
+                                     
+                                        {cities.map((item:any,index:any):any=>{
+                                            return(
+                                                <Fragment key={index}>
+                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                                    >
+                                                        <input type="radio" id={"du_an"+index} name="du_an" className=" appearance-none
+                                                                border-[2px] border-gray-300  w-4 h-4 
+                                                                check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                                checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                        <label htmlFor={"du_an"+index} className='font-[500] cursor-pointer w-full  py-2'>
+                                                            {item.name}
+                                                        
+                                                            <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                                <div className="w-4 h-7 relative -rotate-90 opacity-50">
+                                                                    <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </label>
-                                                    
-                                                </li>
-                                                )
-                                            })}
-                                            <div></div>
-                                      
+                                                        </label>
+                                                        
+                                                    </li>
+                                                    <div className=" h-px bg-gray-200 "></div>
+                                        
+                                                </Fragment>
+                                            )
+                                        })}
+                                            
+                                       
                                     </ul>
                                 
                                     
@@ -497,30 +507,34 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         </button>
                                     </div>
                                     <div className="overflow-y-auto h-[50vh]    w-full relative ">
-                                    <ul className="divide-y-[1px] p-2">
-                                       
-                                            {cities.map((item:any,index:any):any=>{
-                                                return(
-                                                <li className=" flex items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" key={index} 
-                                                >
-                                                    <input type="radio" id={"ward"+index} name="ward" className=" appearance-none
-                                                            border-[2px] border-gray-300  w-4 h-4 
-                                                            check-shadow text-purple-500 bg-white focus:ring-purple-500
-                                                            checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
-                                                    <label htmlFor={"ward"+index} className='font-[500] cursor-pointer w-full  py-2'>
-                                                        {item.name}
-                                                    
-                                                        <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
-                                                            <div className="w-4 h-7 relative -rotate-90 opacity-50">
-                                                                <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                    <ul className=" p-2 grid gap-1 ">
+                                     
+                                        {cities.map((item:any,index:any):any=>{
+                                            return(
+                                                <Fragment key={index}>
+                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                                    >
+                                                        <input type="radio" id={"du_an"+index} name="du_an" className=" appearance-none
+                                                                border-[2px] border-gray-300  w-4 h-4 
+                                                                check-shadow text-purple-500 bg-white focus:ring-purple-500
+                                                                checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
+                                                        <label htmlFor={"du_an"+index} className='font-[500] cursor-pointer w-full  py-2'>
+                                                            {item.name}
+                                                        
+                                                            <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
+                                                                <div className="w-4 h-7 relative -rotate-90 opacity-50">
+                                                                    <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </label>
-                                                    
-                                                </li>
-                                                )
-                                            })}
-                                            <div></div>
+                                                        </label>
+                                                        
+                                                    </li>
+                                                    <div className=" h-px bg-gray-200 "></div>
+                                        
+                                                </Fragment>
+                                            )
+                                        })}
+                                            
                                        
                                     </ul>
                                 
@@ -539,11 +553,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                             <div className="w-full  space-y-8 flex flex-col  p-5 bg-white rounded-b-lg ">
                                 <RangeSlider
                                         initialMin={0}
-                                        initialMax={2100}
+                                        initialMax={2000}
                                         min={0}
-                                        max={2100} 
-                                        step={105}
-                                        priceGap={106}
+                                        max={2000} 
+                                        step={100}
+                                        priceGap={100}
                                         label="Từ 0 - 50 triệu"
                                 />  
                                 <div className="h-[50vh] relative">
@@ -1010,11 +1024,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
 
                                             <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
                                             >
-                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                <input type="radio" id={"TypeOfApartment"+2} name="TypeOfApartment" className=" appearance-none
                                                         border-[2px] border-gray-300  w-4 h-4 
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
-                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                <label htmlFor={"TypeOfApartment"+2} className='font-[500] cursor-pointer w-full  py-2'>
                                                     Duplex
                                                 </label>
                                                 
@@ -1023,11 +1037,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
 
                                             <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
                                             >
-                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                <input type="radio" id={"TypeOfApartment"+3} name="TypeOfApartment" className=" appearance-none
                                                         border-[2px] border-gray-300  w-4 h-4 
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
-                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                <label htmlFor={"TypeOfApartment"+3} className='font-[500] cursor-pointer w-full  py-2'>
                                                     Penthouse
                                                 </label>
                                                 
@@ -1036,11 +1050,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
 
                                             <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
                                             >
-                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                <input type="radio" id={"TypeOfApartment"+4} name="TypeOfApartment" className=" appearance-none
                                                         border-[2px] border-gray-300  w-4 h-4 
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
-                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                <label htmlFor={"TypeOfApartment"+4} className='font-[500] cursor-pointer w-full  py-2'>
                                                     Căn hộ dịch vụ, mini
                                                 </label>
                                                 
@@ -1049,11 +1063,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
 
                                             <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
                                             >
-                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                <input type="radio" id={"TypeOfApartment"+5} name="TypeOfApartment" className=" appearance-none
                                                         border-[2px] border-gray-300  w-4 h-4 
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
-                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                <label htmlFor={"TypeOfApartment"+5} className='font-[500] cursor-pointer w-full  py-2'>
                                                    Tập thể, cư xá
                                                 </label>
                                                 
@@ -1062,11 +1076,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
 
                                             <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
                                             >
-                                                <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
+                                                <input type="radio" id={"TypeOfApartment"+6} name="TypeOfApartment" className=" appearance-none
                                                         border-[2px] border-gray-300  w-4 h-4 
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
-                                                <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
+                                                <label htmlFor={"TypeOfApartment"+6} className='font-[500] cursor-pointer w-full  py-2'>
                                                    Officetel
                                                 </label>
                                                 
@@ -1127,31 +1141,31 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         <p className="font-semibold  text-[14px]">Tình trạng nội thất</p>
                                         <div className="gap-2 flex flex-wrap select-none w-full">
                                             <div className="">
-                                                <input type="checkbox" id="status1" name="status" className=" peer hidden"  />
+                                                <input type="radio" id="status1" name="status" className=" peer hidden"  />
                                                 <label htmlFor="status1" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-full font-normal peer-hover:bg-red-200">
                                                     <p>Tất cả</p>
                                                 </label>
                                             </div>
                                             <div className="">
-                                                <input type="checkbox" id="status2" name="status"  className=" peer hidden"  />
+                                                <input type="radio" id="status2" name="status"  className=" peer hidden"  />
                                                 <label htmlFor="status2" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
                                                     <p>Cao cấp</p>
                                                 </label>
                                             </div>
                                             <div className="">
-                                                <input type="checkbox" id="status3" name="status"  className=" peer hidden"  />
+                                                <input type="radio" id="status3" name="status"  className=" peer hidden"  />
                                                 <label htmlFor="status3" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100  rounded-3xl font-normal peer-hover:bg-red-200">
                                                     <p>Đầy đủ</p>
                                                 </label>
                                             </div>
                                             <div className="">
-                                                <input type="checkbox" id="status4" name="status"  className=" peer hidden"  />
+                                                <input type="radio" id="status4" name="status"  className=" peer hidden"  />
                                                 <label htmlFor="status4" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
                                                     <p>Cơ bản</p>
                                                 </label>
                                             </div>
                                             <div className="">
-                                                <input type="checkbox" id="status5" name="status"  className=" peer hidden"  />
+                                                <input type="radio" id="status5" name="status"  className=" peer hidden"  />
                                                 <label htmlFor="status5" className="cursor-pointer text-[12px] h-10 px-4 py-2 flex justify-center items-center peer-checked:bg-red-200   bg-slate-100   rounded-3xl font-normal peer-hover:bg-red-200">
                                                     <p>Chưa có</p>
                                                 </label>
@@ -1284,7 +1298,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
 
 
                                     <div className="space-y-3 py-4">
-                                        <p className="font-semibold  text-[14px]">Đặc điểm dự án</p>
+                                        <p className="font-semibold  text-[14px]">Đặc điểm căn hộ</p>
                                         <div className="gap-x-2 gap-y-4 flex flex-wrap select-none w-full">
                                             <div className="">
                                                 <input type="checkbox" id="dac_diem1" name="dac_diem" className=" peer hidden"  />
@@ -1399,10 +1413,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             }
             
         
-        </header>
-            
-      
-        
+        </header>  
     )
 }
 export default Header;
