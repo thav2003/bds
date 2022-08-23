@@ -2,12 +2,16 @@
 import { Carousel } from 'flowbite-react';
 import Image from 'next/image';
 import { useState } from 'react';
-import CardHome from '../../components/cards/card';
-import CardHome2 from '../../components/cards/card2';
-import CardNews from '../../components/cards/cardNews';
+
 import { data } from '../../fakedata';
 import useDevice from '../../hooks/useDevice';
 import type { HomeDesktopProps } from '../../interfaces/interfaces';
+
+import dynamic from 'next/dynamic';
+const CardNews=  dynamic(() => import('../../components/cards/cardNews'),{ssr:false})
+const CardHome=  dynamic(() => import('../../components/cards/card'),{ssr:false})
+const CardHome2=  dynamic(() => import('../../components/cards/card2'),{ssr:false})
+
 const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     const {isMobile} =useDevice()
     const [moretext,setMoreText]=useState(false)

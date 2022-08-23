@@ -1,7 +1,9 @@
 import Link from 'next/link';
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
+
+import dynamic from 'next/dynamic';
 import useDevice from '../hooks/useDevice';
 import { NextPageWithLayout } from '../page';
+const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'),{ssr:false})
 const ProductDetailPage:NextPageWithLayout=()=>{
     const {isMobile} =useDevice()
     return(
@@ -11,15 +13,29 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                     <ol className=" flex items-center text-sm ">
                         <li className="pathMenu ">
                         
-                        <Link href="/" >
-                            <a className="text-purple-600">Cho thuê căn hộ</a>
-                        </Link>
+                            <Link href="/" >
+                                <a className="text-purple-600">Cho thuê căn hộ</a>
+                            </Link>
                         </li>
-                        <li> 
-                            <a className="font-semibold">
-                                Đà Nẵng
-                            </a>
+                        <li className="pathMenu ">
+                        
+                            <Link href="/" >
+                                <a className="text-purple-600">Hồ Chí Minh</a>
+                            </Link>
                         </li>
+                        <li className="pathMenu ">
+                        
+                            <Link href="/" >
+                                <a className="text-purple-600">Quận 9</a>
+                            </Link>
+                        </li>
+                        <li className="">
+                        
+                            
+                            <a className="text-purple-600">Vinhomes Grand Park</a>
+                          
+                        </li>
+                        
                     
                     </ol>
                     <h1 className="font-bold ">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h1>

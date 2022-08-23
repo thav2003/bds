@@ -1,6 +1,7 @@
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
-import { NextPageWithLayout } from '../page';
 
+import dynamic from 'next/dynamic';
+import { NextPageWithLayout } from '../page';
+const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'))
 const qaaPage: NextPageWithLayout = () => {
 
   return (
@@ -492,6 +493,6 @@ const qaaPage: NextPageWithLayout = () => {
   );
 };
 qaaPage.getLayout = (page) => {
-  return <PrimaryLayout name="post">{page}</PrimaryLayout>;
+  return <PrimaryLayout name="QnA">{page}</PrimaryLayout>;
 };
 export default qaaPage;

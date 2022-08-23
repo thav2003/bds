@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
-import PrimaryLayout from '../../components/layouts/PrimaryLayout';
+
 import { NextPageWithLayout } from '../../page';
 import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
+
+import dynamic from 'next/dynamic';
+const PrimaryLayout=  dynamic(() => import('../../components/layouts/PrimaryLayout'),{ssr:false})
+
 const LogoutPage:NextPageWithLayout =()=>{
     const dispatch = useDispatch();
     const authState = useSelector(selectAuthState);

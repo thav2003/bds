@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
+
 import { NextPageWithLayout } from '../page';
+
+import dynamic from 'next/dynamic';
+const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'))
+
 const RegisterPage:NextPageWithLayout=()=>{
     const [isHide,setHide]=useState(true)
     const router= useRouter()

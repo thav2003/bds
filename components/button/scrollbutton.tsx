@@ -1,7 +1,14 @@
 import Image from 'next/image';
 import { useState } from 'react';
-  
-const ScrollButton = (props:any) =>{
+
+export interface ScrollButtonProps{
+    isMobile?:boolean;
+    className?:string;
+    isSubmitButton?:boolean;
+    submitting?:any;
+}
+
+const ScrollButton = (props:ScrollButtonProps) =>{
     const {isMobile,className,isSubmitButton,submitting}=props
 
     const [visible, setVisible] = useState(false)

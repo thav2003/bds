@@ -2,6 +2,7 @@
 import { Carousel } from 'flowbite-react';
 import Image from 'next/image';
 import type { Card } from '../../interfaces/interfaces';
+
 const CardHome:React.FC<Card>=(props)=>{
     const {data,isVertical} = props
     const time="2 phút trước"

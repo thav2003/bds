@@ -1,8 +1,13 @@
 import Link from 'next/link';
-import "react-datepicker/dist/react-datepicker.css";
-import UploadForm from '../components/forms/formupload';
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
+
 import { NextPageWithLayout } from '../page';
+
+import dynamic from 'next/dynamic';
+const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'))
+const UploadForm = dynamic(() => import('../components/forms/formupload'))
+
+
+
 const sleep = (ms:number) => new Promise(resolve => setTimeout(resolve, ms));
 const UploadPage:NextPageWithLayout=()=>{
  

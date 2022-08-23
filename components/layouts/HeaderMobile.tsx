@@ -4,7 +4,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import type { IHeader } from '../../interfaces/interfaces';
-import RangeSlider from '../button/rangeslider';
+
+
+import dynamic from 'next/dynamic';
+
+const RangeSlider = dynamic(() => import('../button/rangeslider'))
+
 type PopUpProps = {
     label?:string,
     page:string,

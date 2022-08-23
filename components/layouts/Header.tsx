@@ -6,7 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import useBlur from '../../hooks/useBlur';
 import type { IHeader } from '../../interfaces/interfaces';
 import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
-import RangeSlider from '../button/rangeslider';
+
+
+import dynamic from 'next/dynamic';
+
+const RangeSlider = dynamic(() => import('../button/rangeslider'))
+
+
 const cities=new Array(120).fill({
     name:"Hồ Chí Minh" 
 })
@@ -126,6 +132,8 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             if(router.pathname==='/'){
                 setPathName(true)
             }else if(router.pathname==='/query/[id]'){
+                setPathName(true)
+            }else if(router.pathname==='/product-detail'){
                 setPathName(true)
             }else{
                 setPathName(false)

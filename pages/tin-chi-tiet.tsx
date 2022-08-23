@@ -1,7 +1,8 @@
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from '../page';
+const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'))
 const postDetail: NextPageWithLayout = () => {
   
   return (
@@ -170,6 +171,6 @@ const postDetail: NextPageWithLayout = () => {
   );
 };
 postDetail.getLayout = (page) => {
-  return <PrimaryLayout name="post">{page}</PrimaryLayout>;
+  return <PrimaryLayout name="NewsDetail">{page}</PrimaryLayout>;
 };
 export default postDetail;

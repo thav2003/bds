@@ -3,13 +3,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import CardHome from '../../components/cards/card';
-import CardHome2 from '../../components/cards/card2';
-import PrimaryLayout from '../../components/layouts/PrimaryLayout';
 import { data } from '../../fakedata';
 import useDevice from '../../hooks/useDevice';
 import { DataProps } from '../../interfaces/interfaces';
 import { NextPageWithLayout } from '../../page';
+
+import dynamic from 'next/dynamic';
+const PrimaryLayout=  dynamic(() => import('../../components/layouts/PrimaryLayout'),{ssr:false})
+
+const CardHome=  dynamic(() => import('../../components/cards/card'))
+const CardHome2=  dynamic(() => import('../../components/cards/card2'))
 type queryProps={
     id: string;
 }
@@ -44,17 +47,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
         fallback: true
     }
 }
-async function getData() {
 
-    const data = JSON.parse(queryData.toString());
-    
-    return data;
-}
 
-type Props={
-    hasError:boolean
-    specificData:queryProps
-}
 
 const GetCity=(id?:string)=>{
     if(id==="1"){
@@ -63,6 +57,8 @@ const GetCity=(id?:string)=>{
         return "Hà Nội"
     }else return ''
 }
+
+
 let start=0 
 const pages=[] as any
 data.forEach((item:DataProps,index:number)=>{
@@ -77,6 +73,12 @@ data.forEach((item:DataProps,index:number)=>{
    
     
 })
+
+type Props={
+    hasError:boolean
+    specificData:queryProps
+}
+
 const QueryPage:NextPageWithLayout<Props>=(props) => {
     const router = useRouter();
     

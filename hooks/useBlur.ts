@@ -3,6 +3,11 @@ import { useEffect, useRef, useState } from "react";
 /**
  * Hook that alerts clicks outside of the passed ref
  */
+
+
+     
+
+
 const useBlur=(initialIsVisible:any) =>{
     const [isComponentVisible, setIsComponentVisible]=useState(initialIsVisible)
     
@@ -29,4 +34,5 @@ const useBlur=(initialIsVisible:any) =>{
       });
     return { ref,isComponentVisible, setIsComponentVisible}
 }
+
 export default useBlur;

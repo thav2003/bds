@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
-import { NextPageWithLayout } from '../page';
 
+import dynamic from 'next/dynamic';
+import { NextPageWithLayout } from '../page';
+const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'))
 const postPage: NextPageWithLayout = () => {
 
  

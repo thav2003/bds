@@ -1,7 +1,12 @@
 import Link from 'next/link';
-import ContactForm from '../components/forms/formcontact';
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
+
 import { NextPageWithLayout } from '../page';
+
+import dynamic from 'next/dynamic';
+
+const ContactForm = dynamic(() => import('../components/forms/formcontact'))
+const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'))
+
 const ContactPage:NextPageWithLayout=()=>{
     const sleep = (ms:number) => new Promise(resolve => setTimeout(resolve, ms));
 

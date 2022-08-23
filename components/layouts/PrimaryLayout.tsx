@@ -2,12 +2,21 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import useDevice from '../../hooks/useDevice';
 import type { IPrimaryLayout } from '../../interfaces/interfaces';
-import BottomTab from '../bottomTab/bottomTab';
-import ScrollButton from '../button/scrollbutton';
-import Footer from './Footer';
-import Header from './Header';
-import HeaderMobile from './HeaderMobile';
 
+
+
+
+
+
+import dynamic from 'next/dynamic';
+import { ScrollButton } from '../button';
+
+
+const Header = dynamic(() => import('./Header'),{ssr:false})
+const Footer = dynamic(() => import('./Footer'),{ssr:false})
+const HeaderMobile = dynamic(() => import('./HeaderMobile'),{ssr:false})
+
+const BottomTab = dynamic(() => import('../bottomTab/bottomTab'),{ssr:false})
 
 const PrimaryLayout:React.FC<IPrimaryLayout>=({
     name,

@@ -1,83 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import type { IValues } from '../../helps/validate';
 import { validate, warn } from '../../helps/validate';
+import { RenderInput, RenderTextArea } from '../renderContactForm';
 
-
-const RenderInput = ({
-    classNameInput,renderDropLeftIcon,
-    classNameLabel,
-    input,
-    label,
-    type,
-    check,
-    meta: { touched, error, warning }
-  }:any):any => {
-    const [change,setChange]=useState(input.value)
-    
-    return(
-      <div className="space-y-1">
-        
-        <label className="font-semibold">{label}</label>
-        {check &&
-            ((error && <span className="error">*</span>) ||
-              (warning && <span className="warning">*</span>))}
-        <div>
-          <input {...input}  placeholder={label} type={type} onChange={e => setChange(e.target.value)} value={change}  className={`${classNameInput}`}/>
-          
-          { renderDropLeftIcon &&
-            <div className="relative divide-x-2" >
-              
-              
-              
-              <div></div>
-              <div className="absolute z-[4] -top-8 right-4 flex  items-center ">
-                  <div className=" pl-4">{renderDropLeftIcon}</div>
-              </div>
-            </div>
-          }
-         
-        </div>
-      </div>
-    )
-}
-const RenderTextArea = ({
-    classNameInput,maxtext,
-    id,
-    input,
-    label,
-   
-    check,
-    meta: { touched, error, warning }
-  }:any):any => {
-    const [change,setChange]=useState(input.value)
-
-   
-    return(
-  
-      <div className="space-y-1">
-        <label htmlFor={id} className="font-semibold">{label}</label>
-        {check &&
-        ((error && <span className="error">*</span>) ||
-            (warning && <span className="warning">*</span>))}
-            <textarea {...input}  id={id}  
-                value={change}
-                className={classNameInput}
-                placeholder={label}
-                onChange={e => setChange(e.target.value)}
-            ></textarea>
-         
-      </div>
-    )
-}
-
-// const data={
-//     user_name:'',
-//     user_phone:'',
-//     email:'',
-//     description:''
-// }
 
 interface IProps extends  IValues  {
     hidden: boolean

@@ -1,13 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import CardHome from '../components/cards/card';
-import CardHome2 from '../components/cards/card2';
-import ContactForm from '../components/forms/formcontact';
-import PrimaryLayout from '../components/layouts/PrimaryLayout';
+
+
+
 import { data } from '../fakedata';
 import useDevice from '../hooks/useDevice';
 import { NextPageWithLayout } from '../page';
+
+import dynamic from 'next/dynamic';
+const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'))
+const ContactForm=  dynamic(() => import('../components/forms/formcontact'))
+const CardHome=  dynamic(() => import('../components/cards/card'))
+const CardHome2=  dynamic(() => import('../components/cards/card2'))
+
+
 let start=0 
 const pages=[] as any
 data.forEach((item:any,index:number)=>{
