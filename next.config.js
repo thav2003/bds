@@ -9,7 +9,5 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   
 })
 
-module.exports =withBundleAnalyzer({
-  nextConfig,
-})
+module.exports =withBundleAnalyzer(nextConfig)
 

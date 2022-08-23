@@ -1,8 +1,8 @@
 
 import { Carousel } from 'flowbite-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
-
 import { data } from '../../fakedata';
 import useDevice from '../../hooks/useDevice';
 import type { HomeDesktopProps } from '../../interfaces/interfaces';
@@ -246,12 +246,13 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         
                         
                         <div className="flex items-center">
-                            <a className="text-sm font-bold text-purple-700 flex ">Đến trang tin tức
-                                <div className="h-5 w-8  relative">
-                                    <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-left.svg" className="h-5 w-8 rotate-180"/>
-                                </div>
-                            </a>
-                            
+                            <Link href="/tin-tuc">
+                                <a className="text-sm font-bold text-purple-700 flex ">Đến trang tin tức
+                                    <div className="h-5 w-8  relative">
+                                        <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-left.svg" className="h-5 w-8 rotate-180"/>
+                                    </div>
+                                </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="tablet:overflow-x-auto tablet:overflow-y-hidden ">

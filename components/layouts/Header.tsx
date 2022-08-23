@@ -157,6 +157,9 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const naviGate=(link:string)=>{
         router.push(link)
     }
+    const resetFilter=()=>{
+        router.push('/query/1')
+    }
     return(
    
         <header
@@ -1410,7 +1413,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
         
                     <div className="h-full flex flex-shrink">
                        
-                        <button className="  btn-primary flex border-gray-400 "> 
+                        <button onClick={resetFilter} className="  btn-primary flex border-gray-400 "> 
                             <div  className="h-5 w-5 mr-2 relative">
                                 <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/reset_fillter.svg" className="h-5 w-5 mr-2"/>
                             </div>
