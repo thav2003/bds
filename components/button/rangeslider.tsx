@@ -36,7 +36,7 @@ const RangeSlider = ({ initialMin, initialMax, min, max, step, priceGap,label }:
             setisMath(true)
             setLabels(label.replace('m2',''))
         }
-    },[labels])
+    },[labels,label])
     useEffect(() => {
         progressRef.current.style.left = (minValue / max) * step + "%";
         progressRef.current.style.right = step - (maxValue / max) * step + "%";

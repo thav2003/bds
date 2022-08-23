@@ -77,7 +77,7 @@ const PageProfile:NextPageWithLayout=()=>{
     }
     return(
     
-            <div className={`flex flex-col  justify-center  mb-4 tablet:mb-8`}>
+            <div className={`flex flex-col  justify-center px-2 mb-4 tablet:mb-[6rem]`}>
                 
                 <div className="home-row py-4 ">
                     <div className={`${!isMobile ? "w-9/12" : "w-full"} flex flex-col  gap-2`}>
@@ -101,15 +101,15 @@ const PageProfile:NextPageWithLayout=()=>{
                 </div>
                 <div className="home-row py-4 bg-white">
                     <div className={`${!isMobile ? "w-9/12 flex  justify-between" : "w-full space-y-4"}   `}>
-                        <div className={`relative ${!isMobile ? "gap-4 " : "w-full"}flex `}>
-                            <div  className="w-[8rem] h-[8rem] rounded-full p-1 flex   overflow-hidden relative">
+                        <div className={`relative ${!isMobile ? "gap-4 flex" : "flex "} `}>
+                            <div  className="w-[8rem] h-[8rem]  rounded-full p-1 flex   overflow-hidden relative">
                                 <Image width="100%" height="100%" layout="fill"   objectFit="contain"
                                     
                                     src="/user-toolbar-footer.svg" 
                                 /> 
                             
                             </div>
-                            <div className="space-y-2 w-[15rem]">
+                            <div className="space-y-2 w-[15rem] px-2">
                                 <h1 className="font-medium text-xl">Nguyễn Văn Nam</h1>
                                 <p className="text-[13px]">Ngày tham gia XXX</p>
                                 <p className="flex items-center gap-1 text-[12px]"><span className=" bg-green-400  h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800"></span>Đang hoạt dộng</p>
@@ -125,6 +125,14 @@ const PageProfile:NextPageWithLayout=()=>{
                             <p><span>Email</span> xxxx</p>
                             <p><span>Facebook</span> xxxx</p>
                         </div>
+                    </div>
+                </div>
+                <div className="home-row py-4 bg-white ">
+                    <div className={`${!isMobile ? "w-9/12" : "w-full"}  relative flex gap-4 border-solid border-b-[1px] border-gray-300 `}>
+                            
+                            <p className="font-[500] text-[18px] tablet:text-[15px] border-solid border-b-[4px] pb-2 border-purple-700 ">Danh sách tin đăng</p>
+                            <p className="font-[400] text-[18px] tablet:text-[15px]">Giới thiệu</p>
+                     
                     </div>
                 </div>
                 <div className="home-row pt-2 bg-white">
