@@ -88,7 +88,7 @@
         @apply p-10 justify-center flex pb-0 tablet:p-2 
     }
     .pathMenu{
-        @apply after:mx-2 after:content-['***'] after:text-[5px] after:pt-1  after:text-transparent after:bg-[url(/left-icon-path.svg)] after:bg-no-repeat after:bg-center 
+        @apply after:mx-2 tablet:after:mx-1 after:content-['*****'] after:text-[4px] after:pt-[0.2rem]  after:text-transparent after:bg-[url(/left-icon-path.svg)] after:bg-no-repeat after:bg-center 
     }
     .info{
         @apply after:bg-[url(/info-icon.svg)] after:mx-1 after:content-['***'] after:text-transparent after:bg-no-repeat after:bg-center after:bg-[length:1rem_1rem]  
@@ -259,6 +259,9 @@
       }
       .shadow-e1{
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      }
+      .shadow-e2{
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
       }
     
       .check-shadow{

@@ -247,8 +247,8 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                         
                         <div className="flex items-center">
                             <Link href="/tin-tuc">
-                                <a className="text-sm font-bold text-purple-700 flex ">Đến trang tin tức
-                                    <div className="h-5 w-8  relative">
+                                <a className="text-sm font-bold text-purple-700 flex gap-2">Đến trang tin tức
+                                    <div className="h-5 w-4  relative">
                                         <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-left.svg" className="h-5 w-8 rotate-180"/>
                                     </div>
                                 </a>

@@ -116,13 +116,22 @@ const PageProfile:NextPageWithLayout=()=>{
                                 /> 
                             
                             </div>
-                            <div className="space-y-2 w-[15rem] px-2">
+                            <div className="space-y-2 w-[18rem] px-2">
                                 <h1 className="font-medium text-xl">Nguyễn Văn Nam</h1>
                                 <p className="text-[13px]">Ngày tham gia XXX</p>
                                 <p className="flex items-center gap-1 text-[12px]"><span className=" bg-green-400  h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800"></span>Đang hoạt dộng</p>
-                                <div className="flex gap-4 ">
-                                    <button className="text-[13px]  flex items-center justify-center bg-purple-600 text-white font-semibold rounded-lg text-center w-[50%]  p-1">viber</button>
-                                    <button className="text-[13px]  flex items-center justify-center bg-white border-solid border-[1.5px] border-gray-200 font-semibold rounded-lg text-center w-[50%] p-1">Nhắn tin Zalo</button>
+                                <div className="flex gap-1 ">
+                                    <button className="text-[12px] tablet:text-[10px]  flex items-center gap-1 p-1 px-2 bg-purple-600 text-white font-semibold rounded-lg text-center  ">
+                                        <div className="relative h-4 w-4">
+                                            <Image  layout="fill" src="/phone_purple.svg"/>
+                                        </div>
+                                        0961 643 ***</button>
+                                    <button className="text-[12px] tablet:text-[10px] flex items-center gap-1 p-1 px-2 bg-white   border-solid border-[1.5px] border-gray-200 font-semibold rounded-lg text-center ">
+                                        <div className="relative h-5 w-4">
+                                            <Image  layout="fill" src="/zalo.svg"/>
+                                        </div>
+                                        Nhắn tin Zalo</button>
+                                   
                                 </div>
 
                             </div>
@@ -143,8 +152,8 @@ const PageProfile:NextPageWithLayout=()=>{
                     </div>
                 </div>
                 <div className="home-row pt-2 bg-white">
-                    <div className={`${!isMobile ? "w-9/12" : "w-full"}  flex gap-8`}>
-                            <div className={`${!isMobile ? "w-[65%]" : "w-full"} space-y-4 relative`}>
+                    <div className={`${!isMobile ? "w-9/12" : "w-full"}  grid grid-cols-6 gap-4`}>
+                            <div className={`${!isMobile ? "col-span-4" : "col-span-6"} space-y-4 relative`}>
                                 <div className="flex flex-row items-end justify-between">
                                     <p className="text-sm text-left ">Tìm thấy 6 tin cho thuê căn hộ </p>
                                     <div className="gap-2 flex flex-shrink ">
@@ -247,8 +256,8 @@ const PageProfile:NextPageWithLayout=()=>{
                                 </div>
                                 
                             </div>
-                        {!isMobile && 
-                            <div className="w-[35%] gap-2 flex flex-col ">
+                           
+                            <div className={`${!isMobile ? "col-span-2" :"col-span-6"} gap-2 flex flex-col `}>
                                 
                                 <p className="font-medium">Yêu cầu tư vấn</p>
                             
@@ -256,7 +265,8 @@ const PageProfile:NextPageWithLayout=()=>{
 
                                     <ContactForm hidden={true} onSubmit={showResults}/>
                                 </div>
-                            </div>}
+                            </div>
+                            
                     </div>
                 </div>
             

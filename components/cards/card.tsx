@@ -1,15 +1,19 @@
 
 import { Carousel } from 'flowbite-react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import type { Card } from '../../interfaces/interfaces';
-
 const CardHome:React.FC<Card>=(props)=>{
     const {data,isVertical} = props
     const time="2 phút trước"
     const img=2
     const video=2
+    const router = useRouter()
+    const naviGate=(link:string)=>{
+        router.push(link)
+    }
     return(
-        <div  className={` tablet:w-full ${!isVertical ? "flex-[1_0_21%] h-80": "h-full p-2 border-solid border-[1px]"} shadow tablet:p-0 select-none  rounded-lg`}>
+        <div  className={` tablet:w-full ${!isVertical ? "flex-[1_0_21%] h-80": "h-full p-2 border-solid border-[1px]"}  shadow tablet:p-0 select-none  rounded-lg`}>
             <div  className={`flex ${!isVertical ? "flex-col ":""}  tablet:p-2 gap-1 tablet:h-full tablet:gap-2  tablet:flex-row h-full   w-full    rounded-lg flex-grow` }>
                 <div className={` ${!isVertical ? "flex-[1_0_45%]" :"flex-[1_0_20%] "} tablet:flex-[1_0_30%]  relative  indicator`}>
                     { <div className=" absolute tablet:hidden z-[60] bottom-2 left-2 opacity-90">
@@ -46,7 +50,7 @@ const CardHome:React.FC<Card>=(props)=>{
                     </Carousel>
                     
                 </div>
-                <div className=" w-full flex  flex-col overflow-hidden   flex-[1_0_45%] tablet:flex-[2_0_70%] tablet:px-0  px-2 ">
+                <div onClick={()=>naviGate('/product-detail')} className="cursor-pointer w-full flex  flex-col overflow-hidden   flex-[1_0_45%] tablet:flex-[2_0_70%] tablet:px-0  px-2 ">
                     <div className=" cardTitle flex-[1_0_60%]  flex    flex-col      ">
                         <div className="flex flex-col ">
 
