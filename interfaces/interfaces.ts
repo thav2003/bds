@@ -23,7 +23,8 @@ export interface DataProps{
 }
 export interface Card extends React.ComponentPropsWithoutRef<'div'> {
     data:DataProps,
-    isVertical?: boolean
+    isVertical?: boolean,
+    notchange?: boolean,
 }
 export interface CardNewsProp extends React.ComponentPropsWithoutRef<'div'> {}
 

@@ -7,11 +7,56 @@ import useDevice from '../hooks/useDevice';
 import { NextPageWithLayout } from '../page';
 const CardHome=  dynamic(() => import('../components/cards/card'),{ssr:false})
 const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'),{ssr:false})
+
+type RenderPopUp = {
+
+    children: React.ReactNode;
+}
+
+const RenderPopUp=()=>{
+    return(
+        <div className="col-span-6 h-48 ">
+            <div className="relative w-full h-full">
+                <div className="absolute inset-y-[38%] inset-x-[40%] right-[1rem] z-[2] w-[4rem] h-[4rem] rounded-full  flex justify-center items-center">
+                    <div className="relative h-full w-full">
+                        <Image layout="fill" src="/play-button.svg" className="rounded-lg"/>
+                    </div>
+                </div>
+                <div className="relative w-full h-full">
+                    <Image layout="fill" src="/test.jpg" className="rounded-lg"/>
+                </div>
+                <div className=" absolute  bottom-2 right-2 opacity-90">
+                    <div className="gap-2 flex ">
+                        <div className="bg-gray-700  rounded-md p-1  flex items-end">
+                            <div className="flex  items-center gap-1">
+                                <div className="h-5 w-3 relative">
+                                    <Image layout='fill' src="/video_thumb_white.svg" className="h-5 w-3 rounded-md mb-[2px]"/>
+                                </div>
+                                <p className="text-white opacity-80 cardText ">2</p>
+                            </div>
+                        
+                        </div>
+                        <div className="bg-gray-700 rounded-md p-1 flex items-end" >
+                            <div className="flex  items-center gap-1">
+                                <div className="h-4 w-3 relative">
+                                    <Image layout='fill' src="/images_thumb_white.svg" className="h-4 w-3 rounded-md"/>
+                                </div>
+                                <p className="text-white opacity-80 cardText">2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    )
+}
+
 const ProductDetailPage:NextPageWithLayout=()=>{
     const {isMobile} =useDevice()
     return(
         <div className={`flex flex-col ${!isMobile&&"mt-[5.5rem]"}  justify-center  mb-[6rem] `}>
-            <div className="home-row py-2 mb-3">
+            <div className="home-row py-2 mb-3 tablet:mb-0 tablet:py-3">
                 <div className={`${!isMobile ? "w-9/12" : "w-full"} flex items-center  gap-4`}>
                     <button className="text-[14px] tablet:hidden flex items-center border-solid border-gray-300 border-[1px] p-1 rounded-lg px-2 pl-0">
                         <div className="relative h-6 w-6  rotate-90">
@@ -51,51 +96,113 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                 </div>  
                 
             </div>
-            <div className="home-row py-2 mb-[3.75rem] ">
-                <div className={`${!isMobile ? "w-9/12" : "w-full"} grid grid-cols-6 h-80  rounded-lg gap-4 `}>
-                    <div className="col-span-4  rounded-lg">
-                        <video controls  className="rounded-lg w-full h-full">
-                            <source src="/testvideo.mkv" />
-                        </video>
-                       
 
-                    </div>
-                    <div className="col-span-2  rounded-lg">
-                        <div className="relative w-full h-full">
-                            <div className="absolute inset-y-[46%] right-[1rem] z-[2] w-7 h-7 rounded-full bg-white flex justify-center items-center">
-                                <div className="relative h-6 w-6 -rotate-90">
-                                    <Image layout="fill" src="/down_button_grey.svg" className="rounded-lg"/>
+            <div className="home-row py-2  tablet:px-0 tablet:py-1 ">
+                <div className={`${!isMobile ? "w-9/12" : "w-full"} grid grid-cols-6   rounded-lg gap-4 `}>
+                    {!isMobile ? 
+                        <>
+                        <div className="col-span-4  rounded-lg">
+                            <video controls  className="rounded-lg w-full h-full">
+                                <source src="/testvideo.mkv" />
+                            </video>
+                        
+
+                        </div>
+                        <div className="col-span-2  rounded-lg">
+                            <div className="relative w-full h-full">
+                                <div className="absolute inset-y-[46%] right-[1rem] z-[2] w-7 h-7 rounded-full bg-white flex justify-center items-center">
+                                    <div className="relative h-6 w-6 -rotate-90">
+                                        <Image layout="fill" src="/down_button_grey.svg" className="rounded-lg"/>
+                                    </div>
+                                </div>
+                                <div className="relative w-full h-full">
+                                    <Image layout="fill" src="/test.jpg" className="rounded-lg"/>
                                 </div>
                             </div>
-                            <div className="relative w-full h-full">
-                                <Image layout="fill" src="/test.jpg" className="rounded-lg"/>
-                            </div>
-                        </div>
 
-                    </div>
+                        </div>
+                        </>
+                        :
+                        <div className="col-span-6 h-48 ">
+                            <div className="relative w-full h-full">
+                                <div className="absolute inset-y-[38%] inset-x-[40%] right-[1rem] z-[2] w-[4rem] h-[4rem] rounded-full  flex justify-center items-center">
+                                    <div className="relative h-full w-full">
+                                        <Image layout="fill" src="/play-button.svg" className="rounded-lg"/>
+                                    </div>
+                                </div>
+                                <div className="relative w-full h-full">
+                                    <Image layout="fill" src="/test.jpg" className="rounded-lg"/>
+                                </div>
+                                <div className=" absolute  bottom-2 right-2 opacity-90">
+                                    <div className="gap-2 flex ">
+                                        <div className="bg-gray-700  rounded-md p-1  flex items-end">
+                                            <div className="flex  items-center gap-1">
+                                                <div className="h-5 w-3 relative">
+                                                    <Image layout='fill' src="/video_thumb_white.svg" className="h-5 w-3 rounded-md mb-[2px]"/>
+                                                </div>
+                                                <p className="text-white opacity-80 cardText ">2</p>
+                                            </div>
+                                        
+                                        </div>
+                                        <div className="bg-gray-700 rounded-md p-1 flex items-end" >
+                                            <div className="flex  items-center gap-1">
+                                                <div className="h-4 w-3 relative">
+                                                    <Image layout='fill' src="/images_thumb_white.svg" className="h-4 w-3 rounded-md"/>
+                                                </div>
+                                                <p className="text-white opacity-80 cardText">2</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    }
                 </div>
             </div>
             <div className="home-row py-2 mb-6 ">
                 <div className={`${!isMobile ? "w-9/12" : "w-full"} grid grid-cols-6 gap-4 `}>
-                    <div className="col-span-4 space-y-4">
+                    <div className={`${!isMobile ? "col-span-4" : "col-span-6"} space-y-4`}>
                         <div className="w-full">
-                            <p className="font-bold text-[18px] mb-6">Cho thuê căn hộ cao cấp tại Vinhomes Grand Parks Q9, giá rẻ nhất hộ cao cấp tại Vinh thị trường</p>
-                            <div className="flex justify-between">
-                                <h2 className="text-[18px] text-base font-semibold text-purple-600  ">5 triệu/tháng</h2>
+                            <p className="font-bold text-[18px] tablet:text-[16px] mb-6 tablet:mb-3">Cho thuê căn hộ cao cấp tại Vinhomes Grand Parks Q9, giá rẻ nhất hộ cao cấp tại Vinh thị trường</p>
+                            {isMobile && 
+                                <p className="text-gray-500 mb-3">Thứ Hai, 1/8/2022 <sup>. </sup> 08:57</p>
+                            }
+                            <div className="flex justify-between tablet:mb-3">
+                                <h2 className="text-[18px]  text-base font-semibold text-purple-600  ">5 triệu/tháng</h2>
                                 <div className="grid grid-cols-2 gap-2">
-                                    <button className="bg-white font-[500] flex gap-2 items-center text-black border-solid border-[1px] border-gray-300 p-1 px-3 rounded-lg">
+                                    {!isMobile ?
+                                        <>
+                                        <button className="bg-white font-[500]  flex gap-2 items-center text-black border-solid border-[1px] border-gray-300 p-1 px-3 rounded-lg">
+                                            <div className="relative h-4 w-4">
+                                                <Image  layout="fill" src="/favorite-desktop.svg"/>
+                                            </div>
+                                                Lưu tin
+                                            </button>
+                                        <button className="bg-white font-[500]  flex gap-2 items-center text-black border-solid border-[1px] border-gray-300 p-1 px-3 rounded-lg">
+                                            <div className="relative h-4 w-4">
+                                                <Image  layout="fill" src="/share.svg"/>
+                                            </div>
+                                            Chia sẻ</button>
+                                        </>
+                                        : 
+                                        <>
+                                        <button className="bg-white font-[500]  flex gap-2 items-center text-black border-solid border-[1px] border-gray-300 p-1 px-3 rounded-lg">
                                         <div className="relative h-4 w-4">
                                             <Image  layout="fill" src="/favorite-desktop.svg"/>
                                         </div>
-                                        Lưu tin</button>
-                                    <button className="bg-white font-[500] flex gap-2 items-center text-black border-solid border-[1px] border-gray-300 p-1 px-3 rounded-lg">
-                                        <div className="relative h-4 w-4">
-                                            <Image  layout="fill" src="/share.svg"/>
-                                        </div>
-                                        Chia sẻ</button>
+                                            
+                                        </button>
+                                        <button className="bg-white font-[500]  flex gap-2 items-center text-black border-solid border-[1px] border-gray-300 p-1 px-3 rounded-lg">
+                                            <div className="relative h-4 w-4">
+                                                <Image  layout="fill" src="/share.svg"/>
+                                            </div>
+                                            </button>
+                                        </>
+                                    }
                                 </div>
                             </div>
-                            <div className="w-full mb-6">
+                            <div className="w-full mb-6 tablet:mb-4">
                                 <div className="flex gap-8">
                                     <div className="flex  items-center gap-2">
                                         <div className="relative h-4 w-4">
@@ -117,16 +224,16 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full flex items-center gap-2 mb-4">
+                            {!isMobile && <div className="w-full flex items-center gap-2 mb-4">
                                 <div className="relative h-4 w-5">
                                     <Image layout="fill"  src="/time-icon.svg"/>
                                 </div>
                                 <p className="text-gray-500">Thứ Hai, 1/8/2022 <sup>. </sup> 08:57</p>
-                            </div>
+                            </div>}
                             <div className="w-full flex gap-2  mb-6">
-                                <div className=" relative h-5 w-5">
+                                {!isMobile && <div className=" relative h-5 w-5">
                                     <Image layout="fill"  src="/location_icon.svg"/>
-                                </div>
+                                </div>}
                                 <p className="text-gray-500 ">Dự á Vinhomes Grand Parks, Đường Nguyễn Xiển, Phường Long Thạnh Mỹ, Quận 9, Hồ Chí Minh</p>
                             </div>
                             
@@ -134,16 +241,17 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                         <div className=" h-px bg-gray-200 "></div>
 
                         <div className="w-full">
-                            <p className="font-bold text-[18px] mb-6">Thông tin chi tiết</p>
-                            <div className="w-full grid grid-cols-3 gap-4">
-                                <div className=" grid grid-cols-1 gap-3">
+                            <p className="font-bold text-[18px] tablet:text-[16px] mb-6">Thông tin chi tiết</p>
+                            
+                            <div className={`w-full grid ${!isMobile ? "grid-cols-3" : "grid-cols-2"} gap-4 tablet:text-[16px]`}>
+                                
                                     <div>
                                         <p className="text-gray-500">Kiểu người đăng tin</p>
                                         <p className="text-lg">Môi giới</p>
                                     </div>
                                     <div>
                                         <p className="text-gray-500">Số phòng ngủ</p>
-                                        <p className="text-lg">2</p>
+                                        <p className="text-lg ">2</p>
                                     </div>
                                     <div>
                                         <p className="text-gray-500">Đặc điểm căn hộ</p>
@@ -157,8 +265,8 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                                         <p className="text-gray-500">Thời gian thuê tối thiểu</p>
                                         <p className="text-lg"> 6 tháng</p>
                                     </div>
-                                </div>
-                                <div className="grid grid-cols-1 gap-3">
+                               
+                                
                                     <div>
                                         <p className="text-gray-500">Loại hình căn hộ</p>
                                         <p className="text-lg">Chung cư</p>
@@ -179,8 +287,8 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                                         <p className="text-gray-500">Kì thanh toán</p>
                                         <p className="text-lg"> 1 tháng/lần</p>
                                     </div>
-                                </div>
-                                <div className="grid grid-cols-1  grid-rows-5 gap-3">
+                               
+                                
                                     <div>
                                         <p className="text-gray-500">Diện tích</p>
                                         <p className="text-lg">250 m<sup>2</sup></p>
@@ -198,16 +306,16 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                                         <p className="text-lg">S3.01</p>
                                     </div>
                                     
-                                </div>
+                                
                             </div>
                         </div>
                         <div className=" h-px bg-gray-200 "></div>
 
                         
                         <div className="w-full">
-                            <p className="font-bold text-[18px] mb-4">Thông tin mô tả</p>
-                            <div>
-                                <p>
+                            <p className="font-bold text-[18px] tablet:text-[16px] mb-4">Thông tin mô tả</p>
+                            <div className="tablet:text-[14px]">
+                                <p >
                                     Cần cho thuê căn hộ cao cấp tại Vinhomes Grand Park Quận 9 hướng mát không bắt nắng nhiều 
                                     <br/>
                                     View đẹp, hướng mát không bắt nắng
@@ -241,7 +349,7 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                                     <div className="relative h-6 w-6">
                                         <Image layout="fill"  src="/location_icon.svg"/>
                                     </div>
-                                    <p className="text-purple-500 font-semibold">Xem trên bản đồ</p>
+                                    <p className="text-purple-500 font-semibold tablet:text-[16px]">Xem trên bản đồ</p>
                                 </div>
                                 <div className="relative h-6 w-6 -rotate-90 ml-auto">
                                         <Image layout="fill"  src="/down_button_grey.svg"/>
@@ -251,9 +359,9 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                         <div className=" h-px bg-gray-200 "></div>
 
                         <div className="w-full ">
-                            <p className="font-bold text-[18px] ">Tìm căn hộ theo từ khóa</p>
+                            <p className="font-bold text-[18px] tablet:text-[16px]">Tìm căn hộ theo từ khóa</p>
                             <div className="w-full py-6">
-                                <ul className="flex flex-wrap w-full gap-x-2 gap-y-5">
+                                <ul className="flex flex-wrap w-full gap-x-2 gap-y-5 tablet:text-[14px]">
                                     <li>
                                         <a className="bg-gray-200 px-4 py-2 rounded-full">Cho thuê căn hộ Vinhomes Grand Parks Quận 9</a>
                                     </li>
@@ -270,19 +378,19 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                             </div>
                         </div>
                         
-                        <div className="w-full border-solid border-gray-300 rounded-lg border-[1px] p-4 px-6">
-                            <div className="flex items-center justify-between">
+                        <div className="w-full border-solid border-gray-300 rounded-lg border-[1px] p-4 px-6 ">
+                            <div className={`flex items-center ${isMobile && "flex-col gap-3"} justify-between`}>
                                 <div className="flex gap-2 items-center">
-                                    <div className="relative h-9 w-9">
+                                    <div className="relative h-9 w-9 ">
                                         <Image layout="fill"  src="/verified.svg"/>
                                     </div>
                                     <div>
-                                        <p className="text-[15spx]"><span className="text-green-500">Mã tin 68095286 </span>này đã được duyệt đăng</p>
-                                        <p className="text-[15spx]">Nếu bạn gặp vấn đề vui lòng báo vi phạm </p>
+                                        <p className="text-[15px] tablet:text-[14px]"><span className="text-green-500">Mã tin 68095286 </span>này đã được duyệt đăng</p>
+                                        <p className="text-[15px] tablet:text-[14px]">Nếu bạn gặp vấn đề vui lòng báo vi phạm </p>
                                     </div>
                                    
                                 </div>
-                                <button className="bg-white font-[500] flex gap-2 items-center text-black border-solid border-[1px] border-gray-300 p-1 px-3 rounded-lg">
+                                <button className={`bg-white ${isMobile && "w-full justify-center"} font-[500] flex gap-2 items-center text-black border-solid border-[1px] border-gray-300 p-1 px-3 rounded-lg`}>
                                         <div className="relative h-5 w-5">
                                             <Image  layout="fill" src="/report.svg"/>
                                         </div>
@@ -292,7 +400,7 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                         
                     </div>
                     
-                    <div className="col-span-2 ">
+                    <div className={`col-span-2 ${isMobile && "hidden"}`}>
                         <div className="w-fit p-2 ml-auto flex items-center gap-2 font-[500] text-[12px] bg-slate-200 rounded-t-md">
                             <div className="relative h-4 w-4">
                                 <Image  layout="fill" src="/nguoi_dang_tin.svg"/>
@@ -379,12 +487,15 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                             </Link>
                         </div>
                     </div>
-                    <div className="grid grid-cols-4  gap-x-4 gap-y-8  bigger:gap-8 tablet:gap-4">
-                        <CardHome data={data[0]}/>
-                        <CardHome data={data[1]}/>
-                        <CardHome data={data[2]}/>
-                        <CardHome data={data[3]}/>
+                    <div className="overflow-x-auto  ">
+                        <div className={`${!isMobile ? "grid grid-cols-4 gap-x-4 gap-y-8  bigger:gap-8" :"tablet:min-w-[900px] flex gap-x-4 bigger:gap-8"}   `}>
+                            <CardHome data={data[0]} notchange={true}/>
+                            <CardHome data={data[1]} notchange={true}/>
+                            <CardHome data={data[2]} notchange={true}/>
+                            <CardHome data={data[3]} notchange={true}/>
+                        </div>
                     </div>
+                
                 </div>
             </div>
             <div className="home-row py-2 mb-6 ">
@@ -411,11 +522,13 @@ const ProductDetailPage:NextPageWithLayout=()=>{
                             </Link>
                         </div>
                     </div>
-                    <div className="grid grid-cols-4  gap-x-4 gap-y-8  bigger:gap-8">
-                        <CardHome data={data[0]}/>
-                        <CardHome data={data[1]}/>
-                        <CardHome data={data[2]}/>
-                        <CardHome data={data[3]}/>
+                    <div className="overflow-x-auto  ">
+                        <div className={`${!isMobile ? "grid grid-cols-4 gap-x-4 gap-y-8  bigger:gap-8" :"tablet:min-w-[900px] flex gap-x-4 bigger:gap-8"}   `}>
+                            <CardHome data={data[4]} notchange={true}/>
+                            <CardHome data={data[5]} notchange={true}/>
+                            <CardHome data={data[6]} notchange={true}/>
+                            <CardHome data={data[7]} notchange={true}/>
+                        </div>
                     </div>
                 </div>
             </div>
